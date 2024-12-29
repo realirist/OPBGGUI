@@ -1039,7 +1039,7 @@ local function ZDITTNP_fake_script() -- Main.LocalScript
 			local remotes = game.ReplicatedStorage:WaitForChild('Remotes')
 			local jotaro = remotes:WaitForChild('Jotaro')
 			jotaro:FireServer('Revolver')
-			task.wait()
+			task.wait(0.1)
 		end
 	end)
 	  
