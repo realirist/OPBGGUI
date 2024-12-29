@@ -1,5 +1,7 @@
--- Gui to Lua Version 3.2
--- Realirist's OPBGGUI OPEN SOURCE
+-- Gui to Lua: Version: 3.2
+-- REALIRIST'S OPBGGUI OPEN SOURCE
+
+-- Instances:
 
 local OPBGGUI = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
@@ -85,9 +87,15 @@ local UISizeConstraint_26 = Instance.new("UISizeConstraint")
 local discord = Instance.new("TextButton")
 local UICorner_28 = Instance.new("UICorner")
 local UISizeConstraint_27 = Instance.new("UISizeConstraint")
-local Minimize = Instance.new("TextButton")
+local ultlaser = Instance.new("TextButton")
 local UICorner_29 = Instance.new("UICorner")
 local UISizeConstraint_28 = Instance.new("UISizeConstraint")
+local bluelaser = Instance.new("TextButton")
+local UICorner_30 = Instance.new("UICorner")
+local UISizeConstraint_29 = Instance.new("UISizeConstraint")
+local Minimize = Instance.new("TextButton")
+local UICorner_31 = Instance.new("UICorner")
+local UISizeConstraint_30 = Instance.new("UISizeConstraint")
 
 --Properties:
 
@@ -227,7 +235,7 @@ title.Parent = Main
 title.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
 title.BorderColor3 = Color3.fromRGB(0, 0, 0)
 title.BorderSizePixel = 0
-title.Position = UDim2.new(-0.00319546647, 0, -0.10825596, 0)
+title.Position = UDim2.new(-0.000750478706, 0, -0.0975032672, 0)
 title.Size = UDim2.new(0, 409, 0, 50)
 title.Font = Enum.Font.SourceSans
 title.Text = "Realirist's OP BATTLEGROUNDS GUI (dont skid me pls)"
@@ -623,6 +631,44 @@ UISizeConstraint_27.Parent = discord
 UISizeConstraint_27.MaxSize = Vector2.new(100, 28)
 UISizeConstraint_27.MinSize = Vector2.new(100, 28)
 
+ultlaser.Name = "ultlaser"
+ultlaser.Parent = Main
+ultlaser.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+ultlaser.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ultlaser.BorderSizePixel = 0
+ultlaser.Position = UDim2.new(0.687202871, 0, 0.599487543, 0)
+ultlaser.Size = UDim2.new(0, 200, 0, 28)
+ultlaser.Text = "Ultimate Laser"
+ultlaser.TextColor3 = Color3.fromRGB(255, 255, 255)
+ultlaser.TextScaled = true
+ultlaser.TextSize = 14.000
+ultlaser.TextWrapped = true
+
+UICorner_29.Parent = ultlaser
+
+UISizeConstraint_28.Parent = ultlaser
+UISizeConstraint_28.MaxSize = Vector2.new(100, 28)
+UISizeConstraint_28.MinSize = Vector2.new(100, 28)
+
+bluelaser.Name = "bluelaser"
+bluelaser.Parent = Main
+bluelaser.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+bluelaser.BorderColor3 = Color3.fromRGB(0, 0, 0)
+bluelaser.BorderSizePixel = 0
+bluelaser.Position = UDim2.new(0.687202871, 0, 0.526369274, 0)
+bluelaser.Size = UDim2.new(0, 200, 0, 28)
+bluelaser.Text = "Blue Laser"
+bluelaser.TextColor3 = Color3.fromRGB(255, 255, 255)
+bluelaser.TextScaled = true
+bluelaser.TextSize = 14.000
+bluelaser.TextWrapped = true
+
+UICorner_30.Parent = bluelaser
+
+UISizeConstraint_29.Parent = bluelaser
+UISizeConstraint_29.MaxSize = Vector2.new(100, 28)
+UISizeConstraint_29.MinSize = Vector2.new(100, 28)
+
 Minimize.Name = "Minimize"
 Minimize.Parent = OPBGGUI
 Minimize.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
@@ -636,19 +682,19 @@ Minimize.TextScaled = true
 Minimize.TextSize = 14.000
 Minimize.TextWrapped = true
 
-UICorner_29.Parent = Minimize
+UICorner_31.Parent = Minimize
 
-UISizeConstraint_28.Parent = Minimize
-UISizeConstraint_28.MaxSize = Vector2.new(200, 28)
-UISizeConstraint_28.MinSize = Vector2.new(200, 28)
+UISizeConstraint_30.Parent = Minimize
+UISizeConstraint_30.MaxSize = Vector2.new(200, 28)
+UISizeConstraint_30.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function BCUX_fake_script() -- Main.LocalScript 
+local function ZDITTNP_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
-	warn('OP BATTLEGROUNDS GUI V15 BY REALIRIST')
-	warn('skidders are dirty niggers')
+	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
+	warn('skidders are dirty ninjas')
 	script.Parent['3'].MouseButton1Click:Connect(function()
 		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
 		if remotes then
@@ -976,7 +1022,26 @@ local function BCUX_fake_script() -- Main.LocalScript
 		end
 	end)
 	
-	
+	local laser1Active = false
+	script.Parent['bluelaser'].MouseButton1Click:Connect(function()
+		laser1Active = (not laser1Active)
+		while laser1Active do
+			local remotes = game.ReplicatedStorage:WaitForChild('Remotes')
+			local gojo = remotes:WaitForChild('Gojo')
+			gojo:FireServer('Blue')
+			task.wait()
+		end
+	end)
+	local laser2Active = false
+	script.Parent['ultlaser'].MouseButton1Click:Connect(function()
+		laser2Active = (not laser2Active)
+		while laser2Active do
+			local remotes = game.ReplicatedStorage:WaitForChild('Remotes')
+			local jotaro = remotes:WaitForChild('Jotaro')
+			jotaro:FireServer('Revolver')
+			task.wait()
+		end
+	end)
 	  
 	
 	script.Parent.Parent.Minimize.MouseButton1Click:Connect(function()
@@ -998,4 +1063,4 @@ local function BCUX_fake_script() -- Main.LocalScript
 		task.wait(0.1)
 	end
 end
-coroutine.wrap(BCUX_fake_script)()
+coroutine.wrap(ZDITTNP_fake_script)()
