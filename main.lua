@@ -1150,10 +1150,6 @@ local function GOOLQYX_fake_script() -- Main.LocalScript
 		local name = plr.Name
 		makeUser(name)
 	end)
-	task.wait()
-	makeUser('Realirist')
-	makeUser('Realirist')
-	
 	
 end
 coroutine.wrap(GOOLQYX_fake_script)()
