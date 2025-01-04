@@ -1,5 +1,5 @@
 -- Gui to Lua Version 3.2
--- bruu why buggy sometimes
+-- bruu why buggy sometimess
 -- Realirist's opbggui
 local OPBGGUI = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
