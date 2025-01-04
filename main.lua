@@ -1,8 +1,6 @@
 -- Gui to Lua Version 3.2
-
--- REALIRIST OPBGGUI OPEN SOURCE
--- JUST DONT SKID PLS
-
+-- bruu why buggy sometimes
+-- Realirist's opbggui
 local OPBGGUI = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -722,7 +720,7 @@ UISizeConstraint_30.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function AZPL_fake_script() -- Main.LocalScript 
+local function GOOLQYX_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1118,11 +1116,11 @@ local function AZPL_fake_script() -- Main.LocalScript
 			clone.Visible = true
 			clone.Parent = script.Parent.Users
 			local originalColor = Color3.fromRGB(61,61,61)
-			game.Players.PlayerRemoving:Once(function(plr)
+			game.Players.PlayerRemoving:Connect(function(plr)
 				if plr.Name==username then
-					clone:Destroy()
 					target = nil
 					print(username.. ' left. -- OPBGGUI')
+					clone:Destroy()
 				end
 			end)
 			clone.MouseButton1Click:Connect(function()
@@ -1152,7 +1150,10 @@ local function AZPL_fake_script() -- Main.LocalScript
 		local name = plr.Name
 		makeUser(name)
 	end)
+	task.wait()
+	makeUser('Realirist')
+	makeUser('Realirist')
 	
 	
 end
-coroutine.wrap(AZPL_fake_script)()
+coroutine.wrap(GOOLQYX_fake_script)()
