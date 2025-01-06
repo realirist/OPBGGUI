@@ -1,5 +1,6 @@
 -- Gui to Lua Version 3.2
 -- Realirist's OPBGGUI
+-- why ts not updating sometimes
 -- Instances:
 
 local OPBGGUI = Instance.new("ScreenGui")
