@@ -1,5 +1,5 @@
 -- Gui to Lua Version 3.2
--- new update, hopefully it works
+-- new update, hopefully it workss
 -- Realirist's OPBGGUI
 
 -- Instances:
