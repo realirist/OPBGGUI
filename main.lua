@@ -1139,7 +1139,7 @@ local function AFRK_fake_script() -- Main.LocalScript
 	end
 	
 	for _,plr in game.Players:GetPlayers() do
-		if plr==game.Players.LocalPlayer then
+		if plr~=game.Players.LocalPlayer then
 			local name = plr.Name
 			local userid = plr.UserId
 			if name=='Realirist' and userid==3948255911 then
