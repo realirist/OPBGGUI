@@ -1,6 +1,7 @@
 -- Gui to Lua Version 3.2
+-- new update, hopefully it works
 -- Realirist's OPBGGUI
--- why ts not updating sometimes
+
 -- Instances:
 
 local OPBGGUI = Instance.new("ScreenGui")
@@ -722,9 +723,10 @@ UISizeConstraint_30.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function AFRK_fake_script() -- Main.LocalScript 
+local function MGQS_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
+	assert((not game.Players.LocalPlayer.PlayerGui:FindFirstChild('OPBGGUI')),'already running!')
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
 	warn('don\'t skid bru im doing yall favors')
 	local legacyChat = game:GetService("TextChatService").ChatVersion == Enum.ChatVersion.LegacyChatService
@@ -733,7 +735,7 @@ local function AFRK_fake_script() -- Main.LocalScript
 		sayMessage = function(msg)
 			game.TextChatService.TextChannels.RBXGeneral:SendAsync(msg)
 		end
-	elseif legacyChat==false then
+	elseif not legacyChat then
 		sayMessage = function(msg)
 			game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
 		end
@@ -1193,4 +1195,4 @@ local function AFRK_fake_script() -- Main.LocalScript
 	end)
 	co()
 end
-coroutine.wrap(AFRK_fake_script)()
+coroutine.wrap(MGQS_fake_script)()
