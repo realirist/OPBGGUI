@@ -6,7 +6,6 @@ added one more safeguard WAZA
 ]]--
 
 -- Instances:
-assert((not game.Players.LocalPlayer.PlayerGui.OPBGGUI),'already running')
 local OPBGGUI = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
