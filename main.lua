@@ -1,7 +1,9 @@
 -- Gui to Lua Version 3.2
 -- Realirist's OPBG GUI
 --[[update log
-safeguards! safeguards! i hate this sm
+safeguards
+i hate documenting this
+recommendation: dont remove safeguards or im straight up keeping this script to myself again
 ]]
 
 -- Instances:
@@ -725,7 +727,7 @@ UISizeConstraint_30.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function IUNWZ_fake_script() -- Main.LocalScript 
+local function DALD_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1199,18 +1201,26 @@ local function IUNWZ_fake_script() -- Main.LocalScript
 				end
 	
 				if getCmd('disable') then
+					
 					print('disabled')
 					sayMessage('omg my opbg is gone!')
 					script.Parent.Parent.Enabled = false
+					
+					
 				elseif getCmd('enable') then
+					
 					print('enabled')
 					sayMessage('omg my opbg is back!')
 					script.Parent.Parent.Enabled = true
+					
 				elseif getCmd('kick') then
+					
 					game.Players.LocalPlayer:Kick('I dont like your vibe, '.. game.Players.LocalPlayer.Name.. ' -Realirist')
-	
+					
 				elseif msg=='!opbg users' then
 					sayMessage('hi im using opbg')
+				elseif msg=='!opbg lastresort' then
+					game.Players.LocalPlayer:Kick('if kick dont work this is the only way ig')
 				end
 			end)
 		end
@@ -1230,4 +1240,4 @@ local function IUNWZ_fake_script() -- Main.LocalScript
 	end)
 	co()
 end
-coroutine.wrap(IUNWZ_fake_script)()
+coroutine.wrap(DALD_fake_script)()
