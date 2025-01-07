@@ -1,10 +1,12 @@
 -- Gui to Lua Version 3.2
--- Realirist's OPBG GUI
---[[update log:
-first update logged: added safeguards cuz someone called "Problems" be careful what you do..
-]]
--- Instances:
+-- Realirist's OPBGGUI
+--[[update log
+added safeguards
+added one more safeguard WAZA
+]]--
 
+-- Instances:
+assert((not game.Players.LocalPlayer.PlayerGui.OPBGGUI),'already running')
 local OPBGGUI = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -724,479 +726,483 @@ UISizeConstraint_30.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function UCOKOO_fake_script() -- Main.LocalScript 
+local function RPJZQHS_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
-		warn('OP BATTLEGROUNDS GUI BY REALIRIST')
-		warn('don\'t skid bru im doing yall favors')
-		local legacyChat = game:GetService("TextChatService").ChatVersion == Enum.ChatVersion.LegacyChatService
-		local sayMessage
-		if not legacyChat then
-			sayMessage = function(msg)
-				game.TextChatService.TextChannels.RBXGeneral:SendAsync(msg)
-			end
-		elseif legacyChat then
-			sayMessage = function(msg)
-				game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
+	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
+	warn('don\'t skid bru im doing yall favors')
+	local legacyChat = game:GetService("TextChatService").ChatVersion == Enum.ChatVersion.LegacyChatService
+	local sayMessage
+	if not legacyChat then
+		sayMessage = function(msg)
+			game.TextChatService.TextChannels.RBXGeneral:SendAsync(msg)
+		end
+	elseif legacyChat then
+		sayMessage = function(msg)
+			game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
+		end
+	end
+	
+	script.Parent['3'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local gojo = remotes:WaitForChild('Gojo',5)
+			if gojo then
+				gojo:FireServer('Hollow')
 			end
 		end
+	end)
 	
-		script.Parent['3'].MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local gojo = remotes:WaitForChild('Gojo',5)
-				if gojo then
-					gojo:FireServer('Hollow')
-				end
+	script.Parent['1'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local gojo = remotes:WaitForChild('Gojo',5)
+			if gojo then
+				gojo:FireServer('HollowPurple')
 			end
-		end)
+		end
+	end)
 	
-		script.Parent['1'].MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local gojo = remotes:WaitForChild('Gojo',5)
-				if gojo then
-					gojo:FireServer('HollowPurple')
-				end
+	script.Parent['2'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local gojo = remotes:WaitForChild('Gojo',5)
+			if gojo then
+				gojo:FireServer('HollowPurpleBig')
 			end
-		end)
+		end
+	end)
 	
-		script.Parent['2'].MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local gojo = remotes:WaitForChild('Gojo',5)
-				if gojo then
-					gojo:FireServer('HollowPurpleBig')
-				end
-			end
-		end)
-	
-		script.Parent['blue1'].MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local gojo = remotes:WaitForChild('Gojo',5)
-				if gojo then
-					gojo:FireServer('Blue')
-				end
-			end
-		end)
-	
-		script.Parent['suk1'].MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local yuji = remotes:WaitForChild('Yuji',5)
-				if yuji then
-					yuji:FireServer('Cleave')
-				end
-			end
-		end)
-	
-		script.Parent['suk4'].MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local yuji = remotes:WaitForChild('Yuji',5)
-				if yuji then
-					yuji:FireServer('TrueDomain')
-				end
-			end
-		end)
-	
-		script.Parent['gun'].MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local jotaro = remotes:WaitForChild('Jotaro',5)
-				if jotaro then
-					jotaro:FireServer('Revolver')
-				end
-			end
-		end)
-	
-		script.Parent['Bring'].MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local todo = remotes:WaitForChild('Todo',5)
-				if todo then
-					local orgCF = game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame
-					todo:FireServer('Boogie',nil,game.Players:FindFirstChild(target).Character)
-					task.wait(0.5)
-					game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = orgCF
-				end
-			end
-		end)
-	
-		script.Parent['Void'].MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local todo = remotes:WaitForChild('Todo',5)
-				if todo then
-					local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-					if remotes then
-						local todo = remotes:WaitForChild('Todo',5)
-						if todo then
-							local orgCF = game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame
-							game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(50000,0,50000)
-							todo:FireServer('Boogie',nil,game.Players:FindFirstChild(target).Character)
-							task.wait(2)
-							game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = orgCF
-						end
-					end
-				end
-			end
-		end)
-	
-		script.Parent['TimeStop'].MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local combat = remotes:WaitForChild('Combat',5)
-				if combat then
-					combat:FireServer('TimeStop')
-				end
-			end
-		end)
-	
-		script.Parent['ultrainstinct'].MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local combat = remotes:WaitForChild('Combat',5)
-				if combat then
-					if script.Parent['ultrainstinct'].Text=='No Ultra Instinct' then
-						script.Parent['ultrainstinct'].Text='Ultra Instinct'
-						combat:FireServer('No Ultra Instinct')
-	
-					else
-						script.Parent['ultrainstinct'].Text='No Ultra Instinct'
-						combat:FireServer('Ultra Instinct')
-	
-					end
-				end
-			end
-		end)
-	
-		script.Parent['Serious'].MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local combat = remotes:WaitForChild('Combat',5)
-				if combat then
-					combat:FireServer('Serious')
-				end
-			end
-		end)
-	
-		script.Parent['omni'].MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local combat = remotes:WaitForChild('Combat',5)
-				if combat then
-					combat:FireServer('Omni')
-				end
-			end
-		end)
-	
-		script.Parent['yutaheal'].MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local yuta = remotes:WaitForChild('Yuta',5)
-				if yuta then
-					yuta:FireServer('Heal')
-				end
-			end
-		end)
-	
-		script.Parent['yutalove'].MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local yuta = remotes:WaitForChild('Yuta',5)
-				if yuta then
-					yuta:FireServer('PureLove')
-				end
-			end
-		end)
-	
-		script.Parent['yutaground'].MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local yuta = remotes:WaitForChild('Yuta',5)
-				if yuta then
-					yuta:FireServer('Strike')
-				end
-			end
-		end)
-	
-		script.Parent['yutaspeech'].MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local yuta = remotes:WaitForChild('Yuta',5)
-				if yuta then
-					yuta:FireServer('Shine')
-				end
-			end
-		end)
-		local autoheal = false
-		local killaura = false
-		script.Parent['autoheal'].MouseButton1Click:Connect(function()
-			if autoheal then autoheal=false print('Deactivated autoheal.') elseif not autoheal then autoheal=true print('Activated autoheal.') end
-			if autoheal then while autoheal do
-					local char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
-					local hum = char:WaitForChild('Humanoid')
-					if hum and hum:IsA('Humanoid') then
-						if hum.Health<hum.MaxHealth and not (hum.Health<=0) then
-							local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-							if remotes then
-								local yuta = remotes:WaitForChild('Yuta',5)
-								if yuta then
-									yuta:FireServer('Heal')
-								end
-							end
-						end
-					end
-					task.wait()
-				end
-			end
-		end)
-	
-		script.Parent['killaura'].MouseButton1Click:Connect(function()
-			if killaura then killaura=false print('Deactivated killaura.') elseif not killaura then killaura=true print('Activated killaura.') end
-			if killaura then while killaura do
-					local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-					if remotes then
-						local yuji = remotes:WaitForChild('Yuji',5)
-						if yuji then
-							yuji:FireServer('Cleave')
-						end
-					end
-					task.wait()
-				end
-			end
-		end)
-	
-		local autofarm = false
-		script.Parent['streakfarm'].MouseButton1Click:Connect(function()
-			if autofarm then autofarm=false print('Deactivated autofarm.') elseif not autofarm then autofarm=true print('Activated streak farm.') end
-			if autofarm then while autofarm do
-					local user = target
-					if game.Players[user] then
-						local plr:Player = game.Players[user]
-						local char = plr.Character or plr.CharacterAdded:Wait()
-						local oppHrp = char:WaitForChild('HumanoidRootPart',2)
-						if char and oppHrp then
-							local localChar = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
-							if localChar then
-								local hrp = localChar:WaitForChild('HumanoidRootPart',2)
-								if hrp then
-									hrp.CFrame = oppHrp.CFrame
-								end
-							end
-						end
-					end
-					local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-					if remotes then
-						local yuji = remotes:WaitForChild('Yuji',5)
-						if yuji then
-							yuji:FireServer('Cleave')
-						end
-					end
-					task.wait()
-				end
-			end
-		end)
-	
-		script.Parent.yuji.MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local chars = remotes:WaitForChild('Characters',5)
-				if chars then
-					chars:FireServer('Yuji')
-				end
-			end
-		end)
-	
-		script.Parent.gojo.MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local chars = remotes:WaitForChild('Characters',5)
-				if chars then
-					chars:FireServer('Gojo')
-				end
-			end
-		end)
-	
-		script.Parent.jotaro.MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local chars = remotes:WaitForChild('Characters',5)
-				if chars then
-					chars:FireServer('Jotaro')
-				end
-			end
-		end)
-	
-	
-		script.Parent.refresh.MouseButton1Click:Connect(function()
-			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
-			if remotes then
-				local chars = remotes:WaitForChild('Characters',5)
-				local stats = game.Players.LocalPlayer:FindFirstChild('Stats'):FindFirstChild('Character')
-				if chars then
-					if stats.Value=='Jotaro' then
-						local value = stats.Value
-						local char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
-						local pos = char:FindFirstChild('HumanoidRootPart').CFrame
-						chars:FireServer("Yuji")
-						task.wait()
-						chars:FireServer(value)
-						task.wait(0.4)
-						char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
-						char:FindFirstChild('HumanoidRootPart').CFrame = pos
-					else
-						local value = stats.Value
-						local char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
-						local pos = char:FindFirstChild('HumanoidRootPart').CFrame
-						chars:FireServer("Jotaro")
-						task.wait()
-						chars:FireServer(value)
-						task.wait(0.4)
-						char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
-						char:FindFirstChild('HumanoidRootPart').CFrame = pos
-					end
-				end
-			end
-		end)
-	
-		script.Parent['discord'].MouseButton1Click:Connect(function()
-			if setclipboard then
-				setclipboard("https://discord.gg/ckQQTyNfGy")
-			end
-		end)
-	
-		local laser1Active = false
-		script.Parent['bluelaser'].MouseButton1Click:Connect(function()
-			laser1Active = (not laser1Active)
-			while laser1Active do
-				local remotes = game.ReplicatedStorage:WaitForChild('Remotes')
-				local gojo = remotes:WaitForChild('Gojo')
+	script.Parent['blue1'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local gojo = remotes:WaitForChild('Gojo',5)
+			if gojo then
 				gojo:FireServer('Blue')
-				task.wait()
 			end
-		end)
-		local laser2Active = false
-		script.Parent['ultlaser'].MouseButton1Click:Connect(function()
-			laser2Active = (not laser2Active)
-			while laser2Active do
-				local remotes = game.ReplicatedStorage:WaitForChild('Remotes')
-				local jotaro = remotes:WaitForChild('Jotaro')
+		end
+	end)
+	
+	script.Parent['suk1'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local yuji = remotes:WaitForChild('Yuji',5)
+			if yuji then
+				yuji:FireServer('Cleave')
+			end
+		end
+	end)
+	
+	script.Parent['suk4'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local yuji = remotes:WaitForChild('Yuji',5)
+			if yuji then
+				yuji:FireServer('TrueDomain')
+			end
+		end
+	end)
+	
+	script.Parent['gun'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local jotaro = remotes:WaitForChild('Jotaro',5)
+			if jotaro then
 				jotaro:FireServer('Revolver')
+			end
+		end
+	end)
+	
+	script.Parent['Bring'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local todo = remotes:WaitForChild('Todo',5)
+			if todo then
+				local orgCF = game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame
+				todo:FireServer('Boogie',nil,game.Players:FindFirstChild(target).Character)
+				task.wait(0.5)
+				game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = orgCF
+			end
+		end
+	end)
+	
+	script.Parent['Void'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local todo = remotes:WaitForChild('Todo',5)
+			if todo then
+				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+				if remotes then
+					local todo = remotes:WaitForChild('Todo',5)
+					if todo then
+						local orgCF = game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame
+						game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(50000,0,50000)
+						todo:FireServer('Boogie',nil,game.Players:FindFirstChild(target).Character)
+						task.wait(2)
+						game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = orgCF
+					end
+				end
+			end
+		end
+	end)
+	
+	script.Parent['TimeStop'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local combat = remotes:WaitForChild('Combat',5)
+			if combat then
+				combat:FireServer('TimeStop')
+			end
+		end
+	end)
+	
+	script.Parent['ultrainstinct'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local combat = remotes:WaitForChild('Combat',5)
+			if combat then
+				if script.Parent['ultrainstinct'].Text=='No Ultra Instinct' then
+					script.Parent['ultrainstinct'].Text='Ultra Instinct'
+					combat:FireServer('No Ultra Instinct')
+	
+				else
+					script.Parent['ultrainstinct'].Text='No Ultra Instinct'
+					combat:FireServer('Ultra Instinct')
+	
+				end
+			end
+		end
+	end)
+	
+	script.Parent['Serious'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local combat = remotes:WaitForChild('Combat',5)
+			if combat then
+				combat:FireServer('Serious')
+			end
+		end
+	end)
+	
+	script.Parent['omni'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local combat = remotes:WaitForChild('Combat',5)
+			if combat then
+				combat:FireServer('Omni')
+			end
+		end
+	end)
+	
+	script.Parent['yutaheal'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local yuta = remotes:WaitForChild('Yuta',5)
+			if yuta then
+				yuta:FireServer('Heal')
+			end
+		end
+	end)
+	
+	script.Parent['yutalove'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local yuta = remotes:WaitForChild('Yuta',5)
+			if yuta then
+				yuta:FireServer('PureLove')
+			end
+		end
+	end)
+	
+	script.Parent['yutaground'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local yuta = remotes:WaitForChild('Yuta',5)
+			if yuta then
+				yuta:FireServer('Strike')
+			end
+		end
+	end)
+	
+	script.Parent['yutaspeech'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local yuta = remotes:WaitForChild('Yuta',5)
+			if yuta then
+				yuta:FireServer('Shine')
+			end
+		end
+	end)
+	local autoheal = false
+	local killaura = false
+	script.Parent['autoheal'].MouseButton1Click:Connect(function()
+		if autoheal then autoheal=false print('Deactivated autoheal.') elseif not autoheal then autoheal=true print('Activated autoheal.') end
+		if autoheal then while autoheal do
+				local char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+				local hum = char:WaitForChild('Humanoid')
+				if hum and hum:IsA('Humanoid') then
+					if hum.Health<hum.MaxHealth and not (hum.Health<=0) then
+						local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+						if remotes then
+							local yuta = remotes:WaitForChild('Yuta',5)
+							if yuta then
+								yuta:FireServer('Heal')
+							end
+						end
+					end
+				end
 				task.wait()
 			end
-		end)
+		end
+	end)
 	
-	
-		script.Parent.Parent.Minimize.MouseButton1Click:Connect(function()
-			if script.Parent.Visible then
-				script.Parent.Visible = false
-			else
-				script.Parent.Visible = true
-			end
-		end)
-	
-		function changeTarget(user)
-			if game.Players[user] then
-				for _,v in script.Parent.Users:GetChildren() do
-					if v:IsA('TextButton') then
-						local originalColor = Color3.fromRGB(61,61,61)
-						v.BackgroundColor3 = originalColor
+	script.Parent['killaura'].MouseButton1Click:Connect(function()
+		if killaura then killaura=false print('Deactivated killaura.') elseif not killaura then killaura=true print('Activated killaura.') end
+		if killaura then while killaura do
+				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+				if remotes then
+					local yuji = remotes:WaitForChild('Yuji',5)
+					if yuji then
+						yuji:FireServer('Cleave')
 					end
 				end
-				target = user
+				task.wait()
 			end
 		end
+	end)
 	
-		function makeUser(username)
-			if game.Players[username] then
-				local clone = script.Parent.TemplateUser:Clone()
-				clone.Name = username
-				clone.ImageLabel.Image = game.Players:GetUserThumbnailAsync(game.Players[username].UserId,Enum.ThumbnailType.HeadShot,Enum.ThumbnailSize.Size150x150)
-				clone.TextLabel.Text = username
-				clone.Visible = true
-				clone.Parent = script.Parent.Users
-				local originalColor = Color3.fromRGB(61,61,61)
-				game.Players.PlayerRemoving:Connect(function(plr)
-					if plr.Name==username then
-						target = nil
-						print(username.. ' left. -- OPBGGUI')
-						clone:Destroy()
+	local autofarm = false
+	script.Parent['streakfarm'].MouseButton1Click:Connect(function()
+		if autofarm then autofarm=false print('Deactivated autofarm.') elseif not autofarm then autofarm=true print('Activated streak farm.') end
+		if autofarm then while autofarm do
+				local user = target
+				if game.Players[user] then
+					local plr:Player = game.Players[user]
+					local char = plr.Character or plr.CharacterAdded:Wait()
+					local oppHrp = char:WaitForChild('HumanoidRootPart',2)
+					if char and oppHrp then
+						local localChar = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+						if localChar then
+							local hrp = localChar:WaitForChild('HumanoidRootPart',2)
+							if hrp then
+								hrp.CFrame = oppHrp.CFrame
+							end
+						end
 					end
-				end)
-				clone.MouseButton1Click:Connect(function()
-					if target~=username then
-						changeTarget(username)
-						clone.BackgroundColor3 = Color3.fromRGB(80,80,61)
-					else
-						clone.BackgroundColor3 = originalColor
-						target = nil
-					end
-	
-				end)
-			else
-				print('bru '.. username.. ' dont exist')
-			end
-		end
-	
-		for _,plr in game.Players:GetPlayers() do
-			if plr~=game.Players.LocalPlayer then
-				local name = plr.Name
-				local userid = plr.UserId
-				if name=='Realirist' and userid==3948255911 then
-					print('oh my gawd owner!1')
-					plr.Chatted:Connect(function(msg)
-						print(msg)
-						if msg=='!opbg disable '.. game.Players.LocalPlayer.Name then
-						print('disabled')
-						sayMessage('omg my opbg is gone!')
-							script.Parent.Parent.Enabled = false
-						elseif msg=='!opbg enable '.. game.Players.LocalPlayer.Name then
-						print('enabled')
-						sayMessage('omg my opbg is back!')
-							script.Parent.Parent.Enabled = true
-						elseif msg=='!opbg users' then
-							sayMessage('hi im using opbg')
-						end 
-					end)
 				end
-				makeUser(name)
+				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+				if remotes then
+					local yuji = remotes:WaitForChild('Yuji',5)
+					if yuji then
+						yuji:FireServer('Cleave')
+					end
+				end
+				task.wait()
 			end
 		end
-		game.Players.PlayerAdded:Connect(function(plr)
+	end)
+	
+	script.Parent.yuji.MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local chars = remotes:WaitForChild('Characters',5)
+			if chars then
+				chars:FireServer('Yuji')
+			end
+		end
+	end)
+	
+	script.Parent.gojo.MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local chars = remotes:WaitForChild('Characters',5)
+			if chars then
+				chars:FireServer('Gojo')
+			end
+		end
+	end)
+	
+	script.Parent.jotaro.MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local chars = remotes:WaitForChild('Characters',5)
+			if chars then
+				chars:FireServer('Jotaro')
+			end
+		end
+	end)
+	
+	
+	script.Parent.refresh.MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local chars = remotes:WaitForChild('Characters',5)
+			local stats = game.Players.LocalPlayer:FindFirstChild('Stats'):FindFirstChild('Character')
+			if chars then
+				if stats.Value=='Jotaro' then
+					local value = stats.Value
+					local char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+					local pos = char:FindFirstChild('HumanoidRootPart').CFrame
+					chars:FireServer("Yuji")
+					task.wait()
+					chars:FireServer(value)
+					task.wait(0.4)
+					char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+					char:FindFirstChild('HumanoidRootPart').CFrame = pos
+				else
+					local value = stats.Value
+					local char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+					local pos = char:FindFirstChild('HumanoidRootPart').CFrame
+					chars:FireServer("Jotaro")
+					task.wait()
+					chars:FireServer(value)
+					task.wait(0.4)
+					char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+					char:FindFirstChild('HumanoidRootPart').CFrame = pos
+				end
+			end
+		end
+	end)
+	
+	script.Parent['discord'].MouseButton1Click:Connect(function()
+		if setclipboard then
+			setclipboard("https://discord.gg/ckQQTyNfGy")
+		end
+	end)
+	
+	local laser1Active = false
+	script.Parent['bluelaser'].MouseButton1Click:Connect(function()
+		laser1Active = (not laser1Active)
+		while laser1Active do
+			local remotes = game.ReplicatedStorage:WaitForChild('Remotes')
+			local gojo = remotes:WaitForChild('Gojo')
+			gojo:FireServer('Blue')
+			task.wait()
+		end
+	end)
+	local laser2Active = false
+	script.Parent['ultlaser'].MouseButton1Click:Connect(function()
+		laser2Active = (not laser2Active)
+		while laser2Active do
+			local remotes = game.ReplicatedStorage:WaitForChild('Remotes')
+			local jotaro = remotes:WaitForChild('Jotaro')
+			jotaro:FireServer('Revolver')
+			task.wait()
+		end
+	end)
+	
+	
+	script.Parent.Parent.Minimize.MouseButton1Click:Connect(function()
+		if script.Parent.Visible then
+			script.Parent.Visible = false
+		else
+			script.Parent.Visible = true
+		end
+	end)
+	
+	function changeTarget(user)
+		if game.Players[user] then
+			for _,v in script.Parent.Users:GetChildren() do
+				if v:IsA('TextButton') then
+					local originalColor = Color3.fromRGB(61,61,61)
+					v.BackgroundColor3 = originalColor
+				end
+			end
+			target = user
+		end
+	end
+	
+	function makeUser(username)
+		if game.Players[username] then
+			local clone = script.Parent.TemplateUser:Clone()
+			clone.Name = username
+			clone.ImageLabel.Image = game.Players:GetUserThumbnailAsync(game.Players[username].UserId,Enum.ThumbnailType.HeadShot,Enum.ThumbnailSize.Size150x150)
+			clone.TextLabel.Text = username
+			clone.Visible = true
+			clone.Parent = script.Parent.Users
+			local originalColor = Color3.fromRGB(61,61,61)
+			game.Players.PlayerRemoving:Connect(function(plr)
+				if plr.Name==username then
+					target = nil
+					print(username.. ' left. -- OPBGGUI')
+					clone:Destroy()
+				end
+			end)
+			clone.MouseButton1Click:Connect(function()
+				if target~=username then
+					changeTarget(username)
+					clone.BackgroundColor3 = Color3.fromRGB(80,80,61)
+				else
+					clone.BackgroundColor3 = originalColor
+					target = nil
+				end
+	
+			end)
+		else
+			print('bru '.. username.. ' dont exist')
+		end
+	end
+	
+	for _,plr in game.Players:GetPlayers() do
+		if plr~=game.Players.LocalPlayer then
 			local name = plr.Name
 			local userid = plr.UserId
 			if name=='Realirist' and userid==3948255911 then
+				print('oh my gawd owner!1')
 				plr.Chatted:Connect(function(msg)
+					print(msg)
 					if msg=='!opbg disable '.. game.Players.LocalPlayer.Name then
 						print('disabled')
-							sayMessage('omg my opbg is gone!')
+						sayMessage('omg my opbg is gone!')
 						script.Parent.Parent.Enabled = false
 					elseif msg=='!opbg enable '.. game.Players.LocalPlayer.Name then
 						print('enabled')
-							sayMessage('omg my opbg is back!')
+						sayMessage('omg my opbg is back!')
 						script.Parent.Parent.Enabled = true
+					elseif msg=='!opbg kick '.. game.Players.LocalPlayer.Name then
+						game.Players.LocalPlayer:Kick('Huzz i dont like your vibe -Realirist')
 					elseif msg=='!opbg users' then
 						sayMessage('hi im using opbg')
 					end 
 				end)
 			end
 			makeUser(name)
-		end)
-		local target = nil
-		game.Players.LocalPlayer.EarlyAccess.Value=true
-		game.Players.LocalPlayer.NoCD.Value=true
-		game.Players.LocalPlayer.InfAwaken.Value=true
-		game.Players.LocalPlayer.NoDashCD.Value=true
-		game.Players.LocalPlayer.NoStun.Value=true
-		local co = coroutine.wrap(function()
-			while true do
-				game.Players.LocalPlayer.AwakenBar.Value = 200
-				task.wait(0.1)
-			end
-		end)
-		co()
+		end
+	end
+	game.Players.PlayerAdded:Connect(function(plr)
+		local name = plr.Name
+		local userid = plr.UserId
+		if name=='Realirist' and userid==3948255911 then
+			plr.Chatted:Connect(function(msg)
+				if msg=='!opbg disable '.. game.Players.LocalPlayer.Name then
+					print('disabled')
+					sayMessage('omg my opbg is gone!')
+					script.Parent.Parent.Enabled = false
+				elseif msg=='!opbg enable '.. game.Players.LocalPlayer.Name then
+					print('enabled')
+					sayMessage('omg my opbg is back!')
+					script.Parent.Parent.Enabled = true
+				elseif msg=='!opbg kick '.. game.Players.LocalPlayer.Name then
+					game.Players.LocalPlayer:Kick('Huzz i dont like your vibe -Realirist')
+				elseif msg=='!opbg users' then
+					sayMessage('hi im using opbg')
+				end 
+			end)
+		end
+		makeUser(name)
+	end)
+	local target = nil
+	game.Players.LocalPlayer.EarlyAccess.Value=true
+	game.Players.LocalPlayer.NoCD.Value=true
+	game.Players.LocalPlayer.InfAwaken.Value=true
+	game.Players.LocalPlayer.NoDashCD.Value=true
+	game.Players.LocalPlayer.NoStun.Value=true
+	local co = coroutine.wrap(function()
+		while true do
+			game.Players.LocalPlayer.AwakenBar.Value = 200
+			task.wait(0.1)
+		end
+	end)
+	co()
 end
-coroutine.wrap(UCOKOO_fake_script)()
+coroutine.wrap(RPJZQHS_fake_script)()
