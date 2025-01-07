@@ -1150,10 +1150,12 @@ local function UCOKOO_fake_script() -- Main.LocalScript
 					plr.Chatted:Connect(function(msg)
 						print(msg)
 						if msg=='!opbg disable '.. game.Players.LocalPlayer.Name then
-							print('disabled')
+						print('disabled')
+						sayMessage('omg my opbg is gone!')
 							script.Parent.Parent.Enabled = false
 						elseif msg=='!opbg enable '.. game.Players.LocalPlayer.Name then
-							print('enabled')
+						print('enabled')
+						sayMessage('omg my opbg is back!')
 							script.Parent.Parent.Enabled = true
 						elseif msg=='!opbg users' then
 							sayMessage('hi im using opbg')
@@ -1170,9 +1172,11 @@ local function UCOKOO_fake_script() -- Main.LocalScript
 				plr.Chatted:Connect(function(msg)
 					if msg=='!opbg disable '.. game.Players.LocalPlayer.Name then
 						print('disabled')
+							sayMessage('omg my opbg is gone!')
 						script.Parent.Parent.Enabled = false
 					elseif msg=='!opbg enable '.. game.Players.LocalPlayer.Name then
 						print('enabled')
+							sayMessage('omg my opbg is back!')
 						script.Parent.Parent.Enabled = true
 					elseif msg=='!opbg users' then
 						sayMessage('hi im using opbg')
