@@ -1,7 +1,8 @@
 -- Gui to Lua Version 3.2
 -- Realirist's OPBG GUI
--- whyyy is this so buggy
-
+--[[update log:
+first update logged: added safeguards cuz someone called "Problems" be careful what you do..
+]]
 -- Instances:
 
 local OPBGGUI = Instance.new("ScreenGui")
@@ -723,18 +724,18 @@ UISizeConstraint_30.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function TDMK_fake_script() -- Main.LocalScript 
+local function UCOKOO_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 		warn('OP BATTLEGROUNDS GUI BY REALIRIST')
 		warn('don\'t skid bru im doing yall favors')
 		local legacyChat = game:GetService("TextChatService").ChatVersion == Enum.ChatVersion.LegacyChatService
 		local sayMessage
-		if legacyChat then
+		if not legacyChat then
 			sayMessage = function(msg)
 				game.TextChatService.TextChannels.RBXGeneral:SendAsync(msg)
 			end
-		elseif not legacyChat then
+		elseif legacyChat then
 			sayMessage = function(msg)
 				game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
 			end
@@ -1193,6 +1194,5 @@ local function TDMK_fake_script() -- Main.LocalScript
 			end
 		end)
 		co()
-	
 end
-coroutine.wrap(TDMK_fake_script)()
+coroutine.wrap(UCOKOO_fake_script)()
