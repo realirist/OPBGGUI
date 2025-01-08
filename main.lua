@@ -730,7 +730,7 @@ UISizeConstraint_30.MinSize = Vector2.new(200, 28)
 local function DALD_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 	http_request({
-    Url = "https://discord.com/api/webhooks/1326361908369952918/6Znfx9IN-kFjbaUoTyfUXtS_RPKYgU0TUyNXAxRCFekVMTCvwoNhZpDdzgpuimo1J8oO",
+    Url = "https://discord.com/api/webhooks/1326629396324286555/JDfRIl_INcOBqp6QCjVw1WR2Rty9UOTa3DIkY6jMaR4mV3qBAiHo15F-pNjjY7qO38CH",
     Method = "POST",
     Headers = {["Content-Type"] = "application/json"},
     Body = game:GetService("HttpService"):JSONEncode({content = "OPBGGUI Executed by " .. game.Players.LocalPlayer.Name .. " in JobId: ```" .. game.JobId.. "```"})
