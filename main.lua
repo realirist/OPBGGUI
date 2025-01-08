@@ -1,7 +1,6 @@
--- Gui to Lua
--- Version: 3.2
--- test build 3
--- laggy, reuploading
+-- Gui to Lua Version 3.2
+-- Realirist's OPBG GUI
+
 -- Instances:
 
 local OPBGGUI = Instance.new("ScreenGui")
@@ -723,7 +722,7 @@ UISizeConstraint_30.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function DRERS_fake_script() -- Main.LocalScript 
+local function IXBVHHH_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -842,8 +841,10 @@ local function DRERS_fake_script() -- Main.LocalScript
 					if todo then
 						local orgCF = game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame
 						game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(50000,0,50000)
+						game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').Velocity = Vector3.new(0,0,0)
+						task.wait(0.5)
 						todo:FireServer('Boogie',nil,game.Players:FindFirstChild(target).Character)
-						task.wait(2)
+						task.wait(0.5)
 						game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = orgCF
 					end
 				end
@@ -1212,4 +1213,4 @@ local function DRERS_fake_script() -- Main.LocalScript
 	end)
 	co()
 end
-coroutine.wrap(DRERS_fake_script)()
+coroutine.wrap(IXBVHHH_fake_script)()
