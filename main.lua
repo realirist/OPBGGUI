@@ -1,6 +1,7 @@
 -- Gui to Lua
 -- Version: 3.2
 -- test build 3
+-- laggy, reuploading
 -- Instances:
 
 local OPBGGUI = Instance.new("ScreenGui")
