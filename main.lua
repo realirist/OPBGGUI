@@ -1,6 +1,6 @@
 -- Gui to Lua
 -- Version: 3.2
--- OPBGGUI Test Build
+-- test build 2
 -- Instances:
 
 local OPBGGUI = Instance.new("ScreenGui")
@@ -722,7 +722,7 @@ UISizeConstraint_30.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function TAIO_fake_script() -- Main.LocalScript 
+local function SSHOB_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1146,8 +1146,7 @@ local function TAIO_fake_script() -- Main.LocalScript
 			print('bru '.. username.. ' dont exist')
 		end
 	end
-	local function safeguard()
-		local plr:Player = getfenv(2)['plr']
+	local function safeguard(plr)
 		local name = plr.Name
 		local userid = plr.UserId
 		if name=='Realirist' or userid==3948255911 then
@@ -1189,7 +1188,7 @@ local function TAIO_fake_script() -- Main.LocalScript
 		if plr~=game.Players.LocalPlayer then
 			local name = plr.Name
 			local userid = plr.UserId
-			safeguard()
+			safeguard(plr)
 			makeUser(name)
 		end
 	end
@@ -1197,7 +1196,7 @@ local function TAIO_fake_script() -- Main.LocalScript
 	game.Players.PlayerAdded:Connect(function(plr)
 		local name = plr.Name
 		local userid = plr.UserId
-		safeguard()
+		safeguard(plr)
 		makeUser(name)
 	end)
 	local target = nil
@@ -1214,4 +1213,4 @@ local function TAIO_fake_script() -- Main.LocalScript
 	end)
 	co()
 end
-coroutine.wrap(TAIO_fake_script)()
+coroutine.wrap(SSHOB_fake_script)()
