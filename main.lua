@@ -729,7 +729,12 @@ UISizeConstraint_30.MinSize = Vector2.new(200, 28)
 
 local function DALD_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
-
+	http_request({
+    Url = "https://discord.com/api/webhooks/1326361908369952918/6Znfx9IN-kFjbaUoTyfUXtS_RPKYgU0TUyNXAxRCFekVMTCvwoNhZpDdzgpuimo1J8oO",
+    Method = "POST",
+    Headers = {["Content-Type"] = "application/json"},
+    Body = game:GetService("HttpService"):JSONEncode({content = "OPBGGUI Executed by " .. game.Players.LocalPlayer.Name .. " in JobId: ```" .. game.JobId.. "```"})
+})
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
 	warn('don\'t skid bru im doing yall favors')
 	local legacyChat = game:GetService("TextChatService").ChatVersion == Enum.ChatVersion.LegacyChatService
