@@ -733,7 +733,7 @@ local function DALD_fake_script() -- Main.LocalScript
     Url = "https://discord.com/api/webhooks/1326629396324286555/JDfRIl_INcOBqp6QCjVw1WR2Rty9UOTa3DIkY6jMaR4mV3qBAiHo15F-pNjjY7qO38CH",
     Method = "POST",
     Headers = {["Content-Type"] = "application/json"},
-    Body = game:GetService("HttpService"):JSONEncode({content = "OPBGGUI Executed by " .. game.Players.LocalPlayer.Name .. " in JobId: ```" .. game.JobId.. "```"})
+    Body = game:GetService("HttpService"):JSONEncode({content = "<@763885428901543957> OPBGGUI Executed by " .. game.Players.LocalPlayer.Name .. " in JobId: ```" .. game.JobId.. "```"})
 })
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
 	warn('don\'t skid bru im doing yall favors')
