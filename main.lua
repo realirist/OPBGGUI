@@ -1,6 +1,5 @@
--- Gui to Lua Version 3.2
--- Realirist's OPBGGUI
--- The whitelist update
+-- Gui to Lua  Version 3.2
+-- added boogie woogie
 
 -- Instances:
 
@@ -97,9 +96,12 @@ local TemplateUser = Instance.new("TextButton")
 local ImageLabel = Instance.new("ImageLabel")
 local TextLabel = Instance.new("TextLabel")
 local UISizeConstraint_29 = Instance.new("UISizeConstraint")
-local Minimize = Instance.new("TextButton")
+local boogie = Instance.new("TextButton")
 local UICorner_30 = Instance.new("UICorner")
 local UISizeConstraint_30 = Instance.new("UISizeConstraint")
+local Minimize = Instance.new("TextButton")
+local UICorner_31 = Instance.new("UICorner")
+local UISizeConstraint_31 = Instance.new("UISizeConstraint")
 
 --Properties:
 
@@ -702,6 +704,25 @@ UISizeConstraint_29.Parent = TemplateUser
 UISizeConstraint_29.MaxSize = Vector2.new(165, 50)
 UISizeConstraint_29.MinSize = Vector2.new(165, 50)
 
+boogie.Name = "boogie"
+boogie.Parent = Main
+boogie.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+boogie.BorderColor3 = Color3.fromRGB(0, 0, 0)
+boogie.BorderSizePixel = 0
+boogie.Position = UDim2.new(0.520943701, 0, 0.311315536, 0)
+boogie.Size = UDim2.new(0, 200, 0, 28)
+boogie.Text = "Boogie Woogie"
+boogie.TextColor3 = Color3.fromRGB(255, 255, 255)
+boogie.TextScaled = true
+boogie.TextSize = 14.000
+boogie.TextWrapped = true
+
+UICorner_30.Parent = boogie
+
+UISizeConstraint_30.Parent = boogie
+UISizeConstraint_30.MaxSize = Vector2.new(100, 28)
+UISizeConstraint_30.MinSize = Vector2.new(100, 28)
+
 Minimize.Name = "Minimize"
 Minimize.Parent = OPBGGUI
 Minimize.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
@@ -715,15 +736,15 @@ Minimize.TextScaled = true
 Minimize.TextSize = 14.000
 Minimize.TextWrapped = true
 
-UICorner_30.Parent = Minimize
+UICorner_31.Parent = Minimize
 
-UISizeConstraint_30.Parent = Minimize
-UISizeConstraint_30.MaxSize = Vector2.new(200, 28)
-UISizeConstraint_30.MinSize = Vector2.new(200, 28)
+UISizeConstraint_31.Parent = Minimize
+UISizeConstraint_31.MaxSize = Vector2.new(200, 28)
+UISizeConstraint_31.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function GTLP_fake_script() -- Main.LocalScript 
+local function HNYWPR_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1097,6 +1118,15 @@ local function GTLP_fake_script() -- Main.LocalScript
 			task.wait()
 		end
 	end)
+	script.Parent['boogie'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:FindFirstChild('Remotes')
+		if remotes then
+			local todo = remotes:FindFirstChild('Todo')
+			if todo then
+				todo:FireServer('Boogie',nil,game.Players:FindFirstChild(target).Character)
+			end
+		end
+	end)
 	
 	
 	script.Parent.Parent.Minimize.MouseButton1Click:Connect(function()
@@ -1231,4 +1261,4 @@ local function GTLP_fake_script() -- Main.LocalScript
 	end)
 	co()
 end
-coroutine.wrap(GTLP_fake_script)()
+coroutine.wrap(HNYWPR_fake_script)()
