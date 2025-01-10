@@ -1,6 +1,7 @@
 -- Gui to Lua Version 3.2
 -- Realirist's OPBGGUI
--- Added fence throw
+-- Added fence attack
+-- Fixed fence attack
 
 -- Instances:
 
@@ -767,7 +768,7 @@ UISizeConstraint_32.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function KHIZ_fake_script() -- Main.LocalScript 
+local function QCGCRX_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1171,10 +1172,14 @@ local function KHIZ_fake_script() -- Main.LocalScript
 		local remotes = game.ReplicatedStorage:FindFirstChild('Remotes')
 		if remotes then
 			local pickup = remotes:FindFirstChild('Pickup')
-			
+			local throw = remotes:FindFirstChild('Throw')
+			local char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
 			local fence,fenceId = findFence()
 			if fence and fenceId then
+				local hrp = char:WaitForChild('HumanoidRootPart')
 				pickup:FireServer(fenceId)
+				task.wait(0.1)
+				throw:FireServer(hrp.CFrame.LookVector * 1.1)
 			end
 		end
 	end)
@@ -1312,4 +1317,4 @@ local function KHIZ_fake_script() -- Main.LocalScript
 	end)
 	co()
 end
-coroutine.wrap(KHIZ_fake_script)()
+coroutine.wrap(QCGCRX_fake_script)()
