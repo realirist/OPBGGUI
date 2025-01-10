@@ -1178,7 +1178,7 @@ local function QCGCRX_fake_script() -- Main.LocalScript
 			if fence and fenceId then
 				local hrp = char:WaitForChild('HumanoidRootPart')
 				pickup:FireServer(fenceId)
-				task.wait(0.1)
+				task.wait(1)
 				throw:FireServer(hrp.CFrame.LookVector * 1.1)
 			end
 		end
