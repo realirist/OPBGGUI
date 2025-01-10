@@ -1,5 +1,6 @@
--- Gui to Lua  Version 3.2
--- added boogie woogie
+-- Gui to Lua Version 3.2
+-- Realirist's OPBGGUI
+-- Added fence throw
 
 -- Instances:
 
@@ -99,9 +100,12 @@ local UISizeConstraint_29 = Instance.new("UISizeConstraint")
 local boogie = Instance.new("TextButton")
 local UICorner_30 = Instance.new("UICorner")
 local UISizeConstraint_30 = Instance.new("UISizeConstraint")
-local Minimize = Instance.new("TextButton")
+local fence = Instance.new("TextButton")
 local UICorner_31 = Instance.new("UICorner")
 local UISizeConstraint_31 = Instance.new("UISizeConstraint")
+local Minimize = Instance.new("TextButton")
+local UICorner_32 = Instance.new("UICorner")
+local UISizeConstraint_32 = Instance.new("UISizeConstraint")
 
 --Properties:
 
@@ -558,7 +562,7 @@ gojo.Parent = Main
 gojo.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
 gojo.BorderColor3 = Color3.fromRGB(0, 0, 0)
 gojo.BorderSizePixel = 0
-gojo.Position = UDim2.new(0.764058709, 0, 0.104022808, 0)
+gojo.Position = UDim2.new(0.754278719, 0, 0.116926037, 0)
 gojo.Size = UDim2.new(0, 200, 0, 65)
 gojo.Text = "Change to Gojo"
 gojo.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -577,7 +581,7 @@ jotaro.Parent = Main
 jotaro.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
 jotaro.BorderColor3 = Color3.fromRGB(0, 0, 0)
 jotaro.BorderSizePixel = 0
-jotaro.Position = UDim2.new(0.764058709, 0, 0.177141085, 0)
+jotaro.Position = UDim2.new(0.754278719, 0, 0.177141085, 0)
 jotaro.Size = UDim2.new(0, 200, 0, 65)
 jotaro.Text = "Change to Jotaro"
 jotaro.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -634,7 +638,7 @@ ultlaser.Parent = Main
 ultlaser.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
 ultlaser.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ultlaser.BorderSizePixel = 0
-ultlaser.Position = UDim2.new(0.765442491, 0, 0.236046702, 0)
+ultlaser.Position = UDim2.new(0.753217578, 0, 0.236046702, 0)
 ultlaser.Size = UDim2.new(0, 200, 0, 28)
 ultlaser.Text = "Ultimate Laser"
 ultlaser.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -720,8 +724,27 @@ boogie.TextWrapped = true
 UICorner_30.Parent = boogie
 
 UISizeConstraint_30.Parent = boogie
-UISizeConstraint_30.MaxSize = Vector2.new(100, 28)
-UISizeConstraint_30.MinSize = Vector2.new(100, 28)
+UISizeConstraint_30.MaxSize = Vector2.new(50, 28)
+UISizeConstraint_30.MinSize = Vector2.new(50, 28)
+
+fence.Name = "fence"
+fence.Parent = Main
+fence.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+fence.BorderColor3 = Color3.fromRGB(0, 0, 0)
+fence.BorderSizePixel = 0
+fence.Position = UDim2.new(0.643193126, 0, 0.311315536, 0)
+fence.Size = UDim2.new(0, 200, 0, 28)
+fence.Text = "Fence Attack"
+fence.TextColor3 = Color3.fromRGB(255, 255, 255)
+fence.TextScaled = true
+fence.TextSize = 14.000
+fence.TextWrapped = true
+
+UICorner_31.Parent = fence
+
+UISizeConstraint_31.Parent = fence
+UISizeConstraint_31.MaxSize = Vector2.new(50, 28)
+UISizeConstraint_31.MinSize = Vector2.new(50, 28)
 
 Minimize.Name = "Minimize"
 Minimize.Parent = OPBGGUI
@@ -736,15 +759,15 @@ Minimize.TextScaled = true
 Minimize.TextSize = 14.000
 Minimize.TextWrapped = true
 
-UICorner_31.Parent = Minimize
+UICorner_32.Parent = Minimize
 
-UISizeConstraint_31.Parent = Minimize
-UISizeConstraint_31.MaxSize = Vector2.new(200, 28)
-UISizeConstraint_31.MinSize = Vector2.new(200, 28)
+UISizeConstraint_32.Parent = Minimize
+UISizeConstraint_32.MaxSize = Vector2.new(200, 28)
+UISizeConstraint_32.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function HNYWPR_fake_script() -- Main.LocalScript 
+local function KHIZ_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1128,6 +1151,34 @@ local function HNYWPR_fake_script() -- Main.LocalScript
 		end
 	end)
 	
+	local function findFence()
+		local map = game:GetService('Workspace'):FindFirstChild('Map')
+		if map then
+			local throwables = map:FindFirstChild('Pickup')
+			local fences = throwables:FindFirstChild('Fences')
+			for _,v in fences:GetChildren() do
+				if v:IsA('Model') and v:FindFirstChild('Fence') then
+					local id = v:GetAttribute('ID')
+					if id then
+						return v,id
+					end
+				end
+			end
+		end
+	end
+	
+	script.Parent['fence'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:FindFirstChild('Remotes')
+		if remotes then
+			local pickup = remotes:FindFirstChild('Pickup')
+			
+			local fence,fenceId = findFence()
+			if fence and fenceId then
+				pickup:FireServer(fenceId)
+			end
+		end
+	end)
+	
 	
 	script.Parent.Parent.Minimize.MouseButton1Click:Connect(function()
 		if script.Parent.Visible then
@@ -1261,4 +1312,4 @@ local function HNYWPR_fake_script() -- Main.LocalScript
 	end)
 	co()
 end
-coroutine.wrap(HNYWPR_fake_script)()
+coroutine.wrap(KHIZ_fake_script)()
