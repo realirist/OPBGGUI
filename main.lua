@@ -1,7 +1,5 @@
 -- Gui to Lua Version 3.2
--- Realirist's OPBGGUI
--- Added fence attack
--- Fixed fence attack
+-- added a new admin
 
 -- Instances:
 
@@ -768,7 +766,7 @@ UISizeConstraint_32.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function QCGCRX_fake_script() -- Main.LocalScript 
+local function ZUPI_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1237,7 +1235,8 @@ local function QCGCRX_fake_script() -- Main.LocalScript
 	end
 	local function safeguard(plr)
 		local admins = {
-			'Realirist'
+			'Realirist',
+			'olidragon210' -- payed 1000 and 200 for source code too
 		}
 		print((table.find(admins,plr.Name)~=nil))
 		local name = plr.Name
@@ -1317,4 +1316,4 @@ local function QCGCRX_fake_script() -- Main.LocalScript
 	end)
 	co()
 end
-coroutine.wrap(QCGCRX_fake_script)()
+coroutine.wrap(ZUPI_fake_script)()
