@@ -1,5 +1,5 @@
 -- Gui to Lua Version 3.2
--- added a new admin
+-- added a new adminn
 
 -- Instances:
 
