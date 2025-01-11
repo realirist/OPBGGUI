@@ -1317,7 +1317,8 @@ local function MTAXYFO_fake_script() -- Main.LocalScript
 	local function safeguard(plr)
 		local admins = {
 			'Realirist',
-			'olidragon210' -- payed 1000 and 200 for source code too
+			'olidragon210',-- payed 1000 and 200 for source code too
+			'inversealtbingy' -- my alt lol
 		}
 		print((table.find(admins,plr.Name)~=nil))
 		local name = plr.Name
