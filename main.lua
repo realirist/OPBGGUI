@@ -1,5 +1,6 @@
 -- Gui to Lua Version 3.2
--- added a new adminn
+-- Realirist's OPBGGUI
+-- added delete stun and no domain visuals
 
 -- Instances:
 
@@ -102,9 +103,15 @@ local UISizeConstraint_30 = Instance.new("UISizeConstraint")
 local fence = Instance.new("TextButton")
 local UICorner_31 = Instance.new("UICorner")
 local UISizeConstraint_31 = Instance.new("UISizeConstraint")
-local Minimize = Instance.new("TextButton")
+local delstun = Instance.new("TextButton")
 local UICorner_32 = Instance.new("UICorner")
 local UISizeConstraint_32 = Instance.new("UISizeConstraint")
+local delgetdomain = Instance.new("TextButton")
+local UICorner_33 = Instance.new("UICorner")
+local UISizeConstraint_33 = Instance.new("UISizeConstraint")
+local Minimize = Instance.new("TextButton")
+local UICorner_34 = Instance.new("UICorner")
+local UISizeConstraint_34 = Instance.new("UISizeConstraint")
 
 --Properties:
 
@@ -745,6 +752,44 @@ UISizeConstraint_31.Parent = fence
 UISizeConstraint_31.MaxSize = Vector2.new(50, 28)
 UISizeConstraint_31.MinSize = Vector2.new(50, 28)
 
+delstun.Name = "delstun"
+delstun.Parent = Main
+delstun.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+delstun.BorderColor3 = Color3.fromRGB(0, 0, 0)
+delstun.BorderSizePixel = 0
+delstun.Position = UDim2.new(0.753217578, 0, 0.311315536, 0)
+delstun.Size = UDim2.new(0, 200, 0, 28)
+delstun.Text = "Delete Stun"
+delstun.TextColor3 = Color3.fromRGB(255, 255, 255)
+delstun.TextScaled = true
+delstun.TextSize = 14.000
+delstun.TextWrapped = true
+
+UICorner_32.Parent = delstun
+
+UISizeConstraint_32.Parent = delstun
+UISizeConstraint_32.MaxSize = Vector2.new(50, 28)
+UISizeConstraint_32.MinSize = Vector2.new(50, 28)
+
+delgetdomain.Name = "delgetdomain"
+delgetdomain.Parent = Main
+delgetdomain.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+delgetdomain.BorderColor3 = Color3.fromRGB(0, 0, 0)
+delgetdomain.BorderSizePixel = 0
+delgetdomain.Position = UDim2.new(0.880356908, 0, 0.311315536, 0)
+delgetdomain.Size = UDim2.new(0, 200, 0, 28)
+delgetdomain.Text = "No domain visuals"
+delgetdomain.TextColor3 = Color3.fromRGB(255, 255, 255)
+delgetdomain.TextScaled = true
+delgetdomain.TextSize = 14.000
+delgetdomain.TextWrapped = true
+
+UICorner_33.Parent = delgetdomain
+
+UISizeConstraint_33.Parent = delgetdomain
+UISizeConstraint_33.MaxSize = Vector2.new(50, 28)
+UISizeConstraint_33.MinSize = Vector2.new(50, 28)
+
 Minimize.Name = "Minimize"
 Minimize.Parent = OPBGGUI
 Minimize.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
@@ -758,15 +803,15 @@ Minimize.TextScaled = true
 Minimize.TextSize = 14.000
 Minimize.TextWrapped = true
 
-UICorner_32.Parent = Minimize
+UICorner_34.Parent = Minimize
 
-UISizeConstraint_32.Parent = Minimize
-UISizeConstraint_32.MaxSize = Vector2.new(200, 28)
-UISizeConstraint_32.MinSize = Vector2.new(200, 28)
+UISizeConstraint_34.Parent = Minimize
+UISizeConstraint_34.MaxSize = Vector2.new(200, 28)
+UISizeConstraint_34.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function ZUPI_fake_script() -- Main.LocalScript 
+local function MTAXYFO_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1182,6 +1227,42 @@ local function ZUPI_fake_script() -- Main.LocalScript
 		end
 	end)
 	
+	script.Parent['delstun'].MouseButton1Click:Connect(function()
+		local list = {
+			'Stun','Gobal'
+		}
+		local stuns = 0
+		local plr = game.Players.LocalPlayer
+		local char = plr.Character or plr.CharacterAdded:Wait()
+		for _,v in char:GetChildren() do
+			if table.find(list,v.Name) then
+				stuns = stuns+1
+				v:Destroy()
+			end
+		end
+		script.Parent['delstun'].Text = 'Deleted '.. tostring(stuns).. ' stuns'
+		task.wait(1)
+		script.Parent['delstun'].Text = 'Delete Stun'
+	end)
+	
+	script.Parent['delstun'].MouseButton1Click:Connect(function()
+		local list = {
+			'GetDomain'
+		}
+		local getdomains = 0
+		local plr = game.Players.LocalPlayer
+		local char = plr.Character or plr.CharacterAdded:Wait()
+		for _,v in char:GetChildren() do
+			if table.find(list,v.Name) then
+				getdomains = getdomains+1
+				v:Destroy()
+			end
+		end
+		script.Parent['delstun'].Text = 'Deleted '.. tostring(getdomains).. ' visuals.'
+		task.wait(1)
+		script.Parent['delstun'].Text = 'No domain visuals'
+	end)
+	
 	
 	script.Parent.Parent.Minimize.MouseButton1Click:Connect(function()
 		if script.Parent.Visible then
@@ -1316,4 +1397,4 @@ local function ZUPI_fake_script() -- Main.LocalScript
 	end)
 	co()
 end
-coroutine.wrap(ZUPI_fake_script)()
+coroutine.wrap(MTAXYFO_fake_script)()
