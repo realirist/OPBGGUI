@@ -1,5 +1,5 @@
 -- Gui to Lua Version 3.2
--- Actually fixed No domain visuals (tested)
+-- Added katakuri buzz
 
 -- Instances:
 
@@ -108,9 +108,12 @@ local UISizeConstraint_32 = Instance.new("UISizeConstraint")
 local delgetdomain = Instance.new("TextButton")
 local UICorner_33 = Instance.new("UICorner")
 local UISizeConstraint_33 = Instance.new("UISizeConstraint")
-local Minimize = Instance.new("TextButton")
+local buzz = Instance.new("TextButton")
 local UICorner_34 = Instance.new("UICorner")
 local UISizeConstraint_34 = Instance.new("UISizeConstraint")
+local Minimize = Instance.new("TextButton")
+local UICorner_35 = Instance.new("UICorner")
+local UISizeConstraint_35 = Instance.new("UISizeConstraint")
 
 --Properties:
 
@@ -407,8 +410,8 @@ blue1.TextWrapped = true
 UICorner_15.Parent = blue1
 
 UISizeConstraint_14.Parent = blue1
-UISizeConstraint_14.MaxSize = Vector2.new(100, 28)
-UISizeConstraint_14.MinSize = Vector2.new(100, 28)
+UISizeConstraint_14.MaxSize = Vector2.new(50, 28)
+UISizeConstraint_14.MinSize = Vector2.new(50, 28)
 
 yutaheal.Name = "yutaheal"
 yutaheal.Parent = Main
@@ -718,7 +721,7 @@ boogie.Parent = Main
 boogie.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
 boogie.BorderColor3 = Color3.fromRGB(0, 0, 0)
 boogie.BorderSizePixel = 0
-boogie.Position = UDim2.new(0.520943701, 0, 0.311315536, 0)
+boogie.Position = UDim2.new(0.398694336, 0, 0.0295950938, 0)
 boogie.Size = UDim2.new(0, 200, 0, 28)
 boogie.Text = "Boogie Woogie"
 boogie.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -737,7 +740,7 @@ fence.Parent = Main
 fence.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
 fence.BorderColor3 = Color3.fromRGB(0, 0, 0)
 fence.BorderSizePixel = 0
-fence.Position = UDim2.new(0.643193126, 0, 0.311315536, 0)
+fence.Position = UDim2.new(0.630968153, 0, 0.311315536, 0)
 fence.Size = UDim2.new(0, 200, 0, 28)
 fence.Text = "Fence Attack"
 fence.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -789,6 +792,25 @@ UISizeConstraint_33.Parent = delgetdomain
 UISizeConstraint_33.MaxSize = Vector2.new(50, 28)
 UISizeConstraint_33.MinSize = Vector2.new(50, 28)
 
+buzz.Name = "buzz"
+buzz.Parent = Main
+buzz.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+buzz.BorderColor3 = Color3.fromRGB(0, 0, 0)
+buzz.BorderSizePixel = 0
+buzz.Position = UDim2.new(0.520943701, 0, 0.311315536, 0)
+buzz.Size = UDim2.new(0, 200, 0, 28)
+buzz.Text = "Katakuri \"Buzz\""
+buzz.TextColor3 = Color3.fromRGB(255, 255, 255)
+buzz.TextScaled = true
+buzz.TextSize = 14.000
+buzz.TextWrapped = true
+
+UICorner_34.Parent = buzz
+
+UISizeConstraint_34.Parent = buzz
+UISizeConstraint_34.MaxSize = Vector2.new(50, 28)
+UISizeConstraint_34.MinSize = Vector2.new(50, 28)
+
 Minimize.Name = "Minimize"
 Minimize.Parent = OPBGGUI
 Minimize.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
@@ -802,15 +824,15 @@ Minimize.TextScaled = true
 Minimize.TextSize = 14.000
 Minimize.TextWrapped = true
 
-UICorner_34.Parent = Minimize
+UICorner_35.Parent = Minimize
 
-UISizeConstraint_34.Parent = Minimize
-UISizeConstraint_34.MaxSize = Vector2.new(200, 28)
-UISizeConstraint_34.MinSize = Vector2.new(200, 28)
+UISizeConstraint_35.Parent = Minimize
+UISizeConstraint_35.MaxSize = Vector2.new(200, 28)
+UISizeConstraint_35.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function KJMUDN_fake_script() -- Main.LocalScript 
+local function SQBYU_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1259,9 +1281,19 @@ local function KJMUDN_fake_script() -- Main.LocalScript
 			end
 		end
 		print('Deleted '.. tostring(getdomains).. ' visuals')
-		script.Parent['delstun'].Text = 'Deleted '.. tostring(getdomains).. ' visuals.'
+		script.Parent['delgetdomain'].Text = 'Deleted '.. tostring(getdomains).. ' visuals.'
 		task.wait(1)
-		script.Parent['delstun'].Text = 'No domain visuals'
+		script.Parent['delgetdomain'].Text = 'No domain visuals'
+	end)
+	
+	script.Parent['buzz'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local combat = remotes:WaitForChild('Combat',5)
+			if combat then
+				combat:FireServer('Buzz')
+			end
+		end
 	end)
 	
 	
@@ -1399,4 +1431,4 @@ local function KJMUDN_fake_script() -- Main.LocalScript
 	end)
 	co()
 end
-coroutine.wrap(KJMUDN_fake_script)()
+coroutine.wrap(SQBYU_fake_script)()
