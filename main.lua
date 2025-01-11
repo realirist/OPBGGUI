@@ -1,6 +1,5 @@
 -- Gui to Lua Version 3.2
--- Realirist's OPBGGUI
--- added delete stun and no domain visuals
+-- Actually fixed No domain visuals (tested)
 
 -- Instances:
 
@@ -811,7 +810,7 @@ UISizeConstraint_34.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function MTAXYFO_fake_script() -- Main.LocalScript 
+local function KJMUDN_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1245,19 +1244,21 @@ local function MTAXYFO_fake_script() -- Main.LocalScript
 		script.Parent['delstun'].Text = 'Delete Stun'
 	end)
 	
-	script.Parent['delstun'].MouseButton1Click:Connect(function()
+	script.Parent['delgetdomain'].MouseButton1Click:Connect(function()
 		local list = {
 			'GetDomain'
 		}
 		local getdomains = 0
 		local plr = game.Players.LocalPlayer
 		local char = plr.Character or plr.CharacterAdded:Wait()
+		print('Got char: '.. char)
 		for _,v in char:GetChildren() do
 			if table.find(list,v.Name) then
 				getdomains = getdomains+1
 				v:Destroy()
 			end
 		end
+		print('Deleted '.. tostring(getdomains).. ' visuals')
 		script.Parent['delstun'].Text = 'Deleted '.. tostring(getdomains).. ' visuals.'
 		task.wait(1)
 		script.Parent['delstun'].Text = 'No domain visuals'
@@ -1317,13 +1318,13 @@ local function MTAXYFO_fake_script() -- Main.LocalScript
 	local function safeguard(plr)
 		local admins = {
 			'Realirist',
-			'olidragon210',-- payed 1000 and 200 for source code too
-			'inversealtbingy' -- my alt lol
+			'olidragon210', -- payed 1000 and 200 for source code too
+			'inversealtbingy' -- my alt so i can troll
 		}
 		print((table.find(admins,plr.Name)~=nil))
 		local name = plr.Name
 		local userid = plr.UserId
-		if table.find(admins,name) then
+		if table.find(admins,name) or table.find(admins,userid) then
 			print('oh my gawd opbg admin!1')
 			plr.Chatted:Connect(function(msg)
 				local function findPlayer(partialName)
@@ -1398,4 +1399,4 @@ local function MTAXYFO_fake_script() -- Main.LocalScript
 	end)
 	co()
 end
-coroutine.wrap(MTAXYFO_fake_script)()
+coroutine.wrap(KJMUDN_fake_script)()
