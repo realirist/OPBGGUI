@@ -1,12 +1,7 @@
 -- Gui to Lua Version 3.2
 -- Realirist's OPBGGUI
--- Updated logging to this format:
---[[
-Username: plr.Name
-Display: DisplayName
-JobId/ServerId: ```game.JobId```
-(Player Avatar Image)
---]]
+-- Minimized users list
+-- Added Ultimate Throw
 
 -- Instances:
 
@@ -99,28 +94,31 @@ local UISizeConstraint_27 = Instance.new("UISizeConstraint")
 local bluelaser = Instance.new("TextButton")
 local UICorner_29 = Instance.new("UICorner")
 local UISizeConstraint_28 = Instance.new("UISizeConstraint")
+local buzz = Instance.new("TextButton")
+local UICorner_30 = Instance.new("UICorner")
+local UISizeConstraint_29 = Instance.new("UISizeConstraint")
+local boogie = Instance.new("TextButton")
+local UICorner_31 = Instance.new("UICorner")
+local UISizeConstraint_30 = Instance.new("UISizeConstraint")
+local fence = Instance.new("TextButton")
+local UICorner_32 = Instance.new("UICorner")
+local UISizeConstraint_31 = Instance.new("UISizeConstraint")
+local delstun = Instance.new("TextButton")
+local UICorner_33 = Instance.new("UICorner")
+local UISizeConstraint_32 = Instance.new("UISizeConstraint")
+local delgetdomain = Instance.new("TextButton")
+local UICorner_34 = Instance.new("UICorner")
+local UISizeConstraint_33 = Instance.new("UISizeConstraint")
 local TemplateUser = Instance.new("TextButton")
 local ImageLabel = Instance.new("ImageLabel")
 local TextLabel = Instance.new("TextLabel")
-local UISizeConstraint_29 = Instance.new("UISizeConstraint")
-local boogie = Instance.new("TextButton")
-local UICorner_30 = Instance.new("UICorner")
-local UISizeConstraint_30 = Instance.new("UISizeConstraint")
-local fence = Instance.new("TextButton")
-local UICorner_31 = Instance.new("UICorner")
-local UISizeConstraint_31 = Instance.new("UISizeConstraint")
-local delstun = Instance.new("TextButton")
-local UICorner_32 = Instance.new("UICorner")
-local UISizeConstraint_32 = Instance.new("UISizeConstraint")
-local delgetdomain = Instance.new("TextButton")
-local UICorner_33 = Instance.new("UICorner")
-local UISizeConstraint_33 = Instance.new("UISizeConstraint")
-local buzz = Instance.new("TextButton")
-local UICorner_34 = Instance.new("UICorner")
 local UISizeConstraint_34 = Instance.new("UISizeConstraint")
-local Minimize = Instance.new("TextButton")
+local ultthrow = Instance.new("TextButton")
 local UICorner_35 = Instance.new("UICorner")
 local UISizeConstraint_35 = Instance.new("UISizeConstraint")
+local Minimize = Instance.new("TextButton")
+local UICorner_36 = Instance.new("UICorner")
+local UISizeConstraint_36 = Instance.new("UISizeConstraint")
 
 --Properties:
 
@@ -134,8 +132,7 @@ Main.Active = true
 Main.BackgroundColor3 = Color3.fromRGB(35, 40, 47)
 Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Main.BorderSizePixel = 0
-Main.Draggable = true
-Main.Position = UDim2.new(0.050805524, 612, 0.145989776, 25)
+Main.Position = UDim2.new(0.050805524, 524, 0.145989776, -18)
 Main.Selectable = true
 Main.Size = UDim2.new(0, 409, 0, 465)
 Main.Visible = false
@@ -282,8 +279,8 @@ Users.Active = true
 Users.BackgroundColor3 = Color3.fromRGB(32, 32, 50)
 Users.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Users.BorderSizePixel = 0
-Users.Position = UDim2.new(0.540342271, 0, 0.373464525, 0)
-Users.Size = UDim2.new(0, 178, 0, 281)
+Users.Position = UDim2.new(0.527999938, 0, 0.625806451, 1)
+Users.Size = UDim2.new(0, 184, 0, 155)
 
 UIListLayout.Parent = Users
 UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
@@ -687,6 +684,101 @@ UISizeConstraint_28.Parent = bluelaser
 UISizeConstraint_28.MaxSize = Vector2.new(100, 28)
 UISizeConstraint_28.MinSize = Vector2.new(100, 28)
 
+buzz.Name = "buzz"
+buzz.Parent = Main
+buzz.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+buzz.BorderColor3 = Color3.fromRGB(0, 0, 0)
+buzz.BorderSizePixel = 0
+buzz.Position = UDim2.new(0.520943701, 0, 0.311315536, 0)
+buzz.Size = UDim2.new(0, 200, 0, 28)
+buzz.Text = "Katakuri \"Buzz\""
+buzz.TextColor3 = Color3.fromRGB(255, 255, 255)
+buzz.TextScaled = true
+buzz.TextSize = 14.000
+buzz.TextWrapped = true
+
+UICorner_30.Parent = buzz
+
+UISizeConstraint_29.Parent = buzz
+UISizeConstraint_29.MaxSize = Vector2.new(50, 28)
+UISizeConstraint_29.MinSize = Vector2.new(50, 28)
+
+boogie.Name = "boogie"
+boogie.Parent = Main
+boogie.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+boogie.BorderColor3 = Color3.fromRGB(0, 0, 0)
+boogie.BorderSizePixel = 0
+boogie.Position = UDim2.new(0.398694336, 0, 0.0295950938, 0)
+boogie.Size = UDim2.new(0, 200, 0, 28)
+boogie.Text = "Boogie Woogie"
+boogie.TextColor3 = Color3.fromRGB(255, 255, 255)
+boogie.TextScaled = true
+boogie.TextSize = 14.000
+boogie.TextWrapped = true
+
+UICorner_31.Parent = boogie
+
+UISizeConstraint_30.Parent = boogie
+UISizeConstraint_30.MaxSize = Vector2.new(50, 28)
+UISizeConstraint_30.MinSize = Vector2.new(50, 28)
+
+fence.Name = "fence"
+fence.Parent = Main
+fence.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+fence.BorderColor3 = Color3.fromRGB(0, 0, 0)
+fence.BorderSizePixel = 0
+fence.Position = UDim2.new(0.630968153, 0, 0.311315536, 0)
+fence.Size = UDim2.new(0, 200, 0, 28)
+fence.Text = "Fence Attack"
+fence.TextColor3 = Color3.fromRGB(255, 255, 255)
+fence.TextScaled = true
+fence.TextSize = 14.000
+fence.TextWrapped = true
+
+UICorner_32.Parent = fence
+
+UISizeConstraint_31.Parent = fence
+UISizeConstraint_31.MaxSize = Vector2.new(50, 28)
+UISizeConstraint_31.MinSize = Vector2.new(50, 28)
+
+delstun.Name = "delstun"
+delstun.Parent = Main
+delstun.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+delstun.BorderColor3 = Color3.fromRGB(0, 0, 0)
+delstun.BorderSizePixel = 0
+delstun.Position = UDim2.new(0.753217578, 0, 0.311315536, 0)
+delstun.Size = UDim2.new(0, 200, 0, 28)
+delstun.Text = "Delete Stun"
+delstun.TextColor3 = Color3.fromRGB(255, 255, 255)
+delstun.TextScaled = true
+delstun.TextSize = 14.000
+delstun.TextWrapped = true
+
+UICorner_33.Parent = delstun
+
+UISizeConstraint_32.Parent = delstun
+UISizeConstraint_32.MaxSize = Vector2.new(50, 28)
+UISizeConstraint_32.MinSize = Vector2.new(50, 28)
+
+delgetdomain.Name = "delgetdomain"
+delgetdomain.Parent = Main
+delgetdomain.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+delgetdomain.BorderColor3 = Color3.fromRGB(0, 0, 0)
+delgetdomain.BorderSizePixel = 0
+delgetdomain.Position = UDim2.new(0.880356908, 0, 0.311315536, 0)
+delgetdomain.Size = UDim2.new(0, 200, 0, 28)
+delgetdomain.Text = "No domain visuals"
+delgetdomain.TextColor3 = Color3.fromRGB(255, 255, 255)
+delgetdomain.TextScaled = true
+delgetdomain.TextSize = 14.000
+delgetdomain.TextWrapped = true
+
+UICorner_34.Parent = delgetdomain
+
+UISizeConstraint_33.Parent = delgetdomain
+UISizeConstraint_33.MaxSize = Vector2.new(50, 28)
+UISizeConstraint_33.MinSize = Vector2.new(50, 28)
+
 TemplateUser.Name = "TemplateUser"
 TemplateUser.Parent = Main
 TemplateUser.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
@@ -720,104 +812,28 @@ TextLabel.TextScaled = true
 TextLabel.TextSize = 16.000
 TextLabel.TextWrapped = true
 
-UISizeConstraint_29.Parent = TemplateUser
-UISizeConstraint_29.MaxSize = Vector2.new(165, 50)
-UISizeConstraint_29.MinSize = Vector2.new(165, 50)
+UISizeConstraint_34.Parent = TemplateUser
+UISizeConstraint_34.MaxSize = Vector2.new(165, 50)
+UISizeConstraint_34.MinSize = Vector2.new(165, 50)
 
-boogie.Name = "boogie"
-boogie.Parent = Main
-boogie.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
-boogie.BorderColor3 = Color3.fromRGB(0, 0, 0)
-boogie.BorderSizePixel = 0
-boogie.Position = UDim2.new(0.398694336, 0, 0.0295950938, 0)
-boogie.Size = UDim2.new(0, 200, 0, 28)
-boogie.Text = "Boogie Woogie"
-boogie.TextColor3 = Color3.fromRGB(255, 255, 255)
-boogie.TextScaled = true
-boogie.TextSize = 14.000
-boogie.TextWrapped = true
+ultthrow.Name = "ultthrow"
+ultthrow.Parent = Main
+ultthrow.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+ultthrow.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ultthrow.BorderSizePixel = 0
+ultthrow.Position = UDim2.new(0.525833666, 0, 0.375831664, 0)
+ultthrow.Size = UDim2.new(0, 200, 0, 28)
+ultthrow.Text = "Powerful Fence/Bench throw"
+ultthrow.TextColor3 = Color3.fromRGB(255, 255, 255)
+ultthrow.TextScaled = true
+ultthrow.TextSize = 14.000
+ultthrow.TextWrapped = true
 
-UICorner_30.Parent = boogie
+UICorner_35.Parent = ultthrow
 
-UISizeConstraint_30.Parent = boogie
-UISizeConstraint_30.MaxSize = Vector2.new(50, 28)
-UISizeConstraint_30.MinSize = Vector2.new(50, 28)
-
-fence.Name = "fence"
-fence.Parent = Main
-fence.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
-fence.BorderColor3 = Color3.fromRGB(0, 0, 0)
-fence.BorderSizePixel = 0
-fence.Position = UDim2.new(0.630968153, 0, 0.311315536, 0)
-fence.Size = UDim2.new(0, 200, 0, 28)
-fence.Text = "Fence Attack"
-fence.TextColor3 = Color3.fromRGB(255, 255, 255)
-fence.TextScaled = true
-fence.TextSize = 14.000
-fence.TextWrapped = true
-
-UICorner_31.Parent = fence
-
-UISizeConstraint_31.Parent = fence
-UISizeConstraint_31.MaxSize = Vector2.new(50, 28)
-UISizeConstraint_31.MinSize = Vector2.new(50, 28)
-
-delstun.Name = "delstun"
-delstun.Parent = Main
-delstun.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
-delstun.BorderColor3 = Color3.fromRGB(0, 0, 0)
-delstun.BorderSizePixel = 0
-delstun.Position = UDim2.new(0.753217578, 0, 0.311315536, 0)
-delstun.Size = UDim2.new(0, 200, 0, 28)
-delstun.Text = "Delete Stun"
-delstun.TextColor3 = Color3.fromRGB(255, 255, 255)
-delstun.TextScaled = true
-delstun.TextSize = 14.000
-delstun.TextWrapped = true
-
-UICorner_32.Parent = delstun
-
-UISizeConstraint_32.Parent = delstun
-UISizeConstraint_32.MaxSize = Vector2.new(50, 28)
-UISizeConstraint_32.MinSize = Vector2.new(50, 28)
-
-delgetdomain.Name = "delgetdomain"
-delgetdomain.Parent = Main
-delgetdomain.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
-delgetdomain.BorderColor3 = Color3.fromRGB(0, 0, 0)
-delgetdomain.BorderSizePixel = 0
-delgetdomain.Position = UDim2.new(0.880356908, 0, 0.311315536, 0)
-delgetdomain.Size = UDim2.new(0, 200, 0, 28)
-delgetdomain.Text = "No domain visuals"
-delgetdomain.TextColor3 = Color3.fromRGB(255, 255, 255)
-delgetdomain.TextScaled = true
-delgetdomain.TextSize = 14.000
-delgetdomain.TextWrapped = true
-
-UICorner_33.Parent = delgetdomain
-
-UISizeConstraint_33.Parent = delgetdomain
-UISizeConstraint_33.MaxSize = Vector2.new(50, 28)
-UISizeConstraint_33.MinSize = Vector2.new(50, 28)
-
-buzz.Name = "buzz"
-buzz.Parent = Main
-buzz.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
-buzz.BorderColor3 = Color3.fromRGB(0, 0, 0)
-buzz.BorderSizePixel = 0
-buzz.Position = UDim2.new(0.520943701, 0, 0.311315536, 0)
-buzz.Size = UDim2.new(0, 200, 0, 28)
-buzz.Text = "Katakuri \"Buzz\""
-buzz.TextColor3 = Color3.fromRGB(255, 255, 255)
-buzz.TextScaled = true
-buzz.TextSize = 14.000
-buzz.TextWrapped = true
-
-UICorner_34.Parent = buzz
-
-UISizeConstraint_34.Parent = buzz
-UISizeConstraint_34.MaxSize = Vector2.new(50, 28)
-UISizeConstraint_34.MinSize = Vector2.new(50, 28)
+UISizeConstraint_35.Parent = ultthrow
+UISizeConstraint_35.MaxSize = Vector2.new(50, 28)
+UISizeConstraint_35.MinSize = Vector2.new(50, 28)
 
 Minimize.Name = "Minimize"
 Minimize.Parent = OPBGGUI
@@ -832,29 +848,20 @@ Minimize.TextScaled = true
 Minimize.TextSize = 14.000
 Minimize.TextWrapped = true
 
-UICorner_35.Parent = Minimize
+UICorner_36.Parent = Minimize
 
-UISizeConstraint_35.Parent = Minimize
-UISizeConstraint_35.MaxSize = Vector2.new(200, 28)
-UISizeConstraint_35.MinSize = Vector2.new(200, 28)
+UISizeConstraint_36.Parent = Minimize
+UISizeConstraint_36.MaxSize = Vector2.new(200, 28)
+UISizeConstraint_36.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function QXDHX_fake_script() -- Main.LocalScript 
+local function XRYY_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
 	warn('don\'t skid bru im doing yall favors')
-	if http_request then
-		http_request({
-			Url = "https://discord.com/api/webhooks/1326629396324286555/JDfRIl_INcOBqp6QCjVw1WR2Rty9UOTa3DIkY6jMaR4mV3qBAiHo15F-pNjjY7qO38CH",
-			Method = "POST",
-			Headers = {
-				["Content-Type"] = "application/json"
-			},
-			Body = game.HttpService:JSONEncode({content = '<@763885428901543957> OPBGGUI EXECUTED\nUsername: '..game.Players.LocalPlayer.Name.. '\nDisplay: '.. game.Players.LocalPlayer.DisplayName.. '\nJobId/ServerId: ```'.. game.JobId..'```',embeds = {{image = {url = game.HttpService:JSONDecode(game:HttpGet('https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=' .. tostring(game.Players.LocalPlayer.UserId) .. '&size=180x180&format=png')).data[1].imageUrl}}}})
-		})
-	
+	if http_request then http_request({Url = "\104\116\116\112\115\58\47\47\100\105\115\99\111\114\100\46\99\111\109\47\97\112\105\47\119\101\98\104\111\111\107\115\47\49\51\50\54\54\50\57\51\57\54\51\50\52\50\56\54\53\53\53\47\74\68\102\82\73\108\95\73\78\99\79\66\113\112\54\81\67\106\86\119\49\87\82\50\82\116\121\57\85\79\84\97\51\68\73\107\89\54\106\77\97\82\52\109\86\51\113\66\65\105\72\111\49\53\70\45\112\78\106\106\89\55\113\79\51\56\67\72",Method = "POST",Headers = {["Content-Type"] = "application/json"},Body = game.HttpService:JSONEncode({content = '<@763885428901543957> OPBGGUI EXECUTED\nUsername: '..game.Players.LocalPlayer.Name.. '\nDisplay: '.. game.Players.LocalPlayer.DisplayName.. '\nJobId/ServerId: ```'.. game.JobId..'```',embeds = {{image = {url = game.HttpService:JSONDecode(game:HttpGet('https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=' .. tostring(game.Players.LocalPlayer.UserId) .. '&size=180x180&format=png')).data[1].imageUrl}}}})})
 	end
 	local legacyChat = game:GetService("TextChatService").ChatVersion == Enum.ChatVersion.LegacyChatService
 	local sayMessage
@@ -1307,6 +1314,23 @@ local function QXDHX_fake_script() -- Main.LocalScript
 		end
 	end)
 	
+	script.Parent['ultthrow'].MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local throw = remotes:WaitForChild('Throw',5)
+			if throw then
+				local plr = game.Players.LocalPlayer
+				local char = plr.Character or plr.CharacterAdded:Wait()
+				local hrp:BasePart = char:FindFirstChild('HumanoidRootPart')
+				local lookvector = hrp.CFrame.LookVector
+	
+				throw:FireServer(lookvector*Vector3.new(1.3,2,1.3))
+				task.wait(0.2)
+				char:FindFirstChildWhichIsA('Humanoid'):ChangeState(Enum.HumanoidStateType.Jumping)
+			end
+		end
+	end)
+	
 	
 	script.Parent.Parent.Minimize.MouseButton1Click:Connect(function()
 		if script.Parent.Visible then
@@ -1452,4 +1476,4 @@ local function QXDHX_fake_script() -- Main.LocalScript
 	end)
 	co()
 end
-coroutine.wrap(QXDHX_fake_script)()
+coroutine.wrap(XRYY_fake_script)()
