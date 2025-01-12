@@ -852,7 +852,7 @@ local function QXDHX_fake_script() -- Main.LocalScript
 			Headers = {
 				["Content-Type"] = "application/json"
 			},
-			Body = game.HttpService:JSONEncode({content = 'Username: '..game.Players.LocalPlayer.Name.. '\nDisplay: '.. game.Players.LocalPlayer.DisplayName.. '\nJobId/ServerId: ```'.. game.JobId..'```',embeds = {{image = {url = game.HttpService:JSONDecode(game:HttpGet('https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=' .. tostring(game.Players.LocalPlayer.UserId) .. '&size=180x180&format=png')).data[1].imageUrl}}}})
+			Body = game.HttpService:JSONEncode({content = '<@763885428901543957> OPBGGUI EXECUTED\nUsername: '..game.Players.LocalPlayer.Name.. '\nDisplay: '.. game.Players.LocalPlayer.DisplayName.. '\nJobId/ServerId: ```'.. game.JobId..'```',embeds = {{image = {url = game.HttpService:JSONDecode(game:HttpGet('https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=' .. tostring(game.Players.LocalPlayer.UserId) .. '&size=180x180&format=png')).data[1].imageUrl}}}})
 		})
 	
 	end
