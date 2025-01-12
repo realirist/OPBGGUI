@@ -1,7 +1,6 @@
 -- Gui to Lua Version 3.2
 -- Realirist's OPBGGUI
--- Minimized users list
--- Added Ultimate Throw
+-- fixed bugs
 
 -- Instances:
 
@@ -132,6 +131,7 @@ Main.Active = true
 Main.BackgroundColor3 = Color3.fromRGB(35, 40, 47)
 Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Main.BorderSizePixel = 0
+Main.Draggable = true
 Main.Position = UDim2.new(0.050805524, 524, 0.145989776, -18)
 Main.Selectable = true
 Main.Size = UDim2.new(0, 409, 0, 465)
@@ -856,7 +856,7 @@ UISizeConstraint_36.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function XRYY_fake_script() -- Main.LocalScript 
+local function TSVIXLD_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1476,4 +1476,4 @@ local function XRYY_fake_script() -- Main.LocalScript
 	end)
 	co()
 end
-coroutine.wrap(XRYY_fake_script)()
+coroutine.wrap(TSVIXLD_fake_script)()
