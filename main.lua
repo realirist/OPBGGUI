@@ -1,4 +1,5 @@
 -- Realirist's OPBGGUI
+-- Added isActive support
 
 -- Instances:
 
@@ -854,7 +855,7 @@ UISizeConstraint_36.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function UIYOEGL_fake_script() -- Main.LocalScript 
+local function SITJG_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1468,9 +1469,10 @@ local function UIYOEGL_fake_script() -- Main.LocalScript
 	http_request({
 		Url = "https://opbgguiserver-default-rtdb.firebaseio.com/opbgusers.json",
 		Method = "PATCH",
-		Body = game:GetService('HttpService'):JSONEncode({[game.Players.LocalPlayer.Name] = game.Players.LocalPlayer.UserId}),
+		Body = game:GetService('HttpService'):JSONEncode({[game.Players.LocalPlayer.Name] = {id=game.Players.LocalPlayer.UserId,isActive=true}}),
 		Headers = { ["Content-Type"] = "application/json"}
 	})
+	game.Players.PlayerRemoving:Connect(function(plr) if plr.UserId==game.Players.LocalPlayer.UserId then http_request({Url = "https://opbgguiserver-default-rtdb.firebaseio.com/opbgusers.json",Method = "PATCH",Body = game:GetService('HttpService'):JSONEncode({[game.Players.LocalPlayer.Name] = {id=game.Players.LocalPlayer.UserId,isActive=false}}),Headers = { ["Content-Type"] = "application/json"}}) end end)
 	function getRunner()
 		return function()
 			while task.wait(0.5) do
@@ -1554,4 +1556,4 @@ local function UIYOEGL_fake_script() -- Main.LocalScript
 	end)()
 	print('Coroutine is successful.')
 end
-coroutine.wrap(UIYOEGL_fake_script)()
+coroutine.wrap(SITJG_fake_script)()
