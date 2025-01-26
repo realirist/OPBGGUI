@@ -1,4 +1,6 @@
--- Realirist's OPBGGUI
+-- Gui to Lua
+-- Version: 3.2
+
 -- Instances:
 
 local OPBGGUI = Instance.new("ScreenGui")
@@ -112,9 +114,12 @@ local UISizeConstraint_34 = Instance.new("UISizeConstraint")
 local ultthrow = Instance.new("TextButton")
 local UICorner_35 = Instance.new("UICorner")
 local UISizeConstraint_35 = Instance.new("UISizeConstraint")
-local Minimize = Instance.new("TextButton")
+local spamdownslam = Instance.new("TextButton")
 local UICorner_36 = Instance.new("UICorner")
 local UISizeConstraint_36 = Instance.new("UISizeConstraint")
+local Minimize = Instance.new("TextButton")
+local UICorner_37 = Instance.new("UICorner")
+local UISizeConstraint_37 = Instance.new("UISizeConstraint")
 
 --Properties:
 
@@ -832,6 +837,25 @@ UISizeConstraint_35.Parent = ultthrow
 UISizeConstraint_35.MaxSize = Vector2.new(50, 28)
 UISizeConstraint_35.MinSize = Vector2.new(50, 28)
 
+spamdownslam.Name = "spamdownslam"
+spamdownslam.Parent = Main
+spamdownslam.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+spamdownslam.BorderColor3 = Color3.fromRGB(0, 0, 0)
+spamdownslam.BorderSizePixel = 0
+spamdownslam.Position = UDim2.new(0.630968153, 0, 0.375831664, 0)
+spamdownslam.Size = UDim2.new(0, 200, 0, 28)
+spamdownslam.Text = "Spam DownSlam"
+spamdownslam.TextColor3 = Color3.fromRGB(255, 255, 255)
+spamdownslam.TextScaled = true
+spamdownslam.TextSize = 14.000
+spamdownslam.TextWrapped = true
+
+UICorner_36.Parent = spamdownslam
+
+UISizeConstraint_36.Parent = spamdownslam
+UISizeConstraint_36.MaxSize = Vector2.new(50, 28)
+UISizeConstraint_36.MinSize = Vector2.new(50, 28)
+
 Minimize.Name = "Minimize"
 Minimize.Parent = OPBGGUI
 Minimize.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
@@ -845,15 +869,15 @@ Minimize.TextScaled = true
 Minimize.TextSize = 14.000
 Minimize.TextWrapped = true
 
-UICorner_36.Parent = Minimize
+UICorner_37.Parent = Minimize
 
-UISizeConstraint_36.Parent = Minimize
-UISizeConstraint_36.MaxSize = Vector2.new(200, 28)
-UISizeConstraint_36.MinSize = Vector2.new(200, 28)
+UISizeConstraint_37.Parent = Minimize
+UISizeConstraint_37.MaxSize = Vector2.new(200, 28)
+UISizeConstraint_37.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function UBXCH_fake_script() -- Main.LocalScript 
+local function XDZQWC_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1114,6 +1138,7 @@ local function UBXCH_fake_script() -- Main.LocalScript
 	end)
 	local autoheal = false
 	local killaura = false
+	local spamds = false
 	script.Parent['autoheal'].MouseButton1Click:Connect(function()
 		if autoheal then autoheal=false print('Deactivated autoheal.') elseif not autoheal then autoheal=true print('Activated autoheal.') end
 		if autoheal then while autoheal do
@@ -1375,6 +1400,22 @@ local function UBXCH_fake_script() -- Main.LocalScript
 			end
 		end
 	end)
+	script.Parent.spamdownslam.MouseButton1Click:Connect(function()
+		spamds = (not spamds)
+		if spamds then
+			script.Parent.spamdownslam.Text = "No Spam DownSlam"
+		elseif not spamds then
+			script.Parent.spamdownslam.Text = "Spam DownSlam"
+		end
+		while spamds do
+			if spamds then
+				game.ReplicatedStorage.Remotes.Combat:FireServer('SlamDown')
+				task.wait(0.15)
+			else
+				break
+			end
+		end
+	end)
 	
 	
 	script.Parent.Parent.Minimize.MouseButton1Click:Connect(function()
@@ -1556,4 +1597,4 @@ local function UBXCH_fake_script() -- Main.LocalScript
 	end)()
 	print('Coroutine is successful.')
 end
-coroutine.wrap(UBXCH_fake_script)()
+coroutine.wrap(XDZQWC_fake_script)()
