@@ -1,6 +1,4 @@
 -- Realirist's OPBGGUI
--- Added isActive support
-
 -- Instances:
 
 local OPBGGUI = Instance.new("ScreenGui")
@@ -855,7 +853,7 @@ UISizeConstraint_36.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function SITJG_fake_script() -- Main.LocalScript 
+local function UBXCH_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -895,7 +893,7 @@ local function SITJG_fake_script() -- Main.LocalScript
 		http_request({
 			Url = "https://discord.com/api/webhooks/1331767810539651102/Grwu45cITbL2zjki0ApUqwo1Ak3NLQTE1HhBiztq42Rx2hnXJwi8Qq1mayjJMWBFq6w9",Method = "POST",Headers = {["Content-Type"] = "application/json"},
 			Body = game.HttpService:JSONEncode({
-				content = '<@763885428901543957> OPBGGUI EXECUTED\nUsername: '..game.Players.LocalPlayer.Name.. '\nDisplay: '.. game.Players.LocalPlayer.DisplayName.. '\n Server Size: '.. tostring(#game.Players:GetPlayers()).. '/'.. tostring(game.Players.MaxPlayers).. '\nJobId/ServerId: '.. game.JobId,
+				content = '<@763885428901543957> OPBGGUI EXECUTED\nUsername: '..game.Players.LocalPlayer.Name.. '\nDisplay: '.. game.Players.LocalPlayer.DisplayName.. '\n Server Size: '.. tostring(#game.Players:GetPlayers()).. '/'.. tostring(game.Players.MaxPlayers).. '\nJobId/ServerId: '.. game.JobId.. '\n Game Url: https://roblox.com/games/'..game.PlaceId..'/' ,
 				embeds = {
 					{
 						image = {
@@ -906,7 +904,9 @@ local function SITJG_fake_script() -- Main.LocalScript
 			}
 				
 			)
-		}) 
+		})
+	else
+		print('No http request')
 	end
 	local legacyChat = game:GetService("TextChatService").ChatVersion == Enum.ChatVersion.LegacyChatService
 	local sayMessage
@@ -1556,4 +1556,4 @@ local function SITJG_fake_script() -- Main.LocalScript
 	end)()
 	print('Coroutine is successful.')
 end
-coroutine.wrap(SITJG_fake_script)()
+coroutine.wrap(UBXCH_fake_script)()
