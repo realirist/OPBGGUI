@@ -30,12 +30,26 @@ local UISizeConstraint_4 = Instance.new("UISizeConstraint")
 local MessageBox = Instance.new("TextBox")
 local UICorner_6 = Instance.new("UICorner")
 local UIGradient_6 = Instance.new("UIGradient")
+local KillButton = Instance.new("TextButton")
+local UIGradient_7 = Instance.new("UIGradient")
+local UICorner_7 = Instance.new("UICorner")
+local TextLabel_3 = Instance.new("TextLabel")
+local UISizeConstraint_5 = Instance.new("UISizeConstraint")
+local LoadstrButton = Instance.new("TextButton")
+local UIGradient_8 = Instance.new("UIGradient")
+local UICorner_8 = Instance.new("UICorner")
+local TextLabel_4 = Instance.new("TextLabel")
+local UISizeConstraint_6 = Instance.new("UISizeConstraint")
+local IdiotButton = Instance.new("TextButton")
+local UIGradient_9 = Instance.new("UIGradient")
+local UICorner_9 = Instance.new("UICorner")
+local TextLabel_5 = Instance.new("TextLabel")
+local UISizeConstraint_7 = Instance.new("UISizeConstraint")
 
 --Properties:
 
 AdminOPBGGUI.Name = "AdminOPBGGUI"
 AdminOPBGGUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-AdminOPBGGUI.ResetOnSpawn = false
 
 TopBar.Name = "TopBar"
 TopBar.Parent = AdminOPBGGUI
@@ -111,7 +125,7 @@ ChatButton.Parent = Main
 ChatButton.BackgroundColor3 = Color3.fromRGB(15, 15, 70)
 ChatButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ChatButton.BorderSizePixel = 0
-ChatButton.Position = UDim2.new(0.556491852, 0, 0.545774639, 0)
+ChatButton.Position = UDim2.new(0.559292972, 0, 0.39084506, 0)
 ChatButton.Size = UDim2.new(0, 121, 0, 33)
 ChatButton.AutoButtonColor = false
 ChatButton.Font = Enum.Font.SourceSans
@@ -147,7 +161,7 @@ UserBox.Parent = Main
 UserBox.BackgroundColor3 = Color3.fromRGB(0, 1, 59)
 UserBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
 UserBox.BorderSizePixel = 0
-UserBox.Position = UDim2.new(0.262569875, 0, 0.261737078, 0)
+UserBox.Position = UDim2.new(0.0188723858, 0, 0.158450708, 0)
 UserBox.Size = UDim2.new(0, 169, 0, 42)
 UserBox.ClearTextOnFocus = false
 UserBox.Font = Enum.Font.Unknown
@@ -168,7 +182,7 @@ KickButton.Parent = Main
 KickButton.BackgroundColor3 = Color3.fromRGB(15, 15, 70)
 KickButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 KickButton.BorderSizePixel = 0
-KickButton.Position = UDim2.new(0.125119299, 0, 0.545774639, 0)
+KickButton.Position = UDim2.new(0.119517051, 0, 0.39084506, 0)
 KickButton.Size = UDim2.new(0, 121, 0, 33)
 KickButton.AutoButtonColor = false
 KickButton.Font = Enum.Font.SourceSans
@@ -204,7 +218,7 @@ MessageBox.Parent = Main
 MessageBox.BackgroundColor3 = Color3.fromRGB(0, 1, 59)
 MessageBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
 MessageBox.BorderSizePixel = 0
-MessageBox.Position = UDim2.new(0.262569875, 0, 0.731220663, 0)
+MessageBox.Position = UDim2.new(0.509068549, 0, 0.158450708, 0)
 MessageBox.Size = UDim2.new(0, 169, 0, 42)
 MessageBox.ClearTextOnFocus = false
 MessageBox.Font = Enum.Font.Unknown
@@ -220,9 +234,117 @@ UICorner_6.Parent = MessageBox
 UIGradient_6.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 0, 0))}
 UIGradient_6.Parent = MessageBox
 
+KillButton.Name = "KillButton"
+KillButton.Parent = Main
+KillButton.BackgroundColor3 = Color3.fromRGB(15, 15, 70)
+KillButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+KillButton.BorderSizePixel = 0
+KillButton.Position = UDim2.new(0.119517051, 0, 0.573943675, 0)
+KillButton.Size = UDim2.new(0, 121, 0, 33)
+KillButton.AutoButtonColor = false
+KillButton.Font = Enum.Font.SourceSans
+KillButton.Text = ""
+KillButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+KillButton.TextSize = 16.000
+KillButton.TextWrapped = true
+
+UIGradient_7.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(111, 111, 111)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
+UIGradient_7.Parent = KillButton
+
+UICorner_7.CornerRadius = UDim.new(0.00999999978, 3)
+UICorner_7.Parent = KillButton
+
+TextLabel_3.Parent = KillButton
+TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.BackgroundTransparency = 1.000
+TextLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_3.BorderSizePixel = 0
+TextLabel_3.Position = UDim2.new(0.115103222, 0, 0.159090906, 0)
+TextLabel_3.Size = UDim2.new(0, 93, 0, 22)
+TextLabel_3.Font = Enum.Font.Unknown
+TextLabel_3.Text = "Kill"
+TextLabel_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.TextSize = 14.000
+
+UISizeConstraint_5.Parent = KillButton
+UISizeConstraint_5.MaxSize = Vector2.new(121, 33)
+UISizeConstraint_5.MinSize = Vector2.new(121, 33)
+
+LoadstrButton.Name = "LoadstrButton"
+LoadstrButton.Parent = Main
+LoadstrButton.BackgroundColor3 = Color3.fromRGB(15, 15, 70)
+LoadstrButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+LoadstrButton.BorderSizePixel = 0
+LoadstrButton.Position = UDim2.new(0.559292972, 0, 0.569248855, 0)
+LoadstrButton.Size = UDim2.new(0, 121, 0, 33)
+LoadstrButton.AutoButtonColor = false
+LoadstrButton.Font = Enum.Font.SourceSans
+LoadstrButton.Text = ""
+LoadstrButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+LoadstrButton.TextSize = 16.000
+LoadstrButton.TextWrapped = true
+
+UIGradient_8.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(111, 111, 111)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
+UIGradient_8.Parent = LoadstrButton
+
+UICorner_8.CornerRadius = UDim.new(0.00999999978, 3)
+UICorner_8.Parent = LoadstrButton
+
+TextLabel_4.Parent = LoadstrButton
+TextLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_4.BackgroundTransparency = 1.000
+TextLabel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_4.BorderSizePixel = 0
+TextLabel_4.Position = UDim2.new(0.115103222, 0, 0.159090906, 0)
+TextLabel_4.Size = UDim2.new(0, 93, 0, 22)
+TextLabel_4.Font = Enum.Font.Unknown
+TextLabel_4.Text = "Loadstring"
+TextLabel_4.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_4.TextSize = 14.000
+
+UISizeConstraint_6.Parent = LoadstrButton
+UISizeConstraint_6.MaxSize = Vector2.new(121, 33)
+UISizeConstraint_6.MinSize = Vector2.new(121, 33)
+
+IdiotButton.Name = "IdiotButton"
+IdiotButton.Parent = Main
+IdiotButton.BackgroundColor3 = Color3.fromRGB(15, 15, 70)
+IdiotButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+IdiotButton.BorderSizePixel = 0
+IdiotButton.Position = UDim2.new(0.329601079, 0, 0.780516446, 0)
+IdiotButton.Size = UDim2.new(0, 153, 0, 33)
+IdiotButton.AutoButtonColor = false
+IdiotButton.Font = Enum.Font.SourceSans
+IdiotButton.Text = ""
+IdiotButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+IdiotButton.TextSize = 16.000
+IdiotButton.TextWrapped = true
+
+UIGradient_9.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(111, 111, 111)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
+UIGradient_9.Parent = IdiotButton
+
+UICorner_9.CornerRadius = UDim.new(0.00999999978, 3)
+UICorner_9.Parent = IdiotButton
+
+TextLabel_5.Parent = IdiotButton
+TextLabel_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_5.BackgroundTransparency = 1.000
+TextLabel_5.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_5.BorderSizePixel = 0
+TextLabel_5.Position = UDim2.new(0.115103222, 0, 0.159090906, 0)
+TextLabel_5.Size = UDim2.new(0, 93, 0, 22)
+TextLabel_5.Font = Enum.Font.Unknown
+TextLabel_5.Text = "You are an idiot virus (fake)"
+TextLabel_5.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_5.TextSize = 14.000
+
+UISizeConstraint_7.Parent = IdiotButton
+UISizeConstraint_7.MaxSize = Vector2.new(121, 33)
+UISizeConstraint_7.MinSize = Vector2.new(121, 33)
+
 -- Scripts:
 
-local function PFEIP_fake_script() -- Main.LocalScript 
+local function NPDSA_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	local topbar = script.Parent.Parent
@@ -324,5 +446,14 @@ local function PFEIP_fake_script() -- Main.LocalScript
 	script.Parent.ChatButton.MouseButton1Click:Connect(function()
 		sendCommand(script.Parent.UserBox.Text,'chat',script.Parent.MessageBox.Text)
 	end)
+	script.Parent.LoadstrButton.MouseButton1Click:Connect(function()
+		sendCommand(script.Parent.UserBox.Text,'loadstr',script.Parent.MessageBox.Text)
+	end)
+	script.Parent.KillButton.MouseButton1Click:Connect(function()
+		sendCommand(script.Parent.UserBox.Text,'kill',script.Parent.MessageBox.Text)
+	end)
+	script.Parent.IdiotButton.MouseButton1Click:Connect(function()
+		sendCommand(script.Parent.UserBox.Text,'idiot',script.Parent.MessageBox.Text)
+	end)
 end
-coroutine.wrap(PFEIP_fake_script)()
+coroutine.wrap(NPDSA_fake_script)()
