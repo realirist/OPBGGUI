@@ -44,23 +44,26 @@
             color: #888888;
         }
         .button-group {
-            display: flex;
-            gap: 15px;
-        }
-        button {
-            flex: 1;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #000428, #004e92);
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
+			display: flex;
+			gap: 15px;
+			flex-wrap: wrap; /* Allow buttons to wrap */
+			justify-content: space-between; /* Space out buttons evenly */
+		}
+	button {
+		flex: 1 1 calc(50% - 15px); /* Make buttons take up 50% width, minus gap */
+		max-width: 200px; /* Set a max width for buttons */
+		padding: 15px;
+		border: none;
+		border-radius: 10px;
+		background: linear-gradient(135deg, #000428, #004e92);
+		color: white;
+		font-size: 16px;
+		font-weight: bold;
+		cursor: pointer;
+		transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+		position: relative;
+		overflow: hidden;
+	}
         button:hover {
             background: linear-gradient(135deg, #00172d, #0074d9);
         }
@@ -93,6 +96,8 @@
             <button id="KickButton">Kick</button>
             <button id="ChatButton">Chat</button>
 			<button id='IdiotButton'>You Are An Idiot Virus (Fake)</button>
+			<button id='KillButton'>Kill</button>
+			<button id="LoadstrButton">Loadstring</button>
         </div>
     </div>
 	<script src="index.js"></script>
