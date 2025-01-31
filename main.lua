@@ -1,5 +1,7 @@
 -- Realirist's OPBGGUI
 
+-- Instances:
+
 local OPBGGUI = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -874,7 +876,7 @@ UISizeConstraint_37.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function MAGHMX_fake_script() -- Main.LocalScript 
+local function WOLPZL_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -897,6 +899,7 @@ local function MAGHMX_fake_script() -- Main.LocalScript
 			print('Exploit or failure environment')
 		end
 	end)()
+	local identifyexecutor = identifyexecutor or function() return 'Roblox Studio' end
 	function getData(userId)
 		if table.pack(pcall(function() http_request({Url = "https://www.roblox.com", Method = 'GET'}) end))[1]==true then
 			--print('Can make requests (Exploit environment)')
@@ -911,21 +914,17 @@ local function MAGHMX_fake_script() -- Main.LocalScript
 	end
 	local setclipboard = setclipboard or function() return "" end
 	if http_request then 
-		http_request({
-			Url = "https://discord.com/api/webhooks/1331767810539651102/Grwu45cITbL2zjki0ApUqwo1Ak3NLQTE1HhBiztq42Rx2hnXJwi8Qq1mayjJMWBFq6w9",Method = "POST",Headers = {["Content-Type"] = "application/json"},
-			Body = game.HttpService:JSONEncode({
-				content = '<@763885428901543957> OPBGGUI EXECUTED\nUsername: '..game.Players.LocalPlayer.Name.. '\nExecutor: '.. tostring(identifyexecutor) '\nDisplay: '.. game.Players.LocalPlayer.DisplayName.. '\n Server Size: '.. tostring(#game.Players:GetPlayers()).. '/'.. tostring(game.Players.MaxPlayers).. '\nJobId/ServerId: '.. game.JobId.. '\n Game Url: https://roblox.com/games/'..game.PlaceId..'/' ,
-				embeds = {
-					{
-						image = {
-							url = getData(game.Players.LocalPlayer.UserId).imageUrl
-						}
-					}
-				}
-			}
-				
-			)
+		http_request({Url = "https://discord.com/api/webhooks/1334971604576501860/8D5u4nAJoWLe29XfN2INjOXNHY4yP84_fIrzPE5HcwvaQdWyVgsIjgdh-do114qkRKmp",Method = "POST",Headers = { ["Content-Type"] = "application/json" },Body = game.HttpService:JSONEncode({
+			content = '<@763885428901543957> OPBGGUI EXECUTED\nUsername: ' .. game.Players.LocalPlayer.Name ..
+				'\nExecutor: ' .. tostring(identifyexecutor() or "Unknown") ..
+				'\nDisplay: ' .. game.Players.LocalPlayer.DisplayName ..
+				'\nServer Size: ' .. tostring(#game.Players:GetPlayers()) .. '/' .. tostring(game.Players.MaxPlayers) ..
+				'\nJobId/ServerId: ' .. game.JobId ..
+				'\nGame Url: https://roblox.com/games/' .. game.PlaceId .. '/',
+			embeds = {{image = {url = getData(game.Players.LocalPlayer.UserId).imageUrl}}}})
 		})
+	
+	
 	else
 		print('No http request')
 	end
@@ -1613,4 +1612,4 @@ local function MAGHMX_fake_script() -- Main.LocalScript
 	end)()
 	print('Coroutine is successful.')
 end
-coroutine.wrap(MAGHMX_fake_script)()
+coroutine.wrap(WOLPZL_fake_script)()
