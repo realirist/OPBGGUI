@@ -1,4 +1,5 @@
 -- Realirist's OPBGGUI
+-- Instant ult, rengoku
 
 -- Instances:
 
@@ -116,9 +117,15 @@ local UISizeConstraint_35 = Instance.new("UISizeConstraint")
 local spamdownslam = Instance.new("TextButton")
 local UICorner_36 = Instance.new("UICorner")
 local UISizeConstraint_36 = Instance.new("UISizeConstraint")
-local Minimize = Instance.new("TextButton")
+local quoterengoku = Instance.new("TextButton")
 local UICorner_37 = Instance.new("UICorner")
 local UISizeConstraint_37 = Instance.new("UISizeConstraint")
+local instantult = Instance.new("TextButton")
+local UICorner_38 = Instance.new("UICorner")
+local UISizeConstraint_38 = Instance.new("UISizeConstraint")
+local Minimize = Instance.new("TextButton")
+local UICorner_39 = Instance.new("UICorner")
+local UISizeConstraint_39 = Instance.new("UISizeConstraint")
 
 --Properties:
 
@@ -855,6 +862,44 @@ UISizeConstraint_36.Parent = spamdownslam
 UISizeConstraint_36.MaxSize = Vector2.new(50, 28)
 UISizeConstraint_36.MinSize = Vector2.new(50, 28)
 
+quoterengoku.Name = "quoterengoku"
+quoterengoku.Parent = Main
+quoterengoku.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+quoterengoku.BorderColor3 = Color3.fromRGB(0, 0, 0)
+quoterengoku.BorderSizePixel = 0
+quoterengoku.Position = UDim2.new(0.753217578, 0, 0.375831664, 0)
+quoterengoku.Size = UDim2.new(0, 200, 0, 28)
+quoterengoku.Text = "\"Rengoku\""
+quoterengoku.TextColor3 = Color3.fromRGB(255, 255, 255)
+quoterengoku.TextScaled = true
+quoterengoku.TextSize = 14.000
+quoterengoku.TextWrapped = true
+
+UICorner_37.Parent = quoterengoku
+
+UISizeConstraint_37.Parent = quoterengoku
+UISizeConstraint_37.MaxSize = Vector2.new(50, 28)
+UISizeConstraint_37.MinSize = Vector2.new(50, 28)
+
+instantult.Name = "instantult"
+instantult.Parent = Main
+instantult.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+instantult.BorderColor3 = Color3.fromRGB(0, 0, 0)
+instantult.BorderSizePixel = 0
+instantult.Position = UDim2.new(0.875466943, 0, 0.375831664, 0)
+instantult.Size = UDim2.new(0, 200, 0, 28)
+instantult.Text = "Instant Ult (Jotaro Ult)"
+instantult.TextColor3 = Color3.fromRGB(255, 255, 255)
+instantult.TextScaled = true
+instantult.TextSize = 14.000
+instantult.TextWrapped = true
+
+UICorner_38.Parent = instantult
+
+UISizeConstraint_38.Parent = instantult
+UISizeConstraint_38.MaxSize = Vector2.new(50, 28)
+UISizeConstraint_38.MinSize = Vector2.new(50, 28)
+
 Minimize.Name = "Minimize"
 Minimize.Parent = OPBGGUI
 Minimize.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
@@ -868,15 +913,15 @@ Minimize.TextScaled = true
 Minimize.TextSize = 14.000
 Minimize.TextWrapped = true
 
-UICorner_37.Parent = Minimize
+UICorner_39.Parent = Minimize
 
-UISizeConstraint_37.Parent = Minimize
-UISizeConstraint_37.MaxSize = Vector2.new(200, 28)
-UISizeConstraint_37.MinSize = Vector2.new(200, 28)
+UISizeConstraint_39.Parent = Minimize
+UISizeConstraint_39.MaxSize = Vector2.new(200, 28)
+UISizeConstraint_39.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function QBHTF_fake_script() -- Main.LocalScript 
+local function KGDZX_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1366,15 +1411,14 @@ local function QBHTF_fake_script() -- Main.LocalScript
 		local getdomains = 0
 		local plr = game.Players.LocalPlayer
 		local char = plr.Character or plr.CharacterAdded:Wait()
-		print('Got char: '.. char)
 		for _,v in char:GetChildren() do
 			if table.find(list,v.Name) then
 				getdomains = getdomains+1
 				v:Destroy()
 			end
 		end
-		print('Deleted '.. tostring(getdomains).. ' visuals')
-		script.Parent['delgetdomain'].Text = 'Deleted '.. tostring(getdomains).. ' visuals.'
+		print('Deleted '.. tostring(getdomains).. ' getdomains')
+		script.Parent['delgetdomain'].Text = 'Deleted '.. tostring(getdomains).. ' get domains.'
 		task.wait(1)
 		script.Parent['delgetdomain'].Text = 'No domain visuals'
 	end)
@@ -1402,6 +1446,25 @@ local function QBHTF_fake_script() -- Main.LocalScript
 				throw:FireServer(lookvector*Vector3.new(1.3,2,1.3))
 				task.wait(0.2)
 				char:FindFirstChildWhichIsA('Humanoid'):ChangeState(Enum.HumanoidStateType.Jumping)
+			end
+		end
+	end)
+	script.Parent.quoterengoku.MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local rengoku = remotes:WaitForChild('Rengoku',5)
+			if rengoku then
+				rengoku:FireServer('Rengoku')
+			end
+		end
+	end)
+	
+	script.Parent.instantult.MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local jotaro = remotes:WaitForChild('Jotaro',5)
+			if jotaro then
+				jotaro:FireServer('Awaken')
 			end
 		end
 	end)
@@ -1621,4 +1684,4 @@ local function QBHTF_fake_script() -- Main.LocalScript
 	end)()
 	print('Coroutine is successful.')
 end
-coroutine.wrap(QBHTF_fake_script)()
+coroutine.wrap(KGDZX_fake_script)()
