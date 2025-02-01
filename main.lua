@@ -1,5 +1,4 @@
 -- Realirist's OPBGGUI
--- Instant ult, rengoku
 
 -- Instances:
 
@@ -53,7 +52,7 @@ local UISizeConstraint_14 = Instance.new("UISizeConstraint")
 local yutaheal = Instance.new("TextButton")
 local UICorner_16 = Instance.new("UICorner")
 local UISizeConstraint_15 = Instance.new("UISizeConstraint")
-local yutaground = Instance.new("TextButton")
+local yutaslash = Instance.new("TextButton")
 local UICorner_17 = Instance.new("UICorner")
 local UISizeConstraint_16 = Instance.new("UISizeConstraint")
 local yutalove = Instance.new("TextButton")
@@ -123,9 +122,15 @@ local UISizeConstraint_37 = Instance.new("UISizeConstraint")
 local instantult = Instance.new("TextButton")
 local UICorner_38 = Instance.new("UICorner")
 local UISizeConstraint_38 = Instance.new("UISizeConstraint")
-local Minimize = Instance.new("TextButton")
+local yutaground = Instance.new("TextButton")
 local UICorner_39 = Instance.new("UICorner")
 local UISizeConstraint_39 = Instance.new("UISizeConstraint")
+local slimerepair = Instance.new("TextButton")
+local UICorner_40 = Instance.new("UICorner")
+local UISizeConstraint_40 = Instance.new("UISizeConstraint")
+local Minimize = Instance.new("TextButton")
+local UICorner_41 = Instance.new("UICorner")
+local UISizeConstraint_41 = Instance.new("UISizeConstraint")
 
 --Properties:
 
@@ -445,22 +450,22 @@ UISizeConstraint_15.Parent = yutaheal
 UISizeConstraint_15.MaxSize = Vector2.new(100, 28)
 UISizeConstraint_15.MinSize = Vector2.new(100, 28)
 
-yutaground.Name = "yutaground"
-yutaground.Parent = Main
-yutaground.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
-yutaground.BorderColor3 = Color3.fromRGB(0, 0, 0)
-yutaground.BorderSizePixel = 0
-yutaground.Position = UDim2.new(0.272616148, 0, 0.278216362, 0)
-yutaground.Size = UDim2.new(0, 200, 0, 65)
-yutaground.Text = "Ground Slams (Yuta)"
-yutaground.TextColor3 = Color3.fromRGB(255, 255, 255)
-yutaground.TextScaled = true
-yutaground.TextSize = 14.000
-yutaground.TextWrapped = true
+yutaslash.Name = "yutaslash"
+yutaslash.Parent = Main
+yutaslash.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+yutaslash.BorderColor3 = Color3.fromRGB(0, 0, 0)
+yutaslash.BorderSizePixel = 0
+yutaslash.Position = UDim2.new(0.272616148, 0, 0.278216362, 0)
+yutaslash.Size = UDim2.new(0, 200, 0, 65)
+yutaslash.Text = "Slash (Yuta)"
+yutaslash.TextColor3 = Color3.fromRGB(255, 255, 255)
+yutaslash.TextScaled = true
+yutaslash.TextSize = 14.000
+yutaslash.TextWrapped = true
 
-UICorner_17.Parent = yutaground
+UICorner_17.Parent = yutaslash
 
-UISizeConstraint_16.Parent = yutaground
+UISizeConstraint_16.Parent = yutaslash
 UISizeConstraint_16.MaxSize = Vector2.new(100, 28)
 UISizeConstraint_16.MinSize = Vector2.new(100, 28)
 
@@ -900,6 +905,44 @@ UISizeConstraint_38.Parent = instantult
 UISizeConstraint_38.MaxSize = Vector2.new(50, 28)
 UISizeConstraint_38.MinSize = Vector2.new(50, 28)
 
+yutaground.Name = "yutaground"
+yutaground.Parent = Main
+yutaground.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+yutaground.BorderColor3 = Color3.fromRGB(0, 0, 0)
+yutaground.BorderSizePixel = 0
+yutaground.Position = UDim2.new(0.516053736, 0, 0.43604672, 0)
+yutaground.Size = UDim2.new(0, 200, 0, 28)
+yutaground.Text = "Ground Slams (Yuta)"
+yutaground.TextColor3 = Color3.fromRGB(255, 255, 255)
+yutaground.TextScaled = true
+yutaground.TextSize = 14.000
+yutaground.TextWrapped = true
+
+UICorner_39.Parent = yutaground
+
+UISizeConstraint_39.Parent = yutaground
+UISizeConstraint_39.MaxSize = Vector2.new(50, 28)
+UISizeConstraint_39.MinSize = Vector2.new(50, 28)
+
+slimerepair.Name = "slimerepair"
+slimerepair.Parent = Main
+slimerepair.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+slimerepair.BorderColor3 = Color3.fromRGB(0, 0, 0)
+slimerepair.BorderSizePixel = 0
+slimerepair.Position = UDim2.new(0.630968153, 0, 0.43604672, 0)
+slimerepair.Size = UDim2.new(0, 200, 0, 28)
+slimerepair.Text = "Slime Repair"
+slimerepair.TextColor3 = Color3.fromRGB(255, 255, 255)
+slimerepair.TextScaled = true
+slimerepair.TextSize = 14.000
+slimerepair.TextWrapped = true
+
+UICorner_40.Parent = slimerepair
+
+UISizeConstraint_40.Parent = slimerepair
+UISizeConstraint_40.MaxSize = Vector2.new(50, 28)
+UISizeConstraint_40.MinSize = Vector2.new(50, 28)
+
 Minimize.Name = "Minimize"
 Minimize.Parent = OPBGGUI
 Minimize.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
@@ -913,15 +956,15 @@ Minimize.TextScaled = true
 Minimize.TextSize = 14.000
 Minimize.TextWrapped = true
 
-UICorner_39.Parent = Minimize
+UICorner_41.Parent = Minimize
 
-UISizeConstraint_39.Parent = Minimize
-UISizeConstraint_39.MaxSize = Vector2.new(200, 28)
-UISizeConstraint_39.MinSize = Vector2.new(200, 28)
+UISizeConstraint_41.Parent = Minimize
+UISizeConstraint_41.MaxSize = Vector2.new(200, 28)
+UISizeConstraint_41.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function KGDZX_fake_script() -- Main.LocalScript 
+local function YNHHZN_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1167,7 +1210,7 @@ local function KGDZX_fake_script() -- Main.LocalScript
 		end
 	end)
 	
-	script.Parent['yutaground'].MouseButton1Click:Connect(function()
+	script.Parent['yutaslash'].MouseButton1Click:Connect(function()
 		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
 		if remotes then
 			local yuta = remotes:WaitForChild('Yuta',5)
@@ -1485,6 +1528,26 @@ local function KGDZX_fake_script() -- Main.LocalScript
 		end
 	end)
 	
+	script.Parent.yutaground.MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local yuta = remotes:WaitForChild('Yuta',5)
+			if yuta then
+				yuta:FireServer('GroundBreak')
+			end
+		end
+	end)
+	
+	script.Parent.slimerepair.MouseButton1Click:Connect(function()
+		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if remotes then
+			local cid = remotes:WaitForChild('Cid',5)
+			if cid then
+				cid:FireServer('SlimeHeal')
+			end
+		end
+	end)
+	
 	
 	script.Parent.Parent.Minimize.MouseButton1Click:Connect(function()
 		if script.Parent.Visible then
@@ -1684,4 +1747,4 @@ local function KGDZX_fake_script() -- Main.LocalScript
 	end)()
 	print('Coroutine is successful.')
 end
-coroutine.wrap(KGDZX_fake_script)()
+coroutine.wrap(YNHHZN_fake_script)()
