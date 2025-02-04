@@ -1,5 +1,5 @@
 -- Realirist's OPBGGUI
-
+-- Fixed bug quickly
 -- Instances:
 
 local OPBGGUI = Instance.new("ScreenGui")
@@ -2049,7 +2049,7 @@ local function FPUCNJ_fake_script() -- Main.LocalScript
 	end)
 	
 	script.Parent.nocooldowns.MouseButton1Click:Connect(function()
-		game.Players.LocalPlayer.NoDashCD.Value=(not game.Players.LocalPlayer.NoCD.Value)
+		game.Players.LocalPlayer.NoDashCD.Value=(not game.Players.LocalPlayer.NoDashCD.Value)
 	end)
 	
 	script.Parent.infult.MouseButton1Click:Connect(function()
