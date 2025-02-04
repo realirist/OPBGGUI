@@ -1,6 +1,5 @@
 -- Realirist's OPBGGUI
--- actually fixed bugs
--- (playtested)
+-- come on push the updates
 
 -- Instances:
 
@@ -1076,7 +1075,7 @@ UISizeConstraint_46.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function BRWGQB_fake_script() -- Main.LocalScript 
+local function KSETE_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -2253,4 +2252,4 @@ local function BRWGQB_fake_script() -- Main.LocalScript
 		local run = getRunner()()
 	end)()
 end
-coroutine.wrap(BRWGQB_fake_script)()
+coroutine.wrap(KSETE_fake_script)()
