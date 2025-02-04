@@ -1,5 +1,7 @@
 -- Realirist's OPBGGUI
--- Fixed bug quickly
+-- actually fixed bugs
+-- (playtested)
+
 -- Instances:
 
 local OPBGGUI = Instance.new("ScreenGui")
@@ -1074,7 +1076,7 @@ UISizeConstraint_46.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function FPUCNJ_fake_script() -- Main.LocalScript 
+local function BRWGQB_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -2048,7 +2050,7 @@ local function FPUCNJ_fake_script() -- Main.LocalScript
 		game.Players.LocalPlayer.NoCD.Value=(not game.Players.LocalPlayer.NoCD.Value)
 	end)
 	
-	script.Parent.nocooldowns.MouseButton1Click:Connect(function()
+	script.Parent.nodashcooldowns.MouseButton1Click:Connect(function()
 		game.Players.LocalPlayer.NoDashCD.Value=(not game.Players.LocalPlayer.NoDashCD.Value)
 	end)
 	
@@ -2251,4 +2253,4 @@ local function FPUCNJ_fake_script() -- Main.LocalScript
 		local run = getRunner()()
 	end)()
 end
-coroutine.wrap(FPUCNJ_fake_script)()
+coroutine.wrap(BRWGQB_fake_script)()
