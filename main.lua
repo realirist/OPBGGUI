@@ -1,14 +1,4 @@
--- Realirist's OPBGGUI Discontinued
---[[
-Dear OPBGGUI Community:
-I want to apologize for the soon coming OPBGGUI discontinuation.
-It appears I got a little nasty with power, even going as far to doxx people.
-It's gonna be discontinued, your info's gonna be safe, because it has been deleted.
-Logs are now gonna be sticking to username, display name, and game info.
-I am sorry for this, but I am even more sorry for getting carried away.
-It's honestly disgusting. 
-Yours truly, Realirist. Thank you for everything!
-]]
+-- Realirist's OPBGGUI
 
 -- Instances:
 
@@ -138,9 +128,15 @@ local UISizeConstraint_39 = Instance.new("UISizeConstraint")
 local slimerepair = Instance.new("TextButton")
 local UICorner_40 = Instance.new("UICorner")
 local UISizeConstraint_40 = Instance.new("UISizeConstraint")
-local Minimize = Instance.new("TextButton")
+local autorepair = Instance.new("TextButton")
 local UICorner_41 = Instance.new("UICorner")
 local UISizeConstraint_41 = Instance.new("UISizeConstraint")
+local yutamoveset = Instance.new("TextButton")
+local UICorner_42 = Instance.new("UICorner")
+local UISizeConstraint_42 = Instance.new("UISizeConstraint")
+local Minimize = Instance.new("TextButton")
+local UICorner_43 = Instance.new("UICorner")
+local UISizeConstraint_43 = Instance.new("UISizeConstraint")
 
 --Properties:
 
@@ -953,6 +949,44 @@ UISizeConstraint_40.Parent = slimerepair
 UISizeConstraint_40.MaxSize = Vector2.new(50, 28)
 UISizeConstraint_40.MinSize = Vector2.new(50, 28)
 
+autorepair.Name = "autorepair"
+autorepair.Parent = Main
+autorepair.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+autorepair.BorderColor3 = Color3.fromRGB(0, 0, 0)
+autorepair.BorderSizePixel = 0
+autorepair.Position = UDim2.new(0.751833737, 0, 0.435205609, 0)
+autorepair.Size = UDim2.new(0, 200, 0, 65)
+autorepair.Text = "Auto Slime Repair"
+autorepair.TextColor3 = Color3.fromRGB(255, 255, 255)
+autorepair.TextScaled = true
+autorepair.TextSize = 14.000
+autorepair.TextWrapped = true
+
+UICorner_41.Parent = autorepair
+
+UISizeConstraint_41.Parent = autorepair
+UISizeConstraint_41.MaxSize = Vector2.new(100, 28)
+UISizeConstraint_41.MinSize = Vector2.new(100, 28)
+
+yutamoveset.Name = "yutamoveset"
+yutamoveset.Parent = Main
+yutamoveset.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+yutamoveset.BorderColor3 = Color3.fromRGB(0, 0, 0)
+yutamoveset.BorderSizePixel = 0
+yutamoveset.Position = UDim2.new(0.754278719, 0, 0.495420665, 0)
+yutamoveset.Size = UDim2.new(0, 200, 0, 65)
+yutamoveset.Text = "Change to Yuta"
+yutamoveset.TextColor3 = Color3.fromRGB(255, 255, 255)
+yutamoveset.TextScaled = true
+yutamoveset.TextSize = 14.000
+yutamoveset.TextWrapped = true
+
+UICorner_42.Parent = yutamoveset
+
+UISizeConstraint_42.Parent = yutamoveset
+UISizeConstraint_42.MaxSize = Vector2.new(100, 28)
+UISizeConstraint_42.MinSize = Vector2.new(100, 28)
+
 Minimize.Name = "Minimize"
 Minimize.Parent = OPBGGUI
 Minimize.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
@@ -966,15 +1000,15 @@ Minimize.TextScaled = true
 Minimize.TextSize = 14.000
 Minimize.TextWrapped = true
 
-UICorner_41.Parent = Minimize
+UICorner_43.Parent = Minimize
 
-UISizeConstraint_41.Parent = Minimize
-UISizeConstraint_41.MaxSize = Vector2.new(200, 28)
-UISizeConstraint_41.MinSize = Vector2.new(200, 28)
+UISizeConstraint_43.Parent = Minimize
+UISizeConstraint_43.MaxSize = Vector2.new(200, 28)
+UISizeConstraint_43.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function SVDYM_fake_script() -- Main.LocalScript 
+local function DNCQ_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1230,6 +1264,7 @@ local function SVDYM_fake_script() -- Main.LocalScript
 		end
 	end)
 	local autoheal = false
+	local autorepair = false
 	local killaura = false
 	local spamds = false
 	script.Parent['autoheal'].MouseButton1Click:Connect(function()
@@ -1548,6 +1583,247 @@ local function SVDYM_fake_script() -- Main.LocalScript
 		end
 	end)
 	
+	script.Parent.autorepair.MouseButton1Click:Connect(function()
+		autorepair = (not autorepair)
+		local function repair()
+			local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+			if remotes then
+				local cid = remotes:WaitForChild('Cid',5)
+				if cid then
+					cid:FireServer('SlimeHeal')
+				end
+			end
+		end
+		if autorepair then
+			script.Parent.autorepair.Text = 'No Auto Slime Repair'
+			local char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+			while autorepair do
+				if char then
+					local hum = char:FindFirstChildWhichIsA('Humanoid')
+					if hum then
+						if hum.Health<hum.MaxHealth then
+							repair()
+						end
+					end
+				end
+				task.wait()
+			end
+		else
+			script.Parent.autorepair.Text = 'Auto Slime Repair'
+		end
+	
+	end)
+	
+	script.Parent.yutamoveset.MouseButton1Click:Connect(function()
+		game.ReplicatedStorage.Remotes:WaitForChild('Characters'):FireServer('Rengoku')
+		local char = game.Players.LocalPlayer.CharacterAdded:Wait()
+		local hum = char:FindFirstChildWhichIsA('Humanoid') or char:WaitForChild("Humanoid")
+		print('Character Reloaded! Removing certain localscripts..')
+		local whitelist = {
+			'AnimateYuta','Animate','AdminSpecs','CutsceneHandler2','DomainClash','Leaderboards','SoundScript','StunScript','TalkHandler','RenDash','RenCombat'
+		}
+		local function bindToKey(func,key)
+			local service = game:GetService('UserInputService')
+			return service.InputBegan:Connect(function(inp)
+				if inp.KeyCode == key then
+					func()
+				end
+			end)
+		end
+		local function setCoolDown(skillNum, cooldown)
+			local plr = game:GetService('Players').LocalPlayer
+			local HUD = plr.PlayerGui:WaitForChild("HUD")
+			local Moves = HUD.Bottom.Moves
+			local move = Moves['Skill' .. tostring(skillNum)]
+			move.Cooldown.Offset = Vector2.new(0, -0.5)
+	
+			local startTime = tick()
+			local totalCooldown = cooldown
+			move.Contextual.Visible = true
+	
+			coroutine.wrap(function()
+				while tick() - startTime < totalCooldown do
+					local elapsed = tick() - startTime
+					local remaining = totalCooldown - elapsed
+					local offsetY = (-0.5 + (elapsed / totalCooldown) * 1)
+					move.Cooldown.Offset = Vector2.new(0, offsetY)
+					move.Contextual.Text = string.format("%.2f", remaining)
+					task.wait(0.03)
+				end
+				move.Cooldown.Offset = Vector2.new(0, 0.5)
+				move.Contextual.Text = ""
+				move.Contextual.Visible = false
+			end)()
+		end
+		
+		local function setMoveSetNames(movesetTable)
+			for i,v in ipairs(movesetTable) do
+				local plr = game:GetService('Players').LocalPlayer
+				local HUD = plr.PlayerGui:WaitForChild("HUD")
+				local Moves = HUD.Bottom.Moves
+				local move = Moves['Skill' .. tostring(i)]
+				move.MoveName.Text = tostring(v)
+			end
+		end
+		setMoveSetNames({
+			'Slash Barrage', 'Sword Strike', 'Swinging Rampage', 'Cursed Speech', -- Base Moveset (1234)
+			'Ground Slams', 'Black Flash', 'Pure Love', 'Heal'
+		})
+		game:GetService('Players').LocalPlayer.PlayerGui:WaitForChild('HUD').Bottom:FindFirstChild('SpecialMove').Bar.Title.Text = 'Come Out, RIKA!'
+		local ismove1Available = true
+		local ismove2Available = true
+		local ismove3Available = true
+		local ismove4Available = true
+		local firstMoveConnection = bindToKey(function()
+			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not ismove1Available or hum:GetState()==Enum.HumanoidStateType.Dead or char:FindFirstChild('Awakened') then return end
+			local function doYuta(nameMove)
+				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+				if remotes then
+					local yuta = remotes:WaitForChild('Yuta',5)
+					if yuta then
+						yuta:FireServer(nameMove)
+					end
+				end
+			end
+			local function addStun()
+				local stun = Instance.new('NumberValue')
+				stun.Name = 'Gobal'
+				print(char)
+				stun.Parent = char
+				return function()
+					stun:Destroy()
+				end
+			end
+			local deleteNewStun = addStun()
+			doYuta('Slashes')
+	
+			hum.WalkSpeed = 10
+			task.wait(1.5)
+			deleteNewStun()
+			if not (game.Players.LocalPlayer.NoCD.Value==true) then
+				setCoolDown(1,12)
+				ismove1Available=false
+			end
+			coroutine.wrap(function() task.wait(12) ismove1Available=true end)()
+			hum.WalkSpeed = 25
+		end,Enum.KeyCode.One)
+	
+		local secondMoveConnection = bindToKey(function()
+			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not ismove2Available or hum:GetState()==Enum.HumanoidStateType.Dead or char:FindFirstChild('Awakened') then return end
+			local function doYuta(nameMove)
+				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+				if remotes then
+					local yuta = remotes:WaitForChild('Yuta',5)
+					if yuta then
+						yuta:FireServer(nameMove)
+					end
+				end
+			end
+			local function addStun()
+				local stun = Instance.new('NumberValue')
+				stun.Name = 'Gobal'
+				print(char)
+				stun.Parent = char
+				return function()
+					stun:Destroy()
+				end
+			end
+			local deleteNewStun = addStun()
+			doYuta('Strike')
+			hum.WalkSpeed = 0
+			task.wait(1.3)
+			deleteNewStun()
+			if not (game.Players.LocalPlayer.NoCD.Value==true) then
+				ismove2Available=false
+				setCoolDown(2,7)
+			end
+			coroutine.wrap(function() task.wait(7) ismove2Available=true end)()
+			hum.WalkSpeed = 25
+		end,Enum.KeyCode.Two)
+	
+		local thirdMoveConnection = bindToKey(function()
+			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not ismove3Available or hum:GetState()==Enum.HumanoidStateType.Dead or char:FindFirstChild('Awakened') then return end
+			local function doYuta(nameMove)
+				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+				if remotes then
+					local yuta = remotes:WaitForChild('Yuta',5)
+					if yuta then
+						yuta:FireServer(nameMove)
+					end
+				end
+			end
+			local function addStun()
+				local stun = Instance.new('NumberValue')
+				stun.Name = 'Gobal'
+				print(char)
+				stun.Parent = char
+				return function()
+					stun:Destroy()
+				end
+			end
+			local deleteNewStun = addStun()
+			doYuta('Rampage')
+	
+			hum.WalkSpeed = 10
+			task.wait(1.5)
+			deleteNewStun()
+			if not (game.Players.LocalPlayer.NoCD.Value==true) then
+				setCoolDown(3,9)
+				ismove3Available=false
+			end
+			coroutine.wrap(function() task.wait(9) ismove3Available=true end)()
+			hum.WalkSpeed = 25
+		end,Enum.KeyCode.Three)
+		local fourthMoveConnection = bindToKey(function()
+			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not ismove4Available or hum:GetState()==Enum.HumanoidStateType.Dead or char:FindFirstChild('Awakened') then return end
+			local function doYuta(nameMove)
+				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+				if remotes then
+					local yuta = remotes:WaitForChild('Yuta',5)
+					if yuta then
+						yuta:FireServer(nameMove)
+					end
+				end
+			end
+			local function addStun()
+				local stun = Instance.new('NumberValue')
+				stun.Name = 'Gobal'
+				print(char)
+				stun.Parent = char
+				return function()
+					stun:Destroy()
+				end
+			end
+			local deleteNewStun = addStun()
+			doYuta('Shine')
+			hum.WalkSpeed = 10
+			task.wait(1.5)
+			deleteNewStun()
+			if not (game.Players.LocalPlayer.NoCD.Value==true) then
+				ismove4Available=false
+				setCoolDown(4,12)
+			end
+	
+			coroutine.wrap(function() task.wait(12) ismove4Available=true end)()
+			hum.WalkSpeed = 25
+		end,Enum.KeyCode.Four)
+	
+		local plr = game.Players.LocalPlayer
+		task.wait(0.5)
+		for _,v in char:GetChildren() do
+			if v:IsA('LocalScript') and not table.find(whitelist,v.Name) then
+				print('Destroying '.. v.Name)
+				v:Destroy()
+			end
+		end
+		plr.CharacterRemoving:Wait()
+		print('Removing char')
+		firstMoveConnection:Disconnect()
+		secondMoveConnection:Disconnect()
+		thirdMoveConnection:Disconnect()
+		fourthMoveConnection:Disconnect()
+	end)
+	
 	
 	script.Parent.Parent.Minimize.MouseButton1Click:Connect(function()
 		if script.Parent.Visible then
@@ -1745,4 +2021,4 @@ local function SVDYM_fake_script() -- Main.LocalScript
 		local run = getRunner()()
 	end)()
 end
-coroutine.wrap(SVDYM_fake_script)()
+coroutine.wrap(DNCQ_fake_script)()
