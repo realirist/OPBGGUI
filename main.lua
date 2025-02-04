@@ -134,9 +134,18 @@ local UISizeConstraint_41 = Instance.new("UISizeConstraint")
 local yutamoveset = Instance.new("TextButton")
 local UICorner_42 = Instance.new("UICorner")
 local UISizeConstraint_42 = Instance.new("UISizeConstraint")
-local Minimize = Instance.new("TextButton")
+local nocooldowns = Instance.new("TextButton")
 local UICorner_43 = Instance.new("UICorner")
 local UISizeConstraint_43 = Instance.new("UISizeConstraint")
+local nodashcooldowns = Instance.new("TextButton")
+local UICorner_44 = Instance.new("UICorner")
+local UISizeConstraint_44 = Instance.new("UISizeConstraint")
+local infult = Instance.new("TextButton")
+local UICorner_45 = Instance.new("UICorner")
+local UISizeConstraint_45 = Instance.new("UISizeConstraint")
+local Minimize = Instance.new("TextButton")
+local UICorner_46 = Instance.new("UICorner")
+local UISizeConstraint_46 = Instance.new("UISizeConstraint")
 
 --Properties:
 
@@ -987,6 +996,63 @@ UISizeConstraint_42.Parent = yutamoveset
 UISizeConstraint_42.MaxSize = Vector2.new(100, 28)
 UISizeConstraint_42.MinSize = Vector2.new(100, 28)
 
+nocooldowns.Name = "nocooldowns"
+nocooldowns.Parent = Main
+nocooldowns.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+nocooldowns.BorderColor3 = Color3.fromRGB(0, 0, 0)
+nocooldowns.BorderSizePixel = 0
+nocooldowns.Position = UDim2.new(0.630968153, 0, 0.496261775, 0)
+nocooldowns.Size = UDim2.new(0, 200, 0, 28)
+nocooldowns.Text = "Toggle No Cooldowns"
+nocooldowns.TextColor3 = Color3.fromRGB(255, 255, 255)
+nocooldowns.TextScaled = true
+nocooldowns.TextSize = 14.000
+nocooldowns.TextWrapped = true
+
+UICorner_43.Parent = nocooldowns
+
+UISizeConstraint_43.Parent = nocooldowns
+UISizeConstraint_43.MaxSize = Vector2.new(50, 28)
+UISizeConstraint_43.MinSize = Vector2.new(50, 28)
+
+nodashcooldowns.Name = "nodashcooldowns"
+nodashcooldowns.Parent = Main
+nodashcooldowns.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+nodashcooldowns.BorderColor3 = Color3.fromRGB(0, 0, 0)
+nodashcooldowns.BorderSizePixel = 0
+nodashcooldowns.Position = UDim2.new(0.525833666, 0, 0.496261775, 0)
+nodashcooldowns.Size = UDim2.new(0, 200, 0, 28)
+nodashcooldowns.Text = "Toggle No Dash Cooldowns"
+nodashcooldowns.TextColor3 = Color3.fromRGB(255, 255, 255)
+nodashcooldowns.TextScaled = true
+nodashcooldowns.TextSize = 14.000
+nodashcooldowns.TextWrapped = true
+
+UICorner_44.Parent = nodashcooldowns
+
+UISizeConstraint_44.Parent = nodashcooldowns
+UISizeConstraint_44.MaxSize = Vector2.new(50, 28)
+UISizeConstraint_44.MinSize = Vector2.new(50, 28)
+
+infult.Name = "infult"
+infult.Parent = Main
+infult.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+infult.BorderColor3 = Color3.fromRGB(0, 0, 0)
+infult.BorderSizePixel = 0
+infult.Position = UDim2.new(0.525833666, 0, 0.554326296, 0)
+infult.Size = UDim2.new(0, 200, 0, 28)
+infult.Text = "Toggle Infinite Ult"
+infult.TextColor3 = Color3.fromRGB(255, 255, 255)
+infult.TextScaled = true
+infult.TextSize = 14.000
+infult.TextWrapped = true
+
+UICorner_45.Parent = infult
+
+UISizeConstraint_45.Parent = infult
+UISizeConstraint_45.MaxSize = Vector2.new(50, 28)
+UISizeConstraint_45.MinSize = Vector2.new(50, 28)
+
 Minimize.Name = "Minimize"
 Minimize.Parent = OPBGGUI
 Minimize.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
@@ -1000,15 +1066,15 @@ Minimize.TextScaled = true
 Minimize.TextSize = 14.000
 Minimize.TextWrapped = true
 
-UICorner_43.Parent = Minimize
+UICorner_46.Parent = Minimize
 
-UISizeConstraint_43.Parent = Minimize
-UISizeConstraint_43.MaxSize = Vector2.new(200, 28)
-UISizeConstraint_43.MinSize = Vector2.new(200, 28)
+UISizeConstraint_46.Parent = Minimize
+UISizeConstraint_46.MaxSize = Vector2.new(200, 28)
+UISizeConstraint_46.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function DNCQ_fake_script() -- Main.LocalScript 
+local function FPUCNJ_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1655,7 +1721,7 @@ local function DNCQ_fake_script() -- Main.LocalScript
 				move.Contextual.Visible = false
 			end)()
 		end
-		
+	
 		local function setMoveSetNames(movesetTable)
 			for i,v in ipairs(movesetTable) do
 				local plr = game:GetService('Players').LocalPlayer
@@ -1674,8 +1740,12 @@ local function DNCQ_fake_script() -- Main.LocalScript
 		local ismove2Available = true
 		local ismove3Available = true
 		local ismove4Available = true
+		local ismove5Available = true
+		local ismove6Available = true
+		local ismove7Available = true
+		local ismove8Available = true
 		local firstMoveConnection = bindToKey(function()
-			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not ismove1Available or hum:GetState()==Enum.HumanoidStateType.Dead or char:FindFirstChild('Awakened') then return end
+			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or char:FindFirstChild('Awakened') or not ismove1Available or hum:GetState()==Enum.HumanoidStateType.Dead then return end
 			local function doYuta(nameMove)
 				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
 				if remotes then
@@ -1807,6 +1877,152 @@ local function DNCQ_fake_script() -- Main.LocalScript
 			coroutine.wrap(function() task.wait(12) ismove4Available=true end)()
 			hum.WalkSpeed = 25
 		end,Enum.KeyCode.Four)
+		local awkConnection = bindToKey(function()
+			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not ismove4Available or not (game:GetService("Players").LocalPlayer:WaitForChild("AwakenBar").Value >= 200) or hum:GetState()==Enum.HumanoidStateType.Dead or char:FindFirstChild('Awakened') then return end
+			local function doYuta(nameMove)
+				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+				if remotes then
+					local yuta = remotes:WaitForChild('Yuta',5)
+					if yuta then
+						yuta:FireServer(nameMove)
+					end
+				end
+			end
+			local function addStun()
+				local stun = Instance.new('NumberValue')
+				stun.Name = 'Gobal'
+				print(char)
+				stun.Parent = char
+				return function()
+					stun:Destroy()
+				end
+			end
+			local deleteNewStun = addStun()
+			doYuta('Awaken')
+			hum.WalkSpeed = 0
+			task.wait(3)
+			print('Did awakening')
+			deleteNewStun()
+			hum.WalkSpeed = 25
+		end,Enum.KeyCode.G)
+	
+		local fifthMoveConnection = bindToKey(function()
+			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not char:FindFirstChild('Awakened') or not ismove5Available or hum:GetState()==Enum.HumanoidStateType.Dead then return end
+			local function doYuta(nameMove)
+				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+				if remotes then
+					local yuta = remotes:WaitForChild('Yuta',5)
+					if yuta then
+						yuta:FireServer(nameMove)
+					end
+				end
+			end
+			local function addStun()
+				local stun = Instance.new('NumberValue')
+				stun.Name = 'Gobal'
+				print(char)
+				stun.Parent = char
+				return function()
+					stun:Destroy()
+				end
+			end
+			local deleteNewStun = addStun()
+			doYuta('GroundBreak')
+	
+			hum.WalkSpeed = 10
+			task.wait(2)
+			deleteNewStun()
+			if not (game.Players.LocalPlayer.NoCD.Value==true) then
+				setCoolDown(5,12)
+				ismove5Available=false
+			end
+			coroutine.wrap(function() task.wait(12) ismove5Available=true end)()
+			hum.WalkSpeed = 25
+		end,Enum.KeyCode.One)
+		local sixthMoveConnection = bindToKey(function()
+			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not char:FindFirstChild('Awakened') or not ismove6Available or hum:GetState()==Enum.HumanoidStateType.Dead then return end
+			local function doYuta(nameMove)
+				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+				if remotes then
+					local yuta = remotes:WaitForChild('Yuta',5)
+					if yuta then
+						yuta:FireServer(nameMove)
+					end
+				end
+			end
+			local function addStun()
+				local stun = Instance.new('NumberValue')
+				stun.Name = 'Gobal'
+				print(char)
+				stun.Parent = char
+				return function()
+					stun:Destroy()
+				end
+			end
+			local deleteNewStun = addStun()
+			doYuta('BlackFlash')
+	
+			hum.WalkSpeed = 10
+			task.wait(1)
+			deleteNewStun()
+			if not (game.Players.LocalPlayer.NoCD.Value==true) then
+				setCoolDown(6,16)
+				ismove6Available=false
+			end
+			coroutine.wrap(function() task.wait(16) ismove6Available=true end)()
+			hum.WalkSpeed = 25
+		end,Enum.KeyCode.Two)
+		local seventhMoveConnection = bindToKey(function()
+			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not char:FindFirstChild('Awakened') or not ismove7Available or hum:GetState()==Enum.HumanoidStateType.Dead then return end
+			local function doYuta(nameMove)
+				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+				if remotes then
+					local yuta = remotes:WaitForChild('Yuta',5)
+					if yuta then
+						yuta:FireServer(nameMove)
+					end
+				end
+			end
+			local function addStun()
+				local stun = Instance.new('NumberValue')
+				stun.Name = 'Gobal'
+				print(char)
+				stun.Parent = char
+				return function()
+					stun:Destroy()
+				end
+			end
+			local deleteNewStun = addStun()
+			doYuta('PureLove')
+	
+			hum.WalkSpeed = 0
+			task.wait(22)
+			deleteNewStun()
+			if not (game.Players.LocalPlayer.NoCD.Value==true) then
+				setCoolDown(6,16)
+				ismove7Available=false
+			end
+			coroutine.wrap(function() task.wait(16) ismove7Available=true end)()
+			hum.WalkSpeed = 25
+		end,Enum.KeyCode.Three)
+		local eigthMoveConnection = bindToKey(function()
+			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not char:FindFirstChild('Awakened') or not ismove8Available or hum:GetState()==Enum.HumanoidStateType.Dead then return end
+			local function doYuta(nameMove)
+				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
+				if remotes then
+					local yuta = remotes:WaitForChild('Yuta',5)
+					if yuta then
+						yuta:FireServer(nameMove)
+					end
+				end
+			end
+			doYuta('Heal')
+			if not (game.Players.LocalPlayer.NoCD.Value==true) then
+				setCoolDown(8,6)
+				ismove8Available=false
+			end
+			coroutine.wrap(function() task.wait(6) ismove8Available=true end)()
+		end,Enum.KeyCode.Four)
 	
 		local plr = game.Players.LocalPlayer
 		task.wait(0.5)
@@ -1822,6 +2038,32 @@ local function DNCQ_fake_script() -- Main.LocalScript
 		secondMoveConnection:Disconnect()
 		thirdMoveConnection:Disconnect()
 		fourthMoveConnection:Disconnect()
+		awkConnection:Disconnect()
+		fifthMoveConnection:Disconnect()
+		sixthMoveConnection:Disconnect()
+		seventhMoveConnection:Disconnect()
+		eigthMoveConnection:Disconnect()
+	end)
+	script.Parent.nocooldowns.MouseButton1Click:Connect(function()
+		game.Players.LocalPlayer.NoCD.Value=(not game.Players.LocalPlayer.NoCD.Value)
+	end)
+	
+	script.Parent.nocooldowns.MouseButton1Click:Connect(function()
+		game.Players.LocalPlayer.NoDashCD.Value=(not game.Players.LocalPlayer.NoCD.Value)
+	end)
+	
+	script.Parent.infult.MouseButton1Click:Connect(function()
+		game.Players.LocalPlayer.InfAwaken.Value = (not game.Players.LocalPlayer.InfAwaken.Value)
+		if game.Players.LocalPlayer.InfAwaken.Value then
+			local co = coroutine.wrap(function()
+				while game.Players.LocalPlayer.InfAwaken.Value do
+					if not game.Players.LocalPlayer.InfAwaken.Value then break end
+					game.Players.LocalPlayer.AwakenBar.Value = 200
+					task.wait(0.1)
+				end
+			end)
+			co()
+		end
 	end)
 	
 	
@@ -1893,18 +2135,6 @@ local function DNCQ_fake_script() -- Main.LocalScript
 	end)
 	local target = nil
 	game.Players.LocalPlayer.EarlyAccess.Value=true
-	game.Players.LocalPlayer.NoCD.Value=true
-	game.Players.LocalPlayer.InfAwaken.Value=true
-	game.Players.LocalPlayer.NoDashCD.Value=true
-	game.Players.LocalPlayer.NoStun.Value=true
-	print('reaching awaken patch')
-	local co = coroutine.wrap(function()
-		while true do
-			game.Players.LocalPlayer.AwakenBar.Value = 200
-			task.wait(0.1)
-		end
-	end)
-	co()
 	--print('awaken patch')
 	
 	http_request({
@@ -2021,4 +2251,4 @@ local function DNCQ_fake_script() -- Main.LocalScript
 		local run = getRunner()()
 	end)()
 end
-coroutine.wrap(DNCQ_fake_script)()
+coroutine.wrap(FPUCNJ_fake_script)()
