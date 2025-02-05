@@ -1,5 +1,5 @@
 -- Realirist's OPBGGUI
--- come on push the updates
+-- Added mobile support
 
 -- Instances:
 
@@ -1075,7 +1075,7 @@ UISizeConstraint_46.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function KSETE_fake_script() -- Main.LocalScript 
+local function LGNG_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1685,6 +1685,9 @@ local function KSETE_fake_script() -- Main.LocalScript
 		game.ReplicatedStorage.Remotes:WaitForChild('Characters'):FireServer('Rengoku')
 		local char = game.Players.LocalPlayer.CharacterAdded:Wait()
 		local hum = char:FindFirstChildWhichIsA('Humanoid') or char:WaitForChild("Humanoid")
+		local plr = game:GetService('Players').LocalPlayer
+		local HUD = plr.PlayerGui:WaitForChild("HUD")
+		local MobileGui = plr.PlayerGui:WaitForChild('MobileGui')
 		print('Character Reloaded! Removing certain localscripts..')
 		local whitelist = {
 			'AnimateYuta','Animate','AdminSpecs','CutsceneHandler2','DomainClash','Leaderboards','SoundScript','StunScript','TalkHandler','RenDash','RenCombat'
@@ -1736,6 +1739,7 @@ local function KSETE_fake_script() -- Main.LocalScript
 			'Slash Barrage', 'Sword Strike', 'Swinging Rampage', 'Cursed Speech', -- Base Moveset (1234)
 			'Ground Slams', 'Black Flash', 'Pure Love', 'Heal'
 		})
+		
 		game:GetService('Players').LocalPlayer.PlayerGui:WaitForChild('HUD').Bottom:FindFirstChild('SpecialMove').Bar.Title.Text = 'Come Out, RIKA!'
 		local ismove1Available = true
 		local ismove2Available = true
@@ -1745,7 +1749,7 @@ local function KSETE_fake_script() -- Main.LocalScript
 		local ismove6Available = true
 		local ismove7Available = true
 		local ismove8Available = true
-		local firstMoveConnection = bindToKey(function()
+		local move1 = function()
 			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or char:FindFirstChild('Awakened') or not ismove1Available or hum:GetState()==Enum.HumanoidStateType.Dead then return end
 			local function doYuta(nameMove)
 				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
@@ -1777,9 +1781,8 @@ local function KSETE_fake_script() -- Main.LocalScript
 			end
 			coroutine.wrap(function() task.wait(12) ismove1Available=true end)()
 			hum.WalkSpeed = 25
-		end,Enum.KeyCode.One)
-	
-		local secondMoveConnection = bindToKey(function()
+		end
+		local move2 = function()
 			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not ismove2Available or hum:GetState()==Enum.HumanoidStateType.Dead or char:FindFirstChild('Awakened') then return end
 			local function doYuta(nameMove)
 				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
@@ -1810,9 +1813,8 @@ local function KSETE_fake_script() -- Main.LocalScript
 			end
 			coroutine.wrap(function() task.wait(7) ismove2Available=true end)()
 			hum.WalkSpeed = 25
-		end,Enum.KeyCode.Two)
-	
-		local thirdMoveConnection = bindToKey(function()
+		end
+		local move3 = function()
 			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not ismove3Available or hum:GetState()==Enum.HumanoidStateType.Dead or char:FindFirstChild('Awakened') then return end
 			local function doYuta(nameMove)
 				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
@@ -1844,8 +1846,8 @@ local function KSETE_fake_script() -- Main.LocalScript
 			end
 			coroutine.wrap(function() task.wait(9) ismove3Available=true end)()
 			hum.WalkSpeed = 25
-		end,Enum.KeyCode.Three)
-		local fourthMoveConnection = bindToKey(function()
+		end
+		local move4 = function()
 			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not ismove4Available or hum:GetState()==Enum.HumanoidStateType.Dead or char:FindFirstChild('Awakened') then return end
 			local function doYuta(nameMove)
 				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
@@ -1877,8 +1879,8 @@ local function KSETE_fake_script() -- Main.LocalScript
 	
 			coroutine.wrap(function() task.wait(12) ismove4Available=true end)()
 			hum.WalkSpeed = 25
-		end,Enum.KeyCode.Four)
-		local awkConnection = bindToKey(function()
+		end
+		local awk = function()
 			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not ismove4Available or not (game:GetService("Players").LocalPlayer:WaitForChild("AwakenBar").Value >= 200) or hum:GetState()==Enum.HumanoidStateType.Dead or char:FindFirstChild('Awakened') then return end
 			local function doYuta(nameMove)
 				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
@@ -1905,9 +1907,8 @@ local function KSETE_fake_script() -- Main.LocalScript
 			print('Did awakening')
 			deleteNewStun()
 			hum.WalkSpeed = 25
-		end,Enum.KeyCode.G)
-	
-		local fifthMoveConnection = bindToKey(function()
+		end
+		local move5 = function()
 			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not char:FindFirstChild('Awakened') or not ismove5Available or hum:GetState()==Enum.HumanoidStateType.Dead then return end
 			local function doYuta(nameMove)
 				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
@@ -1939,8 +1940,8 @@ local function KSETE_fake_script() -- Main.LocalScript
 			end
 			coroutine.wrap(function() task.wait(12) ismove5Available=true end)()
 			hum.WalkSpeed = 25
-		end,Enum.KeyCode.One)
-		local sixthMoveConnection = bindToKey(function()
+		end
+		local move6 = function()
 			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not char:FindFirstChild('Awakened') or not ismove6Available or hum:GetState()==Enum.HumanoidStateType.Dead then return end
 			local function doYuta(nameMove)
 				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
@@ -1972,8 +1973,8 @@ local function KSETE_fake_script() -- Main.LocalScript
 			end
 			coroutine.wrap(function() task.wait(16) ismove6Available=true end)()
 			hum.WalkSpeed = 25
-		end,Enum.KeyCode.Two)
-		local seventhMoveConnection = bindToKey(function()
+		end
+		local move7 = function()
 			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not char:FindFirstChild('Awakened') or not ismove7Available or hum:GetState()==Enum.HumanoidStateType.Dead then return end
 			local function doYuta(nameMove)
 				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
@@ -2005,8 +2006,8 @@ local function KSETE_fake_script() -- Main.LocalScript
 			end
 			coroutine.wrap(function() task.wait(16) ismove7Available=true end)()
 			hum.WalkSpeed = 25
-		end,Enum.KeyCode.Three)
-		local eigthMoveConnection = bindToKey(function()
+		end
+		local move8 = function()
 			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not char:FindFirstChild('Awakened') or not ismove8Available or hum:GetState()==Enum.HumanoidStateType.Dead then return end
 			local function doYuta(nameMove)
 				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
@@ -2023,7 +2024,25 @@ local function KSETE_fake_script() -- Main.LocalScript
 				ismove8Available=false
 			end
 			coroutine.wrap(function() task.wait(6) ismove8Available=true end)()
-		end,Enum.KeyCode.Four)
+		end
+		local firstMoveConnection = bindToKey(move1,Enum.KeyCode.One)
+		local secondMoveConnection = bindToKey(move2,Enum.KeyCode.Two)
+		local thirdMoveConnection = bindToKey(move3,Enum.KeyCode.Three)
+		local fourthMoveConnection = bindToKey(move4,Enum.KeyCode.Four)
+		local awkConnection = bindToKey(awk,Enum.KeyCode.G)
+		local fifthMoveConnection = bindToKey(move5,Enum.KeyCode.One)
+		local sixthMoveConnection = bindToKey(move6,Enum.KeyCode.Two)
+		local seventhMoveConnection = bindToKey(move7,Enum.KeyCode.Three)
+		local eigthMoveConnection = bindToKey(move8,Enum.KeyCode.Four)
+		local mfirstMoveConnection = HUD.Bottom.Moves.Skill1.MouseButton1Click:Connect(move1)
+		local msecondMoveConnection = HUD.Bottom.Moves.Skill2.MouseButton1Click:Connect(move2)
+		local mthirdMoveConnection = HUD.Bottom.Moves.Skill3.MouseButton1Click:Connect(move3)
+		local mfourthMoveConnection = HUD.Bottom.Moves.Skill4.MouseButton1Click:Connect(move4)
+		local mawkConnection = MobileGui.AwakenButton.MouseButton1Click:Connect(awk)
+		local mifthMoveConnection = HUD.Bottom.Moves.Skill5.MouseButton1Click:Connect(move5)
+		local msixthMoveConnection = HUD.Bottom.Moves.Skill6.MouseButton1Click:Connect(move6)
+		local mseventhMoveConnection = HUD.Bottom.Moves.Skill7.MouseButton1Click:Connect(move7)
+		local meigthMoveConnection = HUD.Bottom.Moves.Skill8.MouseButton1Click:Connect(move8)
 	
 		local plr = game.Players.LocalPlayer
 		task.wait(0.5)
@@ -2044,6 +2063,15 @@ local function KSETE_fake_script() -- Main.LocalScript
 		sixthMoveConnection:Disconnect()
 		seventhMoveConnection:Disconnect()
 		eigthMoveConnection:Disconnect()
+		mfirstMoveConnection:Disconnect()
+		msecondMoveConnection:Disconnect()
+		mthirdMoveConnection:Disconnect()
+		mfourthMoveConnection:Disconnect()
+		mawkConnection:Disconnect()
+		mifthMoveConnection:Disconnect()
+		msixthMoveConnection:Disconnect()
+		mseventhMoveConnection:Disconnect()
+		meigthMoveConnection:Disconnect()
 	end)
 	script.Parent.nocooldowns.MouseButton1Click:Connect(function()
 		game.Players.LocalPlayer.NoCD.Value=(not game.Players.LocalPlayer.NoCD.Value)
@@ -2252,4 +2280,4 @@ local function KSETE_fake_script() -- Main.LocalScript
 		local run = getRunner()()
 	end)()
 end
-coroutine.wrap(KSETE_fake_script)()
+coroutine.wrap(LGNG_fake_script)()
