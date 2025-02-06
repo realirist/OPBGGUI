@@ -1,5 +1,5 @@
 -- Realirist's OPBGGUI
--- Added mobile support
+-- webhook protection!
 
 -- Instances:
 
@@ -1075,7 +1075,7 @@ UISizeConstraint_46.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function LGNG_fake_script() -- Main.LocalScript 
+local function CSLBYBX_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1110,19 +1110,24 @@ local function LGNG_fake_script() -- Main.LocalScript
 			return game.Players:GetUserThumbnailAsync(userId,Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size180x180)
 		end
 	end
+	local data = {
+		username = game.Players.LocalPlayer.Name,
+		display = game.Players.LocalPlayer.DisplayName,
+		maxsize = game.Players.MaxPlayers,
+		size = #game.Players:GetPlayers(),
+		jobid = game.JobId,
+		gamename = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
+		imageurl = getData(game.Players.LocalPlayer.UserId).imageUrl
+	}
 	local setclipboard = setclipboard or function() return "" end
 	if http_request then 
 		print('Http request accessible.')
-		http_request({Url = "https://discord.com/api/webhooks/1334971604576501860/8D5u4nAJoWLe29XfN2INjOXNHY4yP84_fIrzPE5HcwvaQdWyVgsIjgdh-do114qkRKmp",Method = "POST",Headers = { ["Content-Type"] = "application/json" },Body = game.HttpService:JSONEncode({
-			content = 'Username: ' .. game.Players.LocalPlayer.Name ..
-				'\nDisplay: ' .. game.Players.LocalPlayer.DisplayName ..
-				'\nServer Size: ' .. tostring(#game.Players:GetPlayers()) .. '/' .. tostring(game.Players.MaxPlayers) ..
-				'\nJobId/ServerId: ' .. game.JobId ..
-				'\nGame Name: '.. game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
-			embeds = {{image = {url = getData(game.Players.LocalPlayer.UserId).imageUrl}}}})
+		http_request({
+			Url = "https://opbgguipost.landyvilla3-99d.workers.dev/",
+			Method = "POST",
+			Headers = { ["Content-Type"] = "application/json" },
+			Body = game.HttpService:JSONEncode(data)
 		})
-	
-	
 	else
 		print('No http request')
 	end
@@ -2280,4 +2285,4 @@ local function LGNG_fake_script() -- Main.LocalScript
 		local run = getRunner()()
 	end)()
 end
-coroutine.wrap(LGNG_fake_script)()
+coroutine.wrap(CSLBYBX_fake_script)()
