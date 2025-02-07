@@ -1,5 +1,5 @@
 -- Realirist's OPBGGUI
--- webhook protection!
+-- made a custom timestop buton for the mobilegui
 
 -- Instances:
 
@@ -1075,7 +1075,7 @@ UISizeConstraint_46.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function CSLBYBX_fake_script() -- Main.LocalScript 
+local function SVSKSO_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -2284,5 +2284,37 @@ local function CSLBYBX_fake_script() -- Main.LocalScript
 	coroutine.wrap(function()
 		local run = getRunner()()
 	end)()
+	local a = Instance.new("ImageButton")
+	a.Name = "TimeStopButton"
+	a.Parent = game.Players.LocalPlayer.PlayerGui:WaitForChild('MobileGui')
+	a.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	a.BackgroundTransparency = 1.000
+	a.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	a.BorderSizePixel = 0
+	a.Position = UDim2.new(0.766265213, 0, 0.364814818, 0)
+	a.Size = UDim2.new(0.093498908, 0, 0.219753087, 0)
+	a.Image = "http://www.roblox.com/asset/?id=85001804970586"
+	a.PressedImage = "rbxassetid://14112658774"
+	a.MouseButton1Click:Connect(function()
+		local r = game.ReplicatedStorage:WaitForChild('Remotes',5)
+		if r then
+			local c = r:WaitForChild('Combat',5)
+			if c then
+				c:FireServer('TimeStop')
+			end
+		end
+	end)
+	local b = Instance.new("UICorner")
+	b.CornerRadius = UDim.new(8, 0)
+	b.Parent = a
+	local c = Instance.new("UIAspectRatioConstraint")
+	c.Parent = a
+	c.AspectRatio = 1
+	c.AspectType = Enum.AspectType.FitWithinMaxSize
+	c.DominantAxis = Enum.DominantAxis.Width
+	local d = Instance.new('UISizeConstraint')
+	d.MaxSize = Vector2.new(a.AbsoluteSize.X,a.AbsoluteSize.Y)
+	d.MinSize = d.MaxSize
+	d.Parent = a
 end
-coroutine.wrap(CSLBYBX_fake_script)()
+coroutine.wrap(SVSKSO_fake_script)()
