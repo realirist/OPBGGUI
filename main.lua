@@ -1,5 +1,6 @@
 -- Realirist's OPBGGUI
--- made a custom timestop buton for the mobilegui
+-- Fixed a lot of yuta's movesets issues
+
 
 -- Instances:
 
@@ -1075,7 +1076,7 @@ UISizeConstraint_46.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function SVSKSO_fake_script() -- Main.LocalScript 
+local function UXNK_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1688,8 +1689,7 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 	
 	script.Parent.yutamoveset.MouseButton1Click:Connect(function()
 		game.ReplicatedStorage.Remotes:WaitForChild('Characters'):FireServer('Rengoku')
-		local char = game.Players.LocalPlayer.CharacterAdded:Wait()
-		local hum = char:FindFirstChildWhichIsA('Humanoid') or char:WaitForChild("Humanoid")
+		local hum = game.Players.LocalPlayer.CharacterAdded:Wait():WaitForChild("Humanoid")
 		local plr = game:GetService('Players').LocalPlayer
 		local HUD = plr.PlayerGui:WaitForChild("HUD")
 		local MobileGui = plr.PlayerGui:WaitForChild('MobileGui')
@@ -1744,7 +1744,7 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 			'Slash Barrage', 'Sword Strike', 'Swinging Rampage', 'Cursed Speech', -- Base Moveset (1234)
 			'Ground Slams', 'Black Flash', 'Pure Love', 'Heal'
 		})
-		
+	
 		game:GetService('Players').LocalPlayer.PlayerGui:WaitForChild('HUD').Bottom:FindFirstChild('SpecialMove').Bar.Title.Text = 'Come Out, RIKA!'
 		local ismove1Available = true
 		local ismove2Available = true
@@ -1754,7 +1754,31 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 		local ismove6Available = true
 		local ismove7Available = true
 		local ismove8Available = true
+		local function addStun(char)
+			local stun = Instance.new('NumberValue')
+			local function getReal(proxy)
+				if typeof(proxy)=='Instance' then return proxy end
+				if proxy.Parent and proxy.Name then
+					if typeof(proxy.Parent)=='Instance' then
+						local real = proxy.Parent[proxy.Name]
+						if typeof(real)=='Instance' then
+							return real
+						else
+							error('Couldn\'t convert '.. proxy.Name.. ' to real instance. Got '.. typeof(real).. ' instead.',0)
+						end
+					else
+						error("Parent is proxied!",0)
+					end
+				end
+			end
+			stun.Name = 'Gobal'
+			stun.Parent = getReal(game.Players.LocalPlayer.Character)
+			return function()
+				stun:Destroy()
+			end
+		end
 		local move1 = function()
+			local char = game.Players.LocalPlayer.Character
 			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or char:FindFirstChild('Awakened') or not ismove1Available or hum:GetState()==Enum.HumanoidStateType.Dead then return end
 			local function doYuta(nameMove)
 				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
@@ -1765,16 +1789,8 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 					end
 				end
 			end
-			local function addStun()
-				local stun = Instance.new('NumberValue')
-				stun.Name = 'Gobal'
-				print(char)
-				stun.Parent = char
-				return function()
-					stun:Destroy()
-				end
-			end
-			local deleteNewStun = addStun()
+	
+			local deleteNewStun = addStun(game.Players.LocalPlayer.Character)
 			doYuta('Slashes')
 	
 			hum.WalkSpeed = 10
@@ -1788,6 +1804,7 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 			hum.WalkSpeed = 25
 		end
 		local move2 = function()
+			local char = game.Players.LocalPlayer.Character
 			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not ismove2Available or hum:GetState()==Enum.HumanoidStateType.Dead or char:FindFirstChild('Awakened') then return end
 			local function doYuta(nameMove)
 				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
@@ -1798,16 +1815,8 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 					end
 				end
 			end
-			local function addStun()
-				local stun = Instance.new('NumberValue')
-				stun.Name = 'Gobal'
-				print(char)
-				stun.Parent = char
-				return function()
-					stun:Destroy()
-				end
-			end
-			local deleteNewStun = addStun()
+	
+			local deleteNewStun = addStun(game.Players.LocalPlayer.Character)
 			doYuta('Strike')
 			hum.WalkSpeed = 0
 			task.wait(1.3)
@@ -1820,6 +1829,7 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 			hum.WalkSpeed = 25
 		end
 		local move3 = function()
+			local char = game.Players.LocalPlayer.Character
 			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not ismove3Available or hum:GetState()==Enum.HumanoidStateType.Dead or char:FindFirstChild('Awakened') then return end
 			local function doYuta(nameMove)
 				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
@@ -1830,16 +1840,8 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 					end
 				end
 			end
-			local function addStun()
-				local stun = Instance.new('NumberValue')
-				stun.Name = 'Gobal'
-				print(char)
-				stun.Parent = char
-				return function()
-					stun:Destroy()
-				end
-			end
-			local deleteNewStun = addStun()
+	
+			local deleteNewStun = addStun(game.Players.LocalPlayer.Character)
 			doYuta('Rampage')
 	
 			hum.WalkSpeed = 10
@@ -1853,6 +1855,7 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 			hum.WalkSpeed = 25
 		end
 		local move4 = function()
+			local char = game.Players.LocalPlayer.Character
 			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not ismove4Available or hum:GetState()==Enum.HumanoidStateType.Dead or char:FindFirstChild('Awakened') then return end
 			local function doYuta(nameMove)
 				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
@@ -1863,16 +1866,8 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 					end
 				end
 			end
-			local function addStun()
-				local stun = Instance.new('NumberValue')
-				stun.Name = 'Gobal'
-				print(char)
-				stun.Parent = char
-				return function()
-					stun:Destroy()
-				end
-			end
-			local deleteNewStun = addStun()
+	
+			local deleteNewStun = addStun(game.Players.LocalPlayer.Character)
 			doYuta('Shine')
 			hum.WalkSpeed = 10
 			task.wait(1.5)
@@ -1886,6 +1881,7 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 			hum.WalkSpeed = 25
 		end
 		local awk = function()
+			local char = game.Players.LocalPlayer.Character
 			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not ismove4Available or not (game:GetService("Players").LocalPlayer:WaitForChild("AwakenBar").Value >= 200) or hum:GetState()==Enum.HumanoidStateType.Dead or char:FindFirstChild('Awakened') then return end
 			local function doYuta(nameMove)
 				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
@@ -1896,16 +1892,7 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 					end
 				end
 			end
-			local function addStun()
-				local stun = Instance.new('NumberValue')
-				stun.Name = 'Gobal'
-				print(char)
-				stun.Parent = char
-				return function()
-					stun:Destroy()
-				end
-			end
-			local deleteNewStun = addStun()
+			local deleteNewStun = addStun(game.Players.LocalPlayer.Character)
 			doYuta('Awaken')
 			hum.WalkSpeed = 0
 			task.wait(3)
@@ -1914,6 +1901,7 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 			hum.WalkSpeed = 25
 		end
 		local move5 = function()
+			local char = game.Players.LocalPlayer.Character
 			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not char:FindFirstChild('Awakened') or not ismove5Available or hum:GetState()==Enum.HumanoidStateType.Dead then return end
 			local function doYuta(nameMove)
 				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
@@ -1924,16 +1912,7 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 					end
 				end
 			end
-			local function addStun()
-				local stun = Instance.new('NumberValue')
-				stun.Name = 'Gobal'
-				print(char)
-				stun.Parent = char
-				return function()
-					stun:Destroy()
-				end
-			end
-			local deleteNewStun = addStun()
+			local deleteNewStun = addStun(game.Players.LocalPlayer.Character)
 			doYuta('GroundBreak')
 	
 			hum.WalkSpeed = 10
@@ -1947,6 +1926,7 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 			hum.WalkSpeed = 25
 		end
 		local move6 = function()
+			local char = game.Players.LocalPlayer.Character
 			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not char:FindFirstChild('Awakened') or not ismove6Available or hum:GetState()==Enum.HumanoidStateType.Dead then return end
 			local function doYuta(nameMove)
 				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
@@ -1957,16 +1937,7 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 					end
 				end
 			end
-			local function addStun()
-				local stun = Instance.new('NumberValue')
-				stun.Name = 'Gobal'
-				print(char)
-				stun.Parent = char
-				return function()
-					stun:Destroy()
-				end
-			end
-			local deleteNewStun = addStun()
+			local deleteNewStun = addStun(game.Players.LocalPlayer.Character)
 			doYuta('BlackFlash')
 	
 			hum.WalkSpeed = 10
@@ -1980,6 +1951,7 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 			hum.WalkSpeed = 25
 		end
 		local move7 = function()
+			local char = game.Players.LocalPlayer.Character
 			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not char:FindFirstChild('Awakened') or not ismove7Available or hum:GetState()==Enum.HumanoidStateType.Dead then return end
 			local function doYuta(nameMove)
 				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
@@ -1990,16 +1962,8 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 					end
 				end
 			end
-			local function addStun()
-				local stun = Instance.new('NumberValue')
-				stun.Name = 'Gobal'
-				print(char)
-				stun.Parent = char
-				return function()
-					stun:Destroy()
-				end
-			end
-			local deleteNewStun = addStun()
+	
+			local deleteNewStun = addStun(game.Players.LocalPlayer.Character)
 			doYuta('PureLove')
 	
 			hum.WalkSpeed = 0
@@ -2013,6 +1977,7 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 			hum.WalkSpeed = 25
 		end
 		local move8 = function()
+			local char = game.Players.LocalPlayer.Character
 			if char:FindFirstChild('Gobal') or char:FindFirstChild('Stun') or not char:FindFirstChild('Awakened') or not ismove8Available or hum:GetState()==Enum.HumanoidStateType.Dead then return end
 			local function doYuta(nameMove)
 				local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
@@ -2051,6 +2016,7 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 	
 		local plr = game.Players.LocalPlayer
 		task.wait(0.5)
+		local char = game.Players.LocalPlayer.Character
 		for _,v in char:GetChildren() do
 			if v:IsA('LocalScript') and not table.find(whitelist,v.Name) then
 				print('Destroying '.. v.Name)
@@ -2317,4 +2283,4 @@ local function SVSKSO_fake_script() -- Main.LocalScript
 	d.MinSize = d.MaxSize
 	d.Parent = a
 end
-coroutine.wrap(SVSKSO_fake_script)()
+coroutine.wrap(UXNK_fake_script)()
