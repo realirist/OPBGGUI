@@ -1,5 +1,5 @@
 -- Realirist's OPBGGUI
--- Switched rengoku to akame for yuta moveset (AnimateYuta, YutaDash, YutaCombat, and Yuta's Sword)
+-- Fixed yuta (GameProcessedEvent)
 
 -- Instances:
 
@@ -1075,7 +1075,7 @@ UISizeConstraint_46.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function UXLXZH_fake_script() -- Main.LocalScript 
+local function TTGXADK_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1698,8 +1698,8 @@ local function UXLXZH_fake_script() -- Main.LocalScript
 		}
 		local function bindToKey(func,key)
 			local service = game:GetService('UserInputService')
-			return service.InputBegan:Connect(function(inp)
-				if inp.KeyCode == key then
+			return service.InputBegan:Connect(function(inp,gme)
+				if inp.KeyCode == key and not gme then
 					func()
 				end
 			end)
@@ -2282,4 +2282,4 @@ local function UXLXZH_fake_script() -- Main.LocalScript
 	d.MinSize = d.MaxSize
 	d.Parent = a
 end
-coroutine.wrap(UXLXZH_fake_script)()
+coroutine.wrap(TTGXADK_fake_script)()
