@@ -1,6 +1,5 @@
 -- Realirist's OPBGGUI
--- Fixed a lot of yuta's movesets issues
-
+-- Switched rengoku to akame for yuta moveset (AnimateYuta, YutaDash, YutaCombat, and Yuta's Sword)
 
 -- Instances:
 
@@ -1076,7 +1075,7 @@ UISizeConstraint_46.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function UXNK_fake_script() -- Main.LocalScript 
+local function UXLXZH_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1688,14 +1687,14 @@ local function UXNK_fake_script() -- Main.LocalScript
 	end)
 	
 	script.Parent.yutamoveset.MouseButton1Click:Connect(function()
-		game.ReplicatedStorage.Remotes:WaitForChild('Characters'):FireServer('Rengoku')
+		game.ReplicatedStorage.Remotes:WaitForChild('Characters'):FireServer('Akame')
 		local hum = game.Players.LocalPlayer.CharacterAdded:Wait():WaitForChild("Humanoid")
 		local plr = game:GetService('Players').LocalPlayer
 		local HUD = plr.PlayerGui:WaitForChild("HUD")
 		local MobileGui = plr.PlayerGui:WaitForChild('MobileGui')
 		print('Character Reloaded! Removing certain localscripts..')
 		local whitelist = {
-			'AnimateYuta','Animate','AdminSpecs','CutsceneHandler2','DomainClash','Leaderboards','SoundScript','StunScript','TalkHandler','RenDash','RenCombat'
+			'AnimateYuta','Animate','YutaDash','YutaCombat','AdminSpecs','CutsceneHandler2','DomainClash','Leaderboards','SoundScript','StunScript','TalkHandler'
 		}
 		local function bindToKey(func,key)
 			local service = game:GetService('UserInputService')
@@ -2283,4 +2282,4 @@ local function UXNK_fake_script() -- Main.LocalScript
 	d.MinSize = d.MaxSize
 	d.Parent = a
 end
-coroutine.wrap(UXNK_fake_script)()
+coroutine.wrap(UXLXZH_fake_script)()
