@@ -1,5 +1,5 @@
 -- Realirist's OPBGGUI
--- Fixed yuta (GameProcessedEvent)
+-- Added support for kaizen battlegrounds
 
 -- Instances:
 
@@ -2133,8 +2133,9 @@ local function TTGXADK_fake_script() -- Main.LocalScript
 		makeUser(name)
 	end)
 	local target = nil
-	game.Players.LocalPlayer.EarlyAccess.Value=true
-	--print('awaken patch')
+	if not game.PlaceId==18571010582 then
+        game.Players.LocalPlayer.EarlyAccess.Value=true
+    end
 	
 	http_request({
 		Url = "https://opbgguiserver-default-rtdb.firebaseio.com/main.json",
