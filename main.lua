@@ -1077,7 +1077,6 @@ UISizeConstraint_46.MinSize = Vector2.new(200, 28)
 
 local function TTGXADK_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
-
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
 	local http_request = http_request or (function()
 		if game:GetService('RunService'):IsServer() then
@@ -1142,7 +1141,7 @@ local function TTGXADK_fake_script() -- Main.LocalScript
 			game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
 		end
 	end
-	
+	if game.Players.LocalPlayer.Name=="Ninjerninjer3" then sayMessage("blacklisted from exploiting with opbggui"); OPBGGUI:Destroy(); error("BLACKLISTED") end
 	script.Parent['3'].MouseButton1Click:Connect(function()
 		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
 		if remotes then
