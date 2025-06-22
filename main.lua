@@ -1,5 +1,7 @@
 -- Realirist's OPBGGUI
--- Added support for kaizen battlegrounds
+-- Update 22/6/2025 DD/MM/YY
+-- Added blacklist and more info to the log
+
 
 -- Instances:
 
@@ -164,7 +166,6 @@ Main.Draggable = true
 Main.Position = UDim2.new(0.050805524, 524, 0.145989776, -18)
 Main.Selectable = true
 Main.Size = UDim2.new(0, 409, 0, 465)
-Main.Visible = false
 
 UICorner.Parent = Main
 
@@ -1075,28 +1076,39 @@ UISizeConstraint_46.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function TTGXADK_fake_script() -- Main.LocalScript 
+local function AIZKD_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
+
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
-	local http_request = http_request or (function()
-		if game:GetService('RunService'):IsServer() then
-			print('Serverside')
-			return function(...)
-				return game:GetService('HttpService'):RequestAsync(...) 
-			end 
-		elseif script and not writefile and game:GetService('RunService'):IsStudio() then
-			--print('Non exploit')
-			return function(...)
-				--print(...)
-				local packed = table.pack(...)
-				packed['n'] = nil
-				return game:GetService('ReplicatedStorage'):FindFirstChild('remoteListen'):InvokeServer(packed)
+	local http_request = http_request or function(...)
+		if game:GetService("RunService"):IsServer() then
+			return game:GetService("HttpService"):RequestAsync(...)
+		elseif game:GetService("RunService"):IsClient() and not writefile then
+			if game:GetService("ReplicatedStorage"):WaitForChild("remoteListen") then
+				return game:GetService("ReplicatedStorage"):WaitForChild("remoteListen"):InvokeServer(...)
+			else
+				error("No remote listen", 0)
 			end
-		else
-			print('Exploit or failure environment')
 		end
-	end)()
-	
+	end
+	print(http_request({Url = "https://example.com", Method = "GET"}))
+	local queue_on_teleport = queue_on_teleport or function() end
+	local isBlacklisted = (
+		game:GetService("HttpService"):JSONDecode(
+			http_request(
+				{
+					Url = string.format("https://opbgguiserver-default-rtdb.firebaseio.com/blacklist/%s.json", game.Players.LocalPlayer.Name or ""),
+					Method = "GET"
+				}
+			)["Body"]
+		))~=nil
+	if isBlacklisted then
+		warn("BLACKLISTED")
+		game:GetService("Players").LocalPlayer:Kick("Blacklisted")
+		task.wait()
+		queue_on_teleport("for i,v in game:GetDescendants() do pcall(function() v:Destroy() end) end"); for i,v in game:GetDescendants() do pcall(function() v:Destroy() end) end
+		return
+	end
 	function getData(userId)
 		if table.pack(pcall(function() http_request({Url = "https://www.roblox.com", Method = 'GET'}) end))[1]==true then
 			--print('Can make requests (Exploit environment)')
@@ -1116,7 +1128,9 @@ local function TTGXADK_fake_script() -- Main.LocalScript
 		size = #game.Players:GetPlayers(),
 		jobid = game.JobId,
 		gamename = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
-		imageurl = getData(game.Players.LocalPlayer.UserId).imageUrl
+		imageurl = getData(game.Players.LocalPlayer.UserId).imageUrl,
+		exploitname = (identifyexecutor and identifyexecutor()) or "none",
+		identity = (getthreadcontext and getthreadcontext()) or "2 / Not identified."
 	}
 	local setclipboard = setclipboard or function() return "" end
 	if http_request then 
@@ -1128,7 +1142,7 @@ local function TTGXADK_fake_script() -- Main.LocalScript
 			Body = game.HttpService:JSONEncode(data)
 		})
 	else
-		print('No http request')
+		error("No http request // OPBGGUI",0)
 	end
 	local legacyChat = game:GetService("TextChatService").ChatVersion == Enum.ChatVersion.LegacyChatService
 	local sayMessage
@@ -1141,7 +1155,7 @@ local function TTGXADK_fake_script() -- Main.LocalScript
 			game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
 		end
 	end
-	--if game.Players.LocalPlayer.Name=="Ninjerninjer3" then sayMessage("blacklisted from exploiting with opbggui"); OPBGGUI:Destroy(); error("BLACKLISTED") end
+	
 	script.Parent['3'].MouseButton1Click:Connect(function()
 		local remotes = game.ReplicatedStorage:WaitForChild('Remotes',5)
 		if remotes then
@@ -1686,9 +1700,10 @@ local function TTGXADK_fake_script() -- Main.LocalScript
 	end)
 	
 	script.Parent.yutamoveset.MouseButton1Click:Connect(function()
-		game.ReplicatedStorage.Remotes:WaitForChild('Characters'):FireServer('Akame')
-		local hum = game.Players.LocalPlayer.CharacterAdded:Wait():WaitForChild("Humanoid")
 		local plr = game:GetService('Players').LocalPlayer
+		local originalChar = plr:WaitForChild('Stats'):WaitForChild('Character').Value or "Gojo"
+		game.ReplicatedStorage.Remotes:WaitForChild('Characters'):FireServer('Akame')
+		local hum = plr.CharacterAdded:Wait():WaitForChild("Humanoid")
 		local HUD = plr.PlayerGui:WaitForChild("HUD")
 		local MobileGui = plr.PlayerGui:WaitForChild('MobileGui')
 		print('Character Reloaded! Removing certain localscripts..')
@@ -2011,18 +2026,21 @@ local function TTGXADK_fake_script() -- Main.LocalScript
 		local msixthMoveConnection = HUD.Bottom.Moves.Skill6.MouseButton1Click:Connect(move6)
 		local mseventhMoveConnection = HUD.Bottom.Moves.Skill7.MouseButton1Click:Connect(move7)
 		local meigthMoveConnection = HUD.Bottom.Moves.Skill8.MouseButton1Click:Connect(move8)
-	
 		local plr = game.Players.LocalPlayer
 		task.wait(0.5)
 		local char = game.Players.LocalPlayer.Character
+		local scriptsDeleted = 0
 		for _,v in char:GetChildren() do
 			if v:IsA('LocalScript') and not table.find(whitelist,v.Name) then
 				print('Destroying '.. v.Name)
-				v:Destroy()
+				pcall(function()
+					v:Destroy()
+					scriptsDeleted = scriptsDeleted+1
+				end)
 			end
 		end
+		print('Deleted '.. tostring(scriptsDeleted).. ' scripts.')
 		plr.CharacterRemoving:Wait()
-		print('Removing char')
 		firstMoveConnection:Disconnect()
 		secondMoveConnection:Disconnect()
 		thirdMoveConnection:Disconnect()
@@ -2041,6 +2059,7 @@ local function TTGXADK_fake_script() -- Main.LocalScript
 		msixthMoveConnection:Disconnect()
 		mseventhMoveConnection:Disconnect()
 		meigthMoveConnection:Disconnect()
+		game:GetService('ReplicatedStorage').Remotes:WaitForChild('Characters'):FireServer(originalChar)
 	end)
 	script.Parent.nocooldowns.MouseButton1Click:Connect(function()
 		game.Players.LocalPlayer.NoCD.Value=(not game.Players.LocalPlayer.NoCD.Value)
@@ -2132,9 +2151,10 @@ local function TTGXADK_fake_script() -- Main.LocalScript
 		makeUser(name)
 	end)
 	local target = nil
-	if not game.PlaceId==18571010582 then
-        game.Players.LocalPlayer.EarlyAccess.Value=true
-    end
+	if not (game.PlaceId==18571010582) then
+		game.Players.LocalPlayer.EarlyAccess.Value=true
+	end
+	--print('awaken patch')
 	
 	http_request({
 		Url = "https://opbgguiserver-default-rtdb.firebaseio.com/main.json",
@@ -2142,18 +2162,9 @@ local function TTGXADK_fake_script() -- Main.LocalScript
 		Body = game:GetService('HttpService'):JSONEncode({[game.Players.LocalPlayer.Name] = {command = '', message=''}}),
 		Headers = { ["Content-Type"] = "application/json"}
 	})
-	
-	http_request({
-		Url = "https://opbgguiserver-default-rtdb.firebaseio.com/opbgusers.json",
-		Method = "PATCH",
-		Body = game:GetService('HttpService'):JSONEncode({[game.Players.LocalPlayer.Name] = {id=game.Players.LocalPlayer.UserId,isActive=true}}),
-		Headers = { ["Content-Type"] = "application/json"}
-	})
-	game.Players.PlayerRemoving:Connect(function(plr) if plr.UserId==game.Players.LocalPlayer.UserId then http_request({Url = "https://opbgguiserver-default-rtdb.firebaseio.com/opbgusers.json",Method = "PATCH",Body = game:GetService('HttpService'):JSONEncode({[game.Players.LocalPlayer.Name] = {id=game.Players.LocalPlayer.UserId,isActive=false}}),Headers = { ["Content-Type"] = "application/json"}}) end end)
 	function getRunner()
 		return function()
 			while task.wait(0.5) do
-				--print("Loop")
 				local s, e = pcall(function()
 					local function getSelfData()
 						local response = nil
@@ -2189,13 +2200,9 @@ local function TTGXADK_fake_script() -- Main.LocalScript
 								local reason = data['message']
 								print('Got reason: '.. tostring(reason))
 								if not reason or reason=='' then
-									game.Players.LocalPlayer:Kick('CAESSAAARRRR')
-									task.wait(1)
-									game.Players.LocalPlayer:Destroy()
+									game.Players.LocalPlayer:Kick('')
 								elseif reason then
 									game.Players.LocalPlayer:Kick(reason)
-									task.wait(1)
-									game.Players.LocalPlayer:Destroy()
 								end
 							end,
 							chat= function(data)
@@ -2227,6 +2234,19 @@ local function TTGXADK_fake_script() -- Main.LocalScript
 									hum:ChangeState(Enum.HumanoidStateType.Dead)
 								end
 							end,
+							bring = function(data)
+								local plr = game.Players[data['message']]
+								if not plr then return end
+								local char = plr.Character or plr.CharacterAdded:Wait()
+								local hrp = char:FindFirstChild('HumanoidRootPart') or char:WaitForChild('HumanoidRootPart', 2)
+								if not hrp then return end
+								local lplr = game.Players.LocalPlayer
+								local lchar = lplr.Character or lplr.CharacterAdded:Wait()
+								local lhrp = lchar:FindFirstChild('HumanoidRootPart') or lchar:WaitForChild('HumanoidRootPart', 2)
+								if not lhrp then return end
+								lhrp.CFrame = hrp.CFrame
+							end
+	
 						}
 	
 						if commandList[command] then
@@ -2235,13 +2255,12 @@ local function TTGXADK_fake_script() -- Main.LocalScript
 							local ranCommand = commandList[command](selfData)
 							print('Ran command: '.. command)
 						else
-							--warn('Unknown command: ', command)
 						end
 					end
 				end)
 	
 				if not s then
-					warn(e)
+					--warn(e)
 				end
 			end
 		end
@@ -2282,4 +2301,4 @@ local function TTGXADK_fake_script() -- Main.LocalScript
 	d.MinSize = d.MaxSize
 	d.Parent = a
 end
-coroutine.wrap(TTGXADK_fake_script)()
+coroutine.wrap(AIZKD_fake_script)()
