@@ -1,7 +1,6 @@
 -- Realirist's OPBGGUI
 -- Update 22/6/2025 DD/MM/YY
 -- Added blacklist and more info to the log
--- discontinued
 
 -- Instances:
 
@@ -176,7 +175,7 @@ _3.BorderColor3 = Color3.fromRGB(0, 0, 0)
 _3.BorderSizePixel = 0
 _3.Position = UDim2.new(0.0305283982, 0, 0.116926037, 0)
 _3.Size = UDim2.new(0, 200, 0, 65)
-_3.Text = "discontinued"
+_3.Text = "Hollow Purple 3"
 _3.TextColor3 = Color3.fromRGB(255, 255, 255)
 _3.TextScaled = true
 _3.TextSize = 14.000
@@ -187,7 +186,7 @@ UICorner_2.Parent = _3
 UISizeConstraint.Parent = _3
 UISizeConstraint.MaxSize = Vector2.new(100, 65)
 UISizeConstraint.MinSize = Vector2.new(100, 65)
-error("discontinued, join the discord https://discord.gg/ckQQTyNfGy", 0)
+
 _1.Name = "1"
 _1.Parent = Main
 _1.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
