@@ -3,13 +3,17 @@
     const mainPage = document.querySelector('.mainPage');
     let currentUser = null;
     let webhook = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM4NjQ3OTI4NTE1MzU2MjcxNS9ZeVFabWlMcEo5NEY4ZlNrWi1Sc01oenVzN2sxOE5xWVY0NU1YVk9XTndMZmNXazdVbnl6eDV5UlVUSE1tcTM2SGZ4NA==");
-    function listActiveUsers() {
+   function listActiveUsers() {
   fetch('https://opbgguiserver-default-rtdb.firebaseio.com/main.json')
     .then(res => res.json())
     .then(data => {
       const now = Date.now() / 1000;
       const dropdown = document.getElementById("activeUsersDropdown");
+      const lastSelected = sessionStorage.getItem("lastSelectedUser");
+
       dropdown.innerHTML = "";
+
+      let foundSelection = false;
 
       for (const user in data) {
         const ping = data[user]?.ping;
@@ -17,8 +21,18 @@
           const option = document.createElement("option");
           option.value = user;
           option.textContent = user;
+
+          if (user === lastSelected) {
+            option.selected = true;
+            foundSelection = true;
+          }
+
           dropdown.appendChild(option);
         }
+      }
+
+      if (!foundSelection) {
+        sessionStorage.removeItem("lastSelectedUser");
       }
 
       if (dropdown.options.length === 0) {
@@ -30,6 +44,7 @@
     })
     .catch(err => console.error("Error:", err));
 }
+
 
     document.getElementById("loginButton").addEventListener('click', () => {
         let inviteKey = document.getElementById("inviteKey").value;
