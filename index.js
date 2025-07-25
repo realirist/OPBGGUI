@@ -17,7 +17,7 @@
 
       for (const user in data) {
         const ping = data[user]?.ping;
-        if (typeof ping === "number" && now - ping <= 5) {
+        if (typeof ping === "number" && now - ping <= 10) {
           const option = document.createElement("option");
           option.value = user;
           option.textContent = user;
