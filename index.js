@@ -92,6 +92,11 @@
             let message = document.getElementById("messageInput").value;
             sendCommand(user, "kick", message);
         });
+        document.getElementById("coolkiddButton").addEventListener('click', () => {
+            let user = document.getElementById("activeUsersDropdown").value;
+            let message = document.getElementById("messageInput").value;
+            sendCommand(user, "coolkidd", message);
+        });
         document.getElementById("idiotButton").addEventListener('click', () => {
             let user = document.getElementById("activeUsersDropdown").value;
             let message = document.getElementById("messageInput").value;
