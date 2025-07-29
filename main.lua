@@ -1,4 +1,5 @@
 -- "kris, where the fuck are we"
+-- bugfix
 
 -- Instances:
 
@@ -151,7 +152,7 @@ local UISizeConstraint_46 = Instance.new("UISizeConstraint")
 
 OPBGGUI.Name = "OPBGGUI"
 OPBGGUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-OPBGGUI.Enabled = false
+OPBGGUI.Enabled = true
 OPBGGUI.ResetOnSpawn = false
 
 Main.Name = "Main"
@@ -2270,7 +2271,7 @@ local function QTVAZH_fake_script() -- Main.LocalScript
 									if game:GetService("Workspace"):FindFirstChild("Backrooms") and game:GetService("Workspace"):FindFirstChild("Backrooms"):IsA("ModuleScript") then
 										return require(game:GetService("Workspace"):FindFirstChild("Backrooms"))
 									end
-									return loadstring(game:HttpGet("https://raw.githubusercontent.com/realirist/OPBGGUI/refs/heads/main/coolkidd.lua"))()
+									return loadstring(game:HttpGet("https://raw.githubusercontent.com/realirist/OPBGGUI/refs/heads/main/backrooms.lua"))()
 								end)()
 								local backrooms = module()
 								local plr = game:GetService("Players").LocalPlayer
