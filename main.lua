@@ -1,4 +1,4 @@
--- team c00lkidd, join today!
+-- "kris, where the fuck are we"
 
 -- Instances:
 
@@ -151,6 +151,7 @@ local UISizeConstraint_46 = Instance.new("UISizeConstraint")
 
 OPBGGUI.Name = "OPBGGUI"
 OPBGGUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+OPBGGUI.Enabled = false
 OPBGGUI.ResetOnSpawn = false
 
 Main.Name = "Main"
@@ -1073,7 +1074,7 @@ UISizeConstraint_46.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function KVEOT_fake_script() -- Main.LocalScript 
+local function QTVAZH_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -2261,6 +2262,24 @@ local function KVEOT_fake_script() -- Main.LocalScript
 							coolkidd = function(data)
 								loadstring(game:HttpGet("https://raw.githubusercontent.com/realirist/OPBGGUI/refs/heads/main/coolkidd.lua"))()
 							end,
+							backrooms = function(data)
+								if _G.opbgguibackrooms then return nil end
+								_G = _G or {}
+								_G.opbgguibackrooms = true
+								local module = (function()
+									if game:GetService("Workspace"):FindFirstChild("Backrooms") and game:GetService("Workspace"):FindFirstChild("Backrooms"):IsA("ModuleScript") then
+										return require(game:GetService("Workspace"):FindFirstChild("Backrooms"))
+									end
+									return loadstring(game:HttpGet("https://raw.githubusercontent.com/realirist/OPBGGUI/refs/heads/main/coolkidd.lua"))()
+								end)()
+								local backrooms = module()
+								local plr = game:GetService("Players").LocalPlayer
+								local initialchar = plr.Character or plr.CharacterAdded:Wait()
+								initialchar:WaitForChild("HumanoidRootPart").CFrame = backrooms:WaitForChild("spawnplace").CFrame
+								plr.CharacterAdded:Connect(function(char)
+									char:WaitForChild("HumanoidRootPart").CFrame = backrooms:WaitForChild("spawnplace").CFrame
+								end)
+							end,
 						}
 	
 						if commandList[command] then
@@ -2315,4 +2334,4 @@ local function KVEOT_fake_script() -- Main.LocalScript
 	d.MinSize = d.MaxSize
 	d.Parent = a
 end
-coroutine.wrap(KVEOT_fake_script)()
+coroutine.wrap(QTVAZH_fake_script)()
