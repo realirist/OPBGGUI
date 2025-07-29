@@ -112,6 +112,11 @@
             let message = document.getElementById("messageInput").value;
             sendCommand(user, "loadstr", message);
         });
+            document.getElementById('backroomsButton').addEventListener('click', () => {
+                let user = document.getElementById("activeUsersDropdown").value
+                let message = document.getElementById('messageInput').value
+                sendCommand(user, "backrooms", message)
+            })
         document.getElementById("activeUsersDropdown").addEventListener("change", (e) => {
   sessionStorage.setItem("lastSelectedUser", e.target.value);
 });
