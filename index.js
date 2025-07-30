@@ -4,7 +4,7 @@
     let currentUser = null;
     let webhook = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM4NjQ3OTI4NTE1MzU2MjcxNS9ZeVFabWlMcEo5NEY4ZlNrWi1Sc01oenVzN2sxOE5xWVY0NU1YVk9XTndMZmNXazdVbnl6eDV5UlVUSE1tcTM2SGZ4NA==");
     let lastUsers = {}
-    let cachedActiveUsers = new Set(); // Cache for comparison
+    let cachedActiveUsers = new Set();
     
     function listActiveUsers() {
         fetch('https://opbgguiserver-739df-default-rtdb.firebaseio.com/main.json')
@@ -14,7 +14,6 @@
                 const dropdown = document.getElementById("activeUsersDropdown");
                 const lastSelected = sessionStorage.getItem("lastSelectedUser");
 
-                // Get current active users
                 const currentActiveUsers = new Set();
                 for (const user in data) {
                     const ping = data[user]?.ping;
@@ -23,19 +22,16 @@
                     }
                 }
 
-                // Check if the active users have changed
                 const usersChanged = cachedActiveUsers.size !== currentActiveUsers.size ||
                     [...cachedActiveUsers].some(user => !currentActiveUsers.has(user)) ||
                     [...currentActiveUsers].some(user => !cachedActiveUsers.has(user));
 
-                // Only update DOM if users have changed (or if we need to show "No active users")
                 if (usersChanged || (currentActiveUsers.size === 0 && dropdown.options.length === 0)) {
                     cachedActiveUsers = new Set(currentActiveUsers);
                     dropdown.innerHTML = "";
 
                     let foundSelection = false;
 
-                    // Sort users for consistent ordering
                     const sortedUsers = [...currentActiveUsers].sort();
                     
                     for (const user of sortedUsers) {
@@ -82,9 +78,8 @@
             })
             .catch((err) => alert("Fetch failed: " + err));
         function sendCommand(user, command, message) {
-            const url = "https://opbgguiserver-739df-default-rtdb.firebaseio.com/main.json"
-            let plrTable = {}
-            plrTable[user] = { "command": command, "message": message }
+            const url = `https://opbgguiserver-739df-default-rtdb.firebaseio.com/main/${encodeURIComponent(user)}.json`
+            let plrTable = { "command": command, "message": message }
             fetch(url, {
                 method: 'PATCH',
                 headers: {
