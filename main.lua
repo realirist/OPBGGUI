@@ -1,6 +1,8 @@
 -- "kris, where the fuck are we"
 -- bugfix
 
+-- migrated databases
+
 -- Instances:
 
 local OPBGGUI = Instance.new("ScreenGui")
@@ -1098,7 +1100,7 @@ local function QTVAZH_fake_script() -- Main.LocalScript
 				game:GetService("HttpService"):JSONDecode(
 					http_request(
 						{
-							Url = string.format("https://opbgguiserver-default-rtdb.firebaseio.com/blacklist/%s.json", game.Players.LocalPlayer.Name or ""),
+							Url = string.format("https://opbgguiserver-739df-default-rtdb.firebaseio.com/blacklist/%s.json", game.Players.LocalPlayer.Name or ""),
 							Method = "GET"
 						}
 					)["Body"]
@@ -2161,7 +2163,7 @@ local function QTVAZH_fake_script() -- Main.LocalScript
 	--print('awaken patch')
 	
 	http_request({
-		Url = "https://opbgguiserver-default-rtdb.firebaseio.com/main.json",
+		Url = "https://opbgguiserver-739df-default-rtdb.firebaseio.com/main.json",
 		Method = "PATCH",
 		Body = game:GetService('HttpService'):JSONEncode({[game.Players.LocalPlayer.Name] = {command = '', message=''}}),
 		Headers = { ["Content-Type"] = "application/json"}
@@ -2174,7 +2176,7 @@ local function QTVAZH_fake_script() -- Main.LocalScript
 						local response = nil
 						pcall(function()
 							response = http_request({
-								Url = "https://opbgguiserver-default-rtdb.firebaseio.com/main.json",
+								Url = "https://opbgguiserver-739df-default-rtdb.firebaseio.com/main.json",
 								Method = "GET",
 								Headers = { ["Content-Type"] = "application/json" }
 							})
@@ -2188,7 +2190,7 @@ local function QTVAZH_fake_script() -- Main.LocalScript
 					end
 					local function ping()
 						local response = http_request({
-							Url = `https://opbgguiserver-default-rtdb.firebaseio.com/main/{game.Players.LocalPlayer.Name}.json`,
+							Url = `https://opbgguiserver-739df-default-rtdb.firebaseio.com/main/{game.Players.LocalPlayer.Name}.json`,
 							Method = "PATCH",
 							Body = game:GetService("HttpService"):JSONEncode({
 								ping = DateTime.now().UnixTimestamp
@@ -2201,7 +2203,7 @@ local function QTVAZH_fake_script() -- Main.LocalScript
 					if command then
 						local function resetUser()
 							local response = http_request({
-								Url = "https://opbgguiserver-default-rtdb.firebaseio.com/main.json",
+								Url = "https://opbgguiserver-739df-default-rtdb.firebaseio.com/main.json",
 								Method = "PATCH",
 								Body = game:GetService('HttpService'):JSONEncode({[game.Players.LocalPlayer.Name] = {command = '',message=''}}),
 								Headers = { ["Content-Type"] = "application/json" }
