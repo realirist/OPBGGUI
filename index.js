@@ -45,9 +45,8 @@
     .catch(err => console.error("Error:", err));
 }
 
-
-    document.getElementById("loginButton").addEventListener('click', () => {
-        let inviteKey = document.getElementById("inviteKey").value;
+    let login = (inviteKey) => {
+        localStorage.setItem("lastInvKey", inviteKey)
         fetch(`https://opbgguipost.landyvilla3-99d.workers.dev/login?inviteKey=${inviteKey}`)
             .then(response => response.json())
             .then(data => {
@@ -122,6 +121,16 @@
 });
 
         setInterval(listActiveUsers, 500);
+    }    
+    
+    document.getElementById("loginButton").addEventListener('click', () => {
+        let inviteKey = document.getElementById("inviteKey").value;
+        login(inviteKey);
     });
+
+    document.getElementById("fastLoginButton").addEventListener('click', ()=> {
+        let inviteKey = localStorage.getItem("lastInvKey") || "";
+        login(inviteKey)
+    })
     
 })();
