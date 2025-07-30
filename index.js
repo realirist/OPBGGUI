@@ -3,47 +3,68 @@
     const mainPage = document.querySelector('.mainPage');
     let currentUser = null;
     let webhook = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM4NjQ3OTI4NTE1MzU2MjcxNS9ZeVFabWlMcEo5NEY4ZlNrWi1Sc01oenVzN2sxOE5xWVY0NU1YVk9XTndMZmNXazdVbnl6eDV5UlVUSE1tcTM2SGZ4NA==");
-   function listActiveUsers() {
-  fetch('https://opbgguiserver-default-rtdb.firebaseio.com/main.json')
-    .then(res => res.json())
-    .then(data => {
-      const now = Date.now() / 1000;
-      const dropdown = document.getElementById("activeUsersDropdown");
-      const lastSelected = sessionStorage.getItem("lastSelectedUser");
+    let lastUsers = {}
+    let cachedActiveUsers = new Set(); // Cache for comparison
+    
+    function listActiveUsers() {
+        fetch('https://opbgguiserver-default-rtdb.firebaseio.com/main.json')
+            .then(res => res.json())
+            .then(data => {
+                const now = Date.now() / 1000;
+                const dropdown = document.getElementById("activeUsersDropdown");
+                const lastSelected = sessionStorage.getItem("lastSelectedUser");
 
-      dropdown.innerHTML = "";
+                // Get current active users
+                const currentActiveUsers = new Set();
+                for (const user in data) {
+                    const ping = data[user]?.ping;
+                    if (typeof ping === "number" && now - ping <= 30) {
+                        currentActiveUsers.add(user);
+                    }
+                }
 
-      let foundSelection = false;
+                // Check if the active users have changed
+                const usersChanged = cachedActiveUsers.size !== currentActiveUsers.size ||
+                    [...cachedActiveUsers].some(user => !currentActiveUsers.has(user)) ||
+                    [...currentActiveUsers].some(user => !cachedActiveUsers.has(user));
 
-      for (const user in data) {
-        const ping = data[user]?.ping;
-        if (typeof ping === "number" && now - ping <= 10) {
-          const option = document.createElement("option");
-          option.value = user;
-          option.textContent = user;
+                // Only update DOM if users have changed (or if we need to show "No active users")
+                if (usersChanged || (currentActiveUsers.size === 0 && dropdown.options.length === 0)) {
+                    cachedActiveUsers = new Set(currentActiveUsers);
+                    dropdown.innerHTML = "";
 
-          if (user === lastSelected) {
-            option.selected = true;
-            foundSelection = true;
-          }
+                    let foundSelection = false;
 
-          dropdown.appendChild(option);
-        }
-      }
+                    // Sort users for consistent ordering
+                    const sortedUsers = [...currentActiveUsers].sort();
+                    
+                    for (const user of sortedUsers) {
+                        const option = document.createElement("option");
+                        option.value = user;
+                        option.textContent = user;
 
-      if (!foundSelection) {
-        sessionStorage.removeItem("lastSelectedUser");
-      }
+                        if (user === lastSelected) {
+                            option.selected = true;
+                            foundSelection = true;
+                        }
 
-      if (dropdown.options.length === 0) {
-        const option = document.createElement("option");
-        option.disabled = true;
-        option.textContent = "No active users";
-        dropdown.appendChild(option);
-      }
-    })
-    .catch(err => console.error("Error:", err));
-}
+                        dropdown.appendChild(option);
+                    }
+
+                    if (!foundSelection) {
+                        sessionStorage.removeItem("lastSelectedUser");
+                    }
+
+                    if (dropdown.options.length === 0) {
+                        const option = document.createElement("option");
+                        option.disabled = true;
+                        option.textContent = "No active users";
+                        dropdown.appendChild(option);
+                    }
+                }
+            })
+            .catch(err => console.error("Error:", err));
+    }
 
     let login = (inviteKey) => {
         localStorage.setItem("lastInvKey", inviteKey)
