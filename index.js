@@ -7,7 +7,7 @@
     let cachedActiveUsers = new Set(); // Cache for comparison
     
     function listActiveUsers() {
-        fetch('https://opbgguiserver-default-rtdb.firebaseio.com/main.json')
+        fetch('https://opbgguiserver-739df-default-rtdb.firebaseio.com/main.json')
             .then(res => res.json())
             .then(data => {
                 const now = Date.now() / 1000;
@@ -82,7 +82,7 @@
             })
             .catch((err) => alert("Fetch failed: " + err));
         function sendCommand(user, command, message) {
-            const url = "https://opbgguiserver-default-rtdb.firebaseio.com/main.json"
+            const url = "https://opbgguiserver-739df-default-rtdb.firebaseio.com/main.json"
             let plrTable = {}
             plrTable[user] = { "command": command, "message": message }
             fetch(url, {
