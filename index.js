@@ -18,7 +18,7 @@
                 const currentActiveUsers = new Set();
                 for (const user in data) {
                     const ping = data[user]?.ping;
-                    if (typeof ping === "number" && now - ping <= 10) {
+                    if (typeof ping === "number" && now - ping <= 5) {
                         currentActiveUsers.add(user);
                     }
                 }
