@@ -3,7 +3,7 @@
     const mainPage = document.querySelector('.mainPage');
     const stringIsNullOrBlank = (str) => { return (!str || str.trim() === "") }; // added this utility so that you dumbasses don't modify the root "main" database, thx
     let currentUser = null;
-    let webhook = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM4NjQ3OTI4NTE1MzU2MjcxNS9ZeVFabWlMcEo5NEY4ZlNrWi1Sc01oenVzN2sxOE5xWVY0NU1YVk9XTndMZmNXazdVbnl6eDV5UlVUSE1tcTM2SGZ4NA==");
+    let webhook = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQwMTAzNDM3NTgzOTIyMzk0MC9vT3RyVVhGaFByOTU3Y1JOZ3dTRHFTTXdBM2MwRTF2UktOQkRBS0JYSWh3TlV4eVZLSmI5NURFNFBUNEplWjFDbW5PVg==");
     let lastUsers = {}
     let cachedActiveUsers = new Set();
     
@@ -152,3 +152,4 @@
     })
     
 })();
+
