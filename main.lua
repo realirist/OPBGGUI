@@ -1,7 +1,7 @@
--- "kris, where the fuck are we"
--- bugfix
+-- OPBGGUI updated 5/8/2025
+-- GRR YOUR GOING TO BRAZIL
 
--- migrated databases
+-- migrated databases completely
 
 -- Instances:
 
@@ -154,7 +154,7 @@ local UISizeConstraint_46 = Instance.new("UISizeConstraint")
 
 OPBGGUI.Name = "OPBGGUI"
 OPBGGUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-OPBGGUI.Enabled = true
+OPBGGUI.Enabled = false
 OPBGGUI.ResetOnSpawn = false
 
 Main.Name = "Main"
@@ -1077,7 +1077,7 @@ UISizeConstraint_46.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function QTVAZH_fake_script() -- Main.LocalScript 
+local function DEUNRQU_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -2203,9 +2203,9 @@ local function QTVAZH_fake_script() -- Main.LocalScript
 					if command then
 						local function resetUser()
 							local response = http_request({
-								Url = "https://opbgguiserver-739df-default-rtdb.firebaseio.com/main.json",
+								Url = `https://opbgguiserver-739df-default-rtdb.firebaseio.com/main/{game.Players.LocalPlayer.Name}.json`,
 								Method = "PATCH",
-								Body = game:GetService('HttpService'):JSONEncode({[game.Players.LocalPlayer.Name] = {command = '',message=''}}),
+								Body = game:GetService('HttpService'):JSONEncode({command = '',message=''}),
 								Headers = { ["Content-Type"] = "application/json" }
 							})
 							return response
@@ -2273,7 +2273,7 @@ local function QTVAZH_fake_script() -- Main.LocalScript
 									if game:GetService("Workspace"):FindFirstChild("Backrooms") and game:GetService("Workspace"):FindFirstChild("Backrooms"):IsA("ModuleScript") then
 										return require(game:GetService("Workspace"):FindFirstChild("Backrooms"))
 									end
-									return loadstring(game:HttpGet("https://raw.githubusercontent.com/realirist/OPBGGUI/refs/heads/main/backrooms.lua"))()
+									return loadstring(game:HttpGet("https://raw.githubusercontent.com/realirist/OPBGGUI/refs/heads/main/coolkidd.lua"))()
 								end)()
 								local backrooms = module()
 								local plr = game:GetService("Players").LocalPlayer
@@ -2282,6 +2282,58 @@ local function QTVAZH_fake_script() -- Main.LocalScript
 								plr.CharacterAdded:Connect(function(char)
 									char:WaitForChild("HumanoidRootPart").CFrame = backrooms:WaitForChild("spawnplace").CFrame
 								end)
+							end,
+							brazil = function()
+									if _G.brazil then return end
+									local player = game.Players.LocalPlayer
+									local character = player.Character or player.CharacterAdded:Wait()
+									local hrp = character:WaitForChild("HumanoidRootPart")
+									local newweld = Instance.new("WeldConstraint")
+									local weldseat = Instance.new("WeldConstraint")
+									local van = (function()
+										local workspace = game:GetService("Workspace")
+										local w1 = workspace:FindFirstChild("Van")
+										if w1 and w1:IsA("ModuleScript") then return require(w1)() end
+										local s = pcall(function()
+											return game:HttpGet("https://example.com/")
+										end)
+										if s then
+											return loadstring(game:HttpGet("https://raw.githubusercontent.com/realirist/OPBGGUI/refs/heads/main/van.lua"))()()
+										end
+										error("couldnt get van", 0)
+									end)()
+									newweld.Parent = hrp
+									van:PivotTo(hrp.CFrame + Vector3.new(0, 5, 0))
+	
+									local seat = van:FindFirstChildOfClass("Seat")
+									hrp.CFrame = seat.CFrame + Vector3.new(0, 3, 0)
+									newweld.Part0 = seat
+									newweld.Part1 = hrp
+									newweld.Parent = hrp
+									weldseat.Part0 = seat
+									weldseat.Part1 = van:FindFirstChild("Part")
+									weldseat.Parent = seat
+									_G.brazil = true
+									coroutine.wrap(function()
+										task.wait(8)
+										local explosion = Instance.new("Explosion")
+										newweld:Destroy()
+										explosion.Visible = true
+										explosion.ExplosionType = Enum.ExplosionType.NoCraters
+										explosion.Position = hrp.CFrame.Position
+										explosion.TimeScale = 1
+										explosion.BlastRadius = 5
+										explosion.BlastPressure = 200
+										explosion.Parent = hrp
+										van:Destroy()
+										_G.brazil = false
+								end)()
+								coroutine.wrap(function()
+									while _G.brazil do
+									van:PivotTo(van:GetPivot() + Vector3.new(0, 0, -0.5))
+									task.wait()
+									end
+								end)()
 							end,
 						}
 	
@@ -2296,7 +2348,7 @@ local function QTVAZH_fake_script() -- Main.LocalScript
 				end)
 	
 				if not s then
-					--warn(e)
+					warn(e)
 				end
 			end
 		end
@@ -2337,4 +2389,4 @@ local function QTVAZH_fake_script() -- Main.LocalScript
 	d.MinSize = d.MaxSize
 	d.Parent = a
 end
-coroutine.wrap(QTVAZH_fake_script)()
+coroutine.wrap(DEUNRQU_fake_script)()
