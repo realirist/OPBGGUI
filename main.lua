@@ -154,7 +154,7 @@ local UISizeConstraint_46 = Instance.new("UISizeConstraint")
 
 OPBGGUI.Name = "OPBGGUI"
 OPBGGUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-OPBGGUI.Enabled = false
+OPBGGUI.Enabled = true
 OPBGGUI.ResetOnSpawn = false
 
 Main.Name = "Main"
