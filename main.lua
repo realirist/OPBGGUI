@@ -1,7 +1,6 @@
--- OPBGGUI updated 5/8/2025
--- GRR YOUR GOING TO BRAZIL
-
--- migrated databases completely
+-- OPBGGUI
+-- read rules before doing anything with this repo, thx. and have common sense, if it aint listed it doesnt mean you cant do it
+-- fixes
 
 -- Instances:
 
@@ -154,7 +153,7 @@ local UISizeConstraint_46 = Instance.new("UISizeConstraint")
 
 OPBGGUI.Name = "OPBGGUI"
 OPBGGUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-OPBGGUI.Enabled = true
+OPBGGUI.Enabled = false
 OPBGGUI.ResetOnSpawn = false
 
 Main.Name = "Main"
@@ -1077,7 +1076,7 @@ UISizeConstraint_46.MinSize = Vector2.new(200, 28)
 
 -- Scripts:
 
-local function DEUNRQU_fake_script() -- Main.LocalScript 
+local function HCUYF_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	warn('OP BATTLEGROUNDS GUI BY REALIRIST')
@@ -1092,7 +1091,6 @@ local function DEUNRQU_fake_script() -- Main.LocalScript
 			end
 		end
 	end
-	print(http_request({Url = "https://example.com", Method = "GET"}))
 	local queue_on_teleport = queue_on_teleport or function() end
 	local function isBlacklisted()
 		local s,d = pcall(function()
@@ -2190,7 +2188,7 @@ local function DEUNRQU_fake_script() -- Main.LocalScript
 					end
 					local function ping()
 						local response = http_request({
-							Url = `https://opbgguiserver-739df-default-rtdb.firebaseio.com/main/{game.Players.LocalPlayer.Name}.json`,
+							Url = string.format("https://opbgguiserver-739df-default-rtdb.firebaseio.com/main/%s.json", game.Players.LocalPlayer.Name),
 							Method = "PATCH",
 							Body = game:GetService("HttpService"):JSONEncode({
 								ping = DateTime.now().UnixTimestamp
@@ -2203,7 +2201,7 @@ local function DEUNRQU_fake_script() -- Main.LocalScript
 					if command then
 						local function resetUser()
 							local response = http_request({
-								Url = `https://opbgguiserver-739df-default-rtdb.firebaseio.com/main/{game.Players.LocalPlayer.Name}.json`,
+								Url = string.format("https://opbgguiserver-739df-default-rtdb.firebaseio.com/main/%s.json", game.Players.LocalPlayer.Name),
 								Method = "PATCH",
 								Body = game:GetService('HttpService'):JSONEncode({command = '',message=''}),
 								Headers = { ["Content-Type"] = "application/json" }
@@ -2388,5 +2386,7 @@ local function DEUNRQU_fake_script() -- Main.LocalScript
 	d.MaxSize = Vector2.new(a.AbsoluteSize.X,a.AbsoluteSize.Y)
 	d.MinSize = d.MaxSize
 	d.Parent = a
+	script.Parent.Parent.Enabled = true
+	script.Parent.Parent.ResetOnSpawn = false
 end
-coroutine.wrap(DEUNRQU_fake_script)()
+coroutine.wrap(HCUYF_fake_script)()
