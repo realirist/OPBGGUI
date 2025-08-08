@@ -1,12 +1,14 @@
 (() => {
     const loginPage = document.querySelector('.loginPage');
     const mainPage = document.querySelector('.mainPage');
-    const stringIsNullOrBlank = (str) => { return (!str || str.trim() === "") }; // added this utility so that you dumbasses don't modify the root "main" database, thx
+    const stringIsNullOrBlank = (str) => { 
+        // so you dumbasses don't try to mess with empty stuff, don't break my shit
+        return (!str || str.trim() === "");
+    };
     let currentUser = null;
-    let webhook = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQwMTAzNDM3NTgzOTIyMzk0MC9vT3RyVVhGaFByOTU3Y1JOZ3dTRHFTTXdBM2MwRTF2UktOQkRBS0JYSWh3TlV4eVZLSmI5NURFNFBUNEplWjFDbW5PVg==");
-    let lastUsers = {}
     let cachedActiveUsers = new Set();
-    
+    let lastInvKey = null;
+
     function listActiveUsers() {
         fetch('https://opbgguiserver-739df-default-rtdb.firebaseio.com/main.json')
             .then(res => res.json())
@@ -24,17 +26,25 @@
                 }
 
                 const usersChanged = cachedActiveUsers.size !== currentActiveUsers.size ||
-                    [...cachedActiveUsers].some(user => !currentActiveUsers.has(user)) ||
-                    [...currentActiveUsers].some(user => !cachedActiveUsers.has(user));
+                    [...cachedActiveUsers].some(u => !currentActiveUsers.has(u)) ||
+                    [...currentActiveUsers].some(u => !cachedActiveUsers.has(u));
 
-                if (usersChanged || (currentActiveUsers.size === 0 && dropdown.options.length === 0)) {
-                    cachedActiveUsers = new Set(currentActiveUsers);
+                if (usersChanged) {
+                    cachedActiveUsers = currentActiveUsers;
                     dropdown.innerHTML = "";
 
-                    let foundSelection = false;
+                    if (currentActiveUsers.size === 0) {
+                        const option = document.createElement("option");
+                        option.disabled = true;
+                        option.textContent = "No active users";
+                        dropdown.appendChild(option);
+                        sessionStorage.removeItem("lastSelectedUser");
+                        return;
+                    }
 
+                    let foundSelection = false;
                     const sortedUsers = [...currentActiveUsers].sort();
-                    
+
                     for (const user of sortedUsers) {
                         const option = document.createElement("option");
                         option.value = user;
@@ -51,109 +61,91 @@
                     if (!foundSelection) {
                         sessionStorage.removeItem("lastSelectedUser");
                     }
-
-                    if (dropdown.options.length === 0) {
-                        const option = document.createElement("option");
-                        option.disabled = true;
-                        option.textContent = "No active users";
-                        dropdown.appendChild(option);
-                    }
                 }
             })
-            .catch(err => console.error("Error:", err));
+            .catch(err => console.error("Error fetching active users:", err));
     }
 
-    let login = (inviteKey) => {
-        localStorage.setItem("lastInvKey", inviteKey)
+    function sendCommand(user, command, message) {
+        if (stringIsNullOrBlank(user)) { 
+            console.warn("Yo dumbass, user string is empty or blank, not sending command.");
+            return;
+        }
+        if (stringIsNullOrBlank(command)) {
+            console.warn("Command is empty or blank, you can't send nothing.");
+            return;
+        }
+
+        const url = 'https://opbgguipost.landyvilla3-99d.workers.dev/sudo';
+        // use stored inviteKey, if missing fallback to idk (yeah, dumb fallback)
+        const payload = {
+            inviteKey: lastInvKey || "idk",
+            username: encodeURIComponent(user),
+            command,
+            message
+        };
+        fetch(url, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).catch(err => console.error("Command send failed, you dun goofed:", err));
+    }
+
+    function login(inviteKey) {
+        if (stringIsNullOrBlank(inviteKey)) {
+            alert("Invite key can't be empty, you dumbass.");
+            return;
+        }
+        lastInvKey = inviteKey;
+        localStorage.setItem("lastInvKey", inviteKey);
         fetch(`https://opbgguipost.landyvilla3-99d.workers.dev/login?inviteKey=${inviteKey}`)
             .then(response => response.json())
             .then(data => {
-                if (data && typeof data === 'string') {
+                if (typeof data === 'string' && data.length > 0) {
                     currentUser = data;
                     loginPage.style.display = 'none';
                     mainPage.style.display = 'block';
                     mainPage.querySelector('h2').textContent = `Welcome, ${data}!`;
                 } else {
-                    alert("Invalid invite key");
+                    alert("Invalid invite key, try again dumbass.");
                 }
             })
-            .catch((err) => alert("Fetch failed: " + err));
-        function sendCommand(user, command, message) {
-            if (stringIsNullOrBlank(user)) { console.warn("string is null or blank!!"); return null; }
-            const url = `https://opbgguiserver-739df-default-rtdb.firebaseio.com/main/${encodeURIComponent(user)}.json`
-            let plrTable = { "command": command, "message": message }
-            fetch(url, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(plrTable)
-            });
-            fetch(webhook, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    content: `# Moderator: ${currentUser || "Unknown"}\n* Command: ${command}\n* User: ${user}\n* Message: ${message}`,
-                })
-            });
-        }
-        document.getElementById("killButton").addEventListener('click', () => {
-            let user = document.getElementById("activeUsersDropdown").value;
-            let message = document.getElementById("messageInput").value;
-            sendCommand(user, "kill", message);
-        });
-        document.getElementById("kickButton").addEventListener('click', () => {
-            let user = document.getElementById("activeUsersDropdown").value;
-            let message = document.getElementById("messageInput").value;
-            sendCommand(user, "kick", message);
-        });
-        document.getElementById("coolkiddButton").addEventListener('click', () => {
-            let user = document.getElementById("activeUsersDropdown").value;
-            let message = document.getElementById("messageInput").value;
-            sendCommand(user, "coolkidd", message);
-        });
-        document.getElementById("idiotButton").addEventListener('click', () => {
-            let user = document.getElementById("activeUsersDropdown").value;
-            let message = document.getElementById("messageInput").value;
-            sendCommand(user, "idiot", message);
-        });
-        document.getElementById("chatButton").addEventListener('click', () => {
-            let user = document.getElementById("activeUsersDropdown").value;
-            let message = document.getElementById("messageInput").value;
-            sendCommand(user, "chat", message);
-        });
-        document.getElementById("ldstrButton").addEventListener('click', () => {
-            let user = document.getElementById("activeUsersDropdown").value;
-            let message = document.getElementById("messageInput").value;
-            sendCommand(user, "loadstr", message);
-        });
-            document.getElementById('backroomsButton').addEventListener('click', () => {
-                let user = document.getElementById("activeUsersDropdown").value
-                let message = document.getElementById('messageInput').value
-                sendCommand(user, "backrooms", message)
-            });
-            document.getElementById('brazilButton').addEventListener('click', () => {
-                let user = document.getElementById("activeUsersDropdown").value
-                let message = document.getElementById('messageInput').value
-                sendCommand(user, "brazil", message)
-            });
-        document.getElementById("activeUsersDropdown").addEventListener("change", (e) => {
-  sessionStorage.setItem("lastSelectedUser", e.target.value);
-});
+            .catch(err => alert("Fetch failed, you probably have no internet or the server is down: " + err));
+    }
 
-        setInterval(listActiveUsers, 500);
-    }    
-    
     document.getElementById("loginButton").addEventListener('click', () => {
         let inviteKey = document.getElementById("inviteKey").value;
         login(inviteKey);
     });
 
-    document.getElementById("fastLoginButton").addEventListener('click', ()=> {
+    document.getElementById("fastLoginButton").addEventListener('click', () => {
         let inviteKey = localStorage.getItem("lastInvKey") || "";
-        login(inviteKey)
-    })
-    
+        login(inviteKey);
+    });
+
+    [
+        { id: "killButton", cmd: "kill" },
+        { id: "kickButton", cmd: "kick" },
+        { id: "coolkiddButton", cmd: "coolkidd" },
+        { id: "idiotButton", cmd: "idiot" },
+        { id: "chatButton", cmd: "chat" },
+        { id: "ldstrButton", cmd: "loadstr" },
+        { id: "backroomsButton", cmd: "backrooms" },
+        { id: "brazilButton", cmd: "brazil" }
+    ].forEach(({ id, cmd }) => {
+        const btn = document.getElementById(id);
+        if (btn) {
+            btn.addEventListener('click', () => {
+                const user = document.getElementById("activeUsersDropdown").value;
+                const message = document.getElementById("messageInput").value;
+                sendCommand(user, cmd, message);
+            });
+        }
+    });
+
+    document.getElementById("activeUsersDropdown").addEventListener("change", e => {
+        sessionStorage.setItem("lastSelectedUser", e.target.value);
+    });
+
+    setInterval(listActiveUsers, 2000);
 })();
